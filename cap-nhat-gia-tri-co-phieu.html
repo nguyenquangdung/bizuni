@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật giá trị cổ phiếu</title>
+
+    <!-- CẤU HÌNH THƯ VIỆN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' },
+                        paper: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .content-area p { margin-bottom: 1.5rem; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem 2rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .fab-toc { position: fixed; bottom: 20px; right: 20px; z-index: 50; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .table-wrap { margin: 1rem 0; overflow-x: auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER: Minimalist, Sticky -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="Index.html" class="p-2 hover:bg-slate-100 rounded-full transition text-slate-500 hover:text-topas-orange" title="Về trang chủ">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase tracking-wider">Khóa Đầu tư Chứng khoán</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi Cập nhật giá trị cổ phiếu</div>
+                </div>
+            </div>
+
+            <a href="Bai-30.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">
+                Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- LAYOUT CHÍNH: 2 Cột (Sidebar trái + Content phải) -->
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+
+        <!-- SIDEBAR MỤC LỤC (Desktop: Sticky, Mobile: Hidden) -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2 pb-10">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục nội dung</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200">
+                <!-- Javascript sẽ tự điền mục lục vào đây -->
+            </nav>
+        </aside>
+
+        <!-- NỘI DUNG CHÍNH -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+
+            <!-- Hero Title -->
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase tracking-wide mb-4">Cập nhật danh mục</span>
+                <h1>Cập nhật giá trị cổ phiếu</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Danh mục kỳ vọng, ĐLC và phân tích ACB - DGC</p>
+                <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-6">
+                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">TE</div>
+                    <div class="text-sm font-sans">
+                        <div class="font-bold text-slate-900">Topas Education</div>
+                        <div class="text-slate-500">Phiên cập nhật</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG CHI TIẾT -->
+            <div id="article-content" class="space-y-8">
+<h2>I. Công cụ Danh mục Kỳ vọng &amp; Đo lường Rủi ro (Độ lệch chuẩn)</h2>
+<h3>1. Mục đích buổi học &amp; Cách phân loại danh mục</h3>
+<ul>
+<li>Buổi học này tập trung vào:</li>
+</ul>
+<ul>
+<li><strong>Cập nhật lại các cổ phiếu sau kết quả quý 3</strong>.</li>
+<li>Hướng dẫn sử dụng <strong>công cụ danh mục kỳ vọng</strong> để:</li>
+</ul>
+<ul>
+<li>Xem <strong>tỷ suất lợi nhuận kỳ vọng</strong>.</li>
+<li>Xem <strong>độ lệch chuẩn (ĐLC)</strong> – mức độ biến động/rủi ro của danh mục.</li>
+</ul>
+<ul>
+<li>Danh mục được <strong>phân loại bằng màu sắc</strong> theo mức độ nên đầu tư:</li>
+</ul>
+<ul>
+<li><strong>Xanh đậm</strong>: cổ phiếu tốt nhất → <strong>hệ số 2 (x2)</strong> – có thể đầu tư gấp đôi.</li>
+<li><strong>Xanh nhạt</strong>: <strong>hệ số 1.5</strong>.</li>
+<li><strong>Xanh vừa</strong> (xanh thường): <strong>hệ số 1</strong>.</li>
+<li><strong>Vàng</strong>: <strong>hệ số 0.5</strong> – dạng tham khảo, <strong>không nhất thiết phải đầu tư</strong>.</li>
+</ul>
+<ul>
+<li><strong>Nguyên tắc mua</strong>:</li>
+</ul>
+<ul>
+<li>Chỉ mua khi <strong>giá nằm trong “vùng mua thấp” hoặc “vùng mua cao”</strong> đã được chỉ định.</li>
+<li>Công cụ ghi lại:</li>
+</ul>
+<ul>
+<li>Thời gian cập nhật.</li>
+<li>Số cổ phiếu trong danh mục.</li>
+<li>Tỷ suất lợi nhuận.</li>
+<li><strong>Độ lệch chuẩn (ĐLC)</strong>.</li>
+</ul>
+<h3>2. Ví dụ thiết lập danh mục &amp; kiểm soát Độ lệch chuẩn</h3>
+<ul>
+<li>Giả sử thiết lập danh mục như sau:</li>
+</ul>
+<ul>
+<li>Đầu tư khoảng <strong>200 triệu</strong> vào nhóm cổ phiếu <strong>xanh đậm</strong>:</li>
+<p class="ml-6"><strong>ACB, DGC, FPT, MVB, Thế Giới Di Động, PNG</strong>.</p>
+<li>Đầu tư khoảng <strong>100 triệu</strong> vào nhóm <strong>xanh lợt</strong>.</li>
+</ul>
+<ul>
+<li>Khi mở lại công cụ sau một thời gian:</li>
+</ul>
+<ul>
+<li><strong>Tỷ suất lợi nhuận và ĐLC sẽ thay đổi</strong> do:</li>
+</ul>
+<ul>
+<li>Giá cổ phiếu đã biến động.</li>
+<li>Tỷ trọng từng cổ phiếu trong danh mục thay đổi theo giá.</li>
+</ul>
+<ul>
+<li>Ví dụ:</li>
+</ul>
+<ul>
+<li>Danh mục cho ra <strong>ĐLC = 26.9%</strong> → <strong>quá cao</strong>, không tốt.</li>
+<li>Mục tiêu:</li>
+</ul>
+<ul>
+<li>Đưa <strong>ĐLC xuống dưới 24%</strong>,</li>
+<li>Lý tưởng nhất khoảng <strong>20% – 22%</strong>.</li>
+</ul>
+<h3>3. Ý nghĩa Độ lệch chuẩn &amp; rủi ro thống kê</h3>
+<ul>
+<li><strong>Độ lệch chuẩn (ĐLC)</strong> thể hiện:</li>
+</ul>
+<ul>
+<li>Mức độ <strong>lên xuống (biến động)</strong> của danh mục/cổ phiếu quanh mức lợi nhuận trung bình.</li>
+</ul>
+<ul>
+<li>Nếu:</li>
+</ul>
+<ul>
+<li><strong>ĐLC = 40%</strong>,</li>
+<li><strong>Tỷ suất lợi nhuận kỳ vọng = 20%</strong>, </li>
+<li>Thì trong kịch bản xấu (rớt 2 độ lệch chuẩn):</li>
+</ul>
+<ul>
+<li>Mức lỗ có thể là:</li>
+<p class="ml-6"><strong>20% – 2 × 40% = -60%</strong>.</p>
+<li>Tức là <strong>có thể âm tới 60%</strong>, cực kỳ nguy hiểm.</li>
+</ul>
+<ul>
+<li>Ngược lại, nếu:</li>
+</ul>
+<ul>
+<li><strong>ĐLC = 22%</strong>, </li>
+<li><strong>Tỷ suất lợi nhuận kỳ vọng = 20%</strong>, </li>
+<li>Khi rớt 2 độ lệch chuẩn:</li>
+</ul>
+<ul>
+<li>Mức lỗ khoảng:</li>
+<p class="ml-6"><strong>20% – 2 × 22% = -24%</strong>.</p>
+<li>Tức là <strong>âm khoảng 24%</strong>, vẫn khó chịu nhưng nằm trong ngưỡng chịu đựng của đa số nhà đầu tư dài hạn.</li>
+</ul>
+<ul>
+<li><strong>Thông điệp quan trọng</strong>:</li>
+</ul>
+<ul>
+<li>Không nên <strong>tham lam đẩy kỳ vọng lợi nhuận lên quá cao</strong> bằng cách chọn toàn cổ phiếu “căng” và biến động mạnh.</li>
+<li>Tất cả cổ phiếu trong <strong>danh mục khuyến nghị</strong> đều có:</li>
+</ul>
+<ul>
+<li><strong>Tỷ suất lợi nhuận 5 năm &gt; 15%</strong>.</li>
+<li>Chất lượng doanh nghiệp <strong>đều là loại tốt</strong>.</li>
+</ul>
+<ul>
+<li>Việc quan trọng không phải “vắt thêm vài % lợi nhuận”, mà là <strong>giữ ĐLC đủ thấp</strong> để:</li>
+</ul>
+<ul>
+<li>Biến động dễ chịu hơn.</li>
+<li>Hạn chế tâm lý <strong>hoảng loạn và bán đáy</strong> khi thị trường rơi mạnh.</li>
+</ul>
+<h3>4. So sánh với Độ lệch chuẩn của Thị trường (VNIndex)</h3>
+<ul>
+<li>Trong <strong>5 năm qua</strong>, chỉ số <strong>VNIndex</strong> có:</li>
+</ul>
+<ul>
+<li><strong>ĐLC ≈ 19.76%</strong> (gần 20%).</li>
+<li><strong>Tỷ suất lợi nhuận ≈ 11.42%</strong>.</li>
+</ul>
+<ul>
+<li>ĐLC của thị trường:</li>
+</ul>
+<ul>
+<li><strong>Thấp hơn</strong> so với đa phần danh mục cá nhân,</li>
+<li>Vì bản thân <strong>VNIndex đã là một danh mục rất đa dạng</strong>.</li>
+</ul>
+<ul>
+<li>So với các thị trường khác:</li>
+</ul>
+<ul>
+<li>ĐLC 19.76% của Việt Nam vẫn <strong>cao hơn</strong>:</li>
+</ul>
+<ul>
+<li>Nhiều thị trường phát triển chỉ khoảng <strong>15–16%</strong>.</li>
+</ul>
+<ul>
+<li>Kết luận:</li>
+</ul>
+<ul>
+<li>ĐLC của danh mục <strong>có thể cao hơn VNIndex</strong>, nhưng:</li>
+</ul>
+<ul>
+<li><strong>Không nên quá cao</strong> (ví dụ 30–40% là rủi ro lớn).</li>
+</ul>
+<ul>
+<li>Các số liệu về:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận,</li>
+<li>ĐLC của danh mục,</li>
+<li>Đều được tính dựa trên <strong>khoảng 5 năm quá khứ (~1.250 ngày giao dịch)</strong>.</li>
+</ul>
+<ul>
+<li>Theo <strong>luật số lớn</strong>:</li>
+</ul>
+<ul>
+<li>Nếu <strong>không có sự thay đổi cấu trúc quá lớn</strong>,</li>
+<li>Thì <strong>tỷ suất lợi nhuận &amp; ĐLC quá khứ</strong> là <strong>một tham chiếu hợp lý cho 5 năm tới</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>II. Quy trình Phân tích Cổ phiếu Bằng Trí tuệ Nhân tạo (AI)</h2>
+<p>Buổi này còn chia sẻ về cách dùng AI để phân tích sâu <strong>6 cổ phiếu</strong>:</p>
+<ul>
+<li><strong>ACB, DGC, SPT, MBB, Thế Giới Di Động, PNJ</strong>.</li>
+<li>Mỗi cổ phiếu khoảng <strong>30–35 slide</strong>, tổng cộng gần <strong>200 slide</strong>.</li>
+</ul>
+<p>Để xử lý được khối lượng lớn như vậy, đã sử dụng <strong>AI</strong> với quy trình:</p>
+<h3>1. Thu thập dữ liệu đầu vào</h3>
+<ul>
+<li>Thu thập:</li>
+</ul>
+<ul>
+<li><strong>Chỉ số tài chính đầy đủ</strong> của từng cổ phiếu.</li>
+<li><strong>Các báo cáo phân tích mới nhất</strong> từ <strong>3 công ty chứng khoán</strong> khác nhau.</li>
+</ul>
+<ul>
+<li>Mục tiêu:</li>
+</ul>
+<ul>
+<li>Có góc nhìn đa chiều, vừa từ <strong>dữ liệu gốc</strong>, vừa từ <strong>chuyên gia phân tích</strong>.</li>
+</ul>
+<h3>2. Huấn luyện &amp; sử dụng Wikimoney AI</h3>
+<ul>
+<li>Sử dụng <strong>Wikimoney AI</strong> (một AI nội bộ) để:</li>
+</ul>
+<ul>
+<li>Đọc <strong>dữ liệu kinh doanh</strong>.</li>
+<li>Đọc <strong>bản định giá Wikimoney</strong>.</li>
+<li>Đọc <strong>báo cáo phân tích</strong> của 3 công ty chứng khoán.</li>
+</ul>
+<ul>
+<li>AI được “huấn luyện” để:</li>
+</ul>
+<ul>
+<li>Hiểu mô hình kinh doanh.</li>
+<li>Nắm <strong>luận điểm đầu tư chính</strong>.</li>
+<li>Hiểu <strong>phương pháp định giá</strong> và <strong>khuyến nghị</strong>.</li>
+</ul>
+<h3>3. Tạo bản Word tóm tắt (2–3 trang/cổ phiếu)</h3>
+<ul>
+<li>AI được giao nhiệm vụ:</li>
+</ul>
+<ul>
+<li>Viết bản tóm tắt <strong>2–3 trang Word</strong> cho mỗi cổ phiếu, bao gồm:</li>
+</ul>
+<ul>
+<li>Những <strong>điểm nổi bật của doanh nghiệp</strong>.</li>
+<li><strong>Luận điểm đầu tư</strong> quan trọng.</li>
+<li><strong>Phương pháp định giá</strong> mà 3 công ty chứng khoán dùng.</li>
+<li><strong>Khuyến nghị</strong> và <strong>giá mục tiêu</strong>.</li>
+</ul>
+<ul>
+<li>Người vận hành phải:</li>
+</ul>
+<ul>
+<li>Ra lệnh <strong>rõ ràng &amp; cụ thể</strong>:</li>
+</ul>
+<ul>
+<li>Giới hạn <strong>độ dài</strong> (2–3 trang).</li>
+<li>Yêu cầu <strong>nêu bật điểm đặc biệt</strong> của doanh nghiệp.</li>
+<li>Yêu cầu <strong>phân tích điểm khác nhau về “cốt lõi”</strong> trong các luận điểm.</li>
+</ul>
+<h3>4. Đưa sang Gamma AI để tạo Slide</h3>
+<ul>
+<li>Sau khi có bản Word tóm tắt:</li>
+</ul>
+<ul>
+<li>Đưa toàn bộ nội dung vào <strong>Gamma AI</strong>.</li>
+<li>Gamma tự động:</li>
+</ul>
+<ul>
+<li><strong>Chuyển thành slide</strong>.</li>
+<li>Khoảng <strong>30–35 slide / cổ phiếu</strong>.</li>
+</ul>
+<h3>5. Chỉnh sửa &amp; sử dụng trong trình bày</h3>
+<ul>
+<li>Gamma AI:</li>
+</ul>
+<ul>
+<li>Giúp <strong>làm slide nhanh</strong>.</li>
+<li>Nhưng <strong>không làm hiệu ứng (animation)</strong>.</li>
+</ul>
+<ul>
+<li>Đối với:</li>
+</ul>
+<ul>
+<li><strong>Buổi học nội bộ / lớp học</strong> → slide cơ bản là <strong>đủ dùng</strong>.</li>
+<li><strong>Hội nghị, thuyết trình với sếp, nhà đầu tư lớn</strong>:</li>
+</ul>
+<ul>
+<li>Cần <strong>chỉnh sửa thêm</strong>:</li>
+</ul>
+<ul>
+<li>Bố cục.</li>
+<li>Hình ảnh.</li>
+<li><strong>Hiệu ứng chuyển động</strong> để chuyên nghiệp hơn.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>III. Phân tích Cổ phiếu ACB – Ngân hàng TMCP Á Châu</h2>
+<h3>1. Vị thế &amp; chiến lược cốt lõi</h3>
+<ul>
+<li>ACB duy trì vị thế <strong>top đầu</strong> trong nhóm ngân hàng tư nhân nhờ:</li>
+</ul>
+<ul>
+<li>Tập trung vào:</li>
+</ul>
+<ul>
+<li><strong>Khách hàng cá nhân</strong>.</li>
+<li><strong>SME (doanh nghiệp vừa &amp; nhỏ)</strong>.</li>
+</ul>
+<ul>
+<li>Chiến lược:</li>
+</ul>
+<ul>
+<li><strong>Tăng trưởng thận trọng</strong>.</li>
+<li><strong>Quản trị rủi ro nghiêm ngặt</strong>.</li>
+<li>Vận hành <strong>ổn định &amp; bền vững</strong>.</li>
+</ul>
+<ul>
+<li><strong>Đặc tính giao dịch cổ phiếu ACB</strong>:</li>
+</ul>
+<ul>
+<li><strong>Độ lệch chuẩn &amp; Beta thấp</strong>:</li>
+</ul>
+<ul>
+<li>Biến động ít, <strong>không “bay” mạnh</strong> theo tin đồn.</li>
+</ul>
+<ul>
+<li>Vì vậy:</li>
+</ul>
+<ul>
+<li><strong>Nhà đầu tư lướt sóng, trung hạn</strong> thường thấy <strong>chán</strong>.</li>
+<li>Nhưng với <strong>đầu tư dài hạn</strong>, đây là <strong>điểm cộng rất lớn</strong>.</li>
+</ul>
+<h3>2. Sức mạnh nội tại &amp; chất lượng tài sản</h3>
+<ol>
+<li><strong>Cơ cấu khách hàng</strong></li>
+</ol>
+<ul>
+<li>Tập trung vào:</li>
+</ul>
+<ul>
+<li><strong>Bán lẻ</strong>.</li>
+<li><strong>SME nội địa</strong>.</li>
+<li>Khách hàng SME <strong>FDI</strong>.</li>
+</ul>
+<ul>
+<li>Lợi ích:</li>
+</ul>
+<ul>
+<li><strong>Phân tán rủi ro</strong>.</li>
+<li>Tránh phụ thuộc vào <strong>vài khách hàng doanh nghiệp lớn</strong> hoặc <strong>bất động sản</strong>, vốn rủi ro cao.</li>
+</ul>
+<ol>
+<li><strong>Quản trị rủi ro</strong></li>
+</ol>
+<ul>
+<li>Tỷ lệ khoản vay <strong>có tài sản bảo đảm</strong>:</li>
+</ul>
+<ul>
+<li><strong>96%</strong> – <strong>cao nhất hệ thống</strong>.</li>
+</ul>
+<ul>
+<li>Trong đó:</li>
+</ul>
+<ul>
+<li><strong>84%</strong> được đảm bảo bằng <strong>bất động sản</strong> hoặc <strong>tài sản giá trị ổn định</strong>.</li>
+</ul>
+<ul>
+<li>Tỷ lệ nợ xấu (<strong>NPL</strong>):</li>
+</ul>
+<ul>
+<li>Giảm dần, còn khoảng <strong>1.1% (Q3/2025)</strong> – <strong>thấp nhất ngành</strong>.</li>
+</ul>
+<ul>
+<li>Tỷ lệ <strong>bao phủ nợ xấu (NPL coverage)</strong>:</li>
+</ul>
+<ul>
+<li>Tăng lên khoảng <strong>80–84%</strong>.</li>
+</ul>
+<ul>
+<li>Tạo ra <strong>bộ đệm an toàn rất vững</strong>.</li>
+</ul>
+<ol>
+<li><strong>Động lực tăng trưởng tín dụng</strong></li>
+</ol>
+<ul>
+<li>Dự báo <strong>tăng trưởng tín dụng 17–20%</strong> trong năm 2025.</li>
+<li>Tín dụng bán lẻ:</li>
+</ul>
+<ul>
+<li>Phục hồi mạnh, đặc biệt:</li>
+</ul>
+<ul>
+<li><strong>Cho vay mua nhà</strong> tăng <strong>17% YoY</strong> đến Q3/2025.</li>
+</ul>
+<ul>
+<li>ACB đang:</li>
+</ul>
+<ul>
+<li>Mở rộng sang <strong>phân khúc doanh nghiệp lớn</strong>.</li>
+<li>Hiện tỷ trọng phân khúc này mới <strong>khoảng 1%</strong>, nên:</li>
+</ul>
+<ul>
+<li><strong>Dư địa tăng trưởng rất lớn</strong>.</li>
+</ul>
+<ol>
+<li><strong>Thu nhập ngoài lãi (NOII)</strong></li>
+</ol>
+<ul>
+<li>Tăng trưởng <strong>rất mạnh</strong>:</li>
+</ul>
+<ul>
+<li>Ngoại hối &amp; vàng: <strong>+110%</strong>.</li>
+<li>Công ty chứng khoán <strong>ACBS</strong> (thuộc ACB): <strong>+34%</strong>.</li>
+<li>Thu hồi nợ xấu: <strong>+30%</strong>.</li>
+</ul>
+<ul>
+<li>ACBS đã:</li>
+</ul>
+<ul>
+<li><strong>Tăng vốn lên 11.000 tỷ đồng</strong> → củng cố năng lực kinh doanh chứng khoán.</li>
+</ul>
+<ol>
+<li><strong>Hệ sinh thái ACB</strong></li>
+</ol>
+<ul>
+<li>ACB đang hoàn thiện <strong>chuỗi giá trị</strong>:</li>
+</ul>
+<ul>
+<li><strong>Ngân hàng – Chứng khoán – Quản lý quỹ</strong>.</li>
+</ul>
+<ul>
+<li>Kế hoạch:</li>
+</ul>
+<ul>
+<li>Thành lập <strong>Công ty bảo hiểm phi nhân thọ</strong> vào năm <strong>2026</strong>.</li>
+</ul>
+<ul>
+<li>Mục tiêu:</li>
+</ul>
+<ul>
+<li>Tạo <strong>hệ sinh thái tài chính toàn diện</strong> cho khách hàng.</li>
+</ul>
+<ol>
+<li><strong>Hiệu quả vận hành &amp; số hóa</strong></li>
+</ol>
+<ul>
+<li><strong>CASA (tiền gửi không kỳ hạn)</strong>:</li>
+</ul>
+<ul>
+<li>Duy trì <strong>22–23%</strong>, thuộc <strong>top đầu nhóm tư nhân</strong>.</li>
+<li>Tuy thấp hơn Techcombank, MBB (tiên phong miễn phí chuyển khoản) nhưng vẫn là <strong>điểm lợi thế chi phí vốn</strong>.</li>
+</ul>
+<ul>
+<li><strong>CIR (Cost-to-Income Ratio)</strong>:</li>
+</ul>
+<ul>
+<li>Khoảng <strong>30–31%</strong>,</li>
+<li>Thấp hơn nhiều so với <strong>trung bình ngành</strong> → ACB <strong>tiết kiệm chi phí, vận hành hiệu quả</strong>.</li>
+</ul>
+<ul>
+<li><strong>Số hóa</strong>:</li>
+</ul>
+<ul>
+<li><strong>99% giao dịch</strong> đã lên <strong>online</strong>.</li>
+</ul>
+<ul>
+<li><strong>ROE (Return on Equity)</strong>:</li>
+</ul>
+<ul>
+<li>Duy trì <strong>19–21%</strong>,</li>
+<li>Thuộc <strong>nhóm dẫn đầu hệ thống ngân hàng Việt Nam</strong>.</li>
+</ul>
+<h3>3. Rủi ro chính &amp; Định giá từ các CTCK</h3>
+<p><strong>Rủi ro chính</strong></p>
+<ul>
+<li><strong>NIM (Net Interest Margin)</strong>:</li>
+</ul>
+<ul>
+<li>Phục hồi <strong>chậm</strong>.</li>
+</ul>
+<ul>
+<li><strong>Cạnh tranh tín dụng mua nhà</strong>:</li>
+</ul>
+<ul>
+<li>Ngân hàng giờ cho phép:</li>
+</ul>
+<ul>
+<li><strong>Chuyển khoản vay</strong> từ ngân hàng A sang B dễ hơn.</li>
+</ul>
+<ul>
+<li>Làm tăng cạnh tranh, đặc biệt trong <strong>cho vay mua nhà</strong>.</li>
+</ul>
+<ul>
+<li><strong>Biến động thị trường bất động sản</strong>:</li>
+</ul>
+<ul>
+<li>Có thể ảnh hưởng đến <strong>chất lượng tài sản &amp; tăng trưởng tín dụng</strong>.</li>
+</ul>
+<ul>
+<li><strong>Tiến độ mở rộng hệ sinh thái</strong>:</li>
+</ul>
+<ul>
+<li>Nếu chậm hơn kế hoạch:</li>
+</ul>
+<ul>
+<li>Tác động đến <strong>NOII &amp; lợi thế cạnh tranh</strong>.</li>
+</ul>
+<ul>
+<li>Tuy nhiên, các rủi ro trên được đánh giá là:</li>
+</ul>
+<ul>
+<li><strong>Tồn tại nhưng ở mức vừa phải</strong>,</li>
+<li>Và <strong>ACB có khả năng kiểm soát tốt</strong>.</li>
+</ul>
+<p><strong>Định giá &amp; Khuyến nghị từ các CTCK</strong></p>
+<p>| Công ty CK | Luận điểm chính                                                                                                          | Phương pháp định giá      | Giá mục tiêu   | Khuyến nghị                |</p>
+<p>| ---------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------- | -------------- | -------------------------- |</p>
+<p>| <strong>BSC</strong>    | Chất lượng tài sản <strong>tốt nhất ngành</strong>, quản trị rủi ro chặt. Thách thức: tăng trưởng lợi nhuận <strong>chậm lại do NIM giảm</strong>. | <strong>P/B 1.2x</strong>              | <strong>28.400 VNĐ</strong> | <strong>Nắm giữ</strong>                |</p>
+<p>| <strong>MBS</strong>    | Định giá hấp dẫn (<strong>P/B 1.4x</strong>), tiềm năng tăng trưởng cao nhờ <strong>tín dụng bán lẻ &amp; NOII</strong>.                               | <strong>Kết hợp RI + P/B 1.6x</strong> | <strong>33.400 VNĐ</strong> | <strong>Khả quan</strong>               |</p>
+<p>| <strong>PVSC</strong>   | Hưởng lợi từ khu vực tư nhân; <strong>AOI/ROE duy trì 19–21% dài hạn</strong>.                                                        | <strong>Kết hợp RI + P/B 1.5x</strong> | <strong>31.300 VNĐ</strong> | <strong>Outperform (Vượt trội)</strong> |</p>
+<p><strong>Kết luận tổng hợp</strong></p>
+<ul>
+<li><strong>Giá mục tiêu trung bình ~31.000 VNĐ/cp</strong>.</li>
+<li>So với <strong>giá hiện tại ~25.000 VNĐ</strong>:</li>
+</ul>
+<ul>
+<li><strong>Tiềm năng tăng giá 20–25%</strong>.</li>
+</ul>
+<ul>
+<li>Trong khi:</li>
+</ul>
+<ul>
+<li><strong>Chất lượng tài sản, ROE, CIR, NOII</strong> đều vượt trội.</li>
+</ul>
+<ul>
+<li>ACB đang:</li>
+</ul>
+<ul>
+<li>Giao dịch ở <strong>mức định giá thấp hơn giá trị thật</strong>.</li>
+<li>Phù hợp để <strong>nắm giữ trung &amp; dài hạn</strong> cho nhà đầu tư giá trị.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>IV. Phân tích Cổ phiếu DGC – Tập đoàn Hóa chất Đức Giang</h2>
+<h3>1. Vị thế thị trường &amp; chuỗi giá trị</h3>
+<ul>
+<li><strong>DGC</strong> là:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp <strong>hóa chất phosphate lớn nhất Việt Nam</strong>.</li>
+</ul>
+<ul>
+<li>Lợi thế:</li>
+</ul>
+<ul>
+<li>Sở hữu <strong>chuỗi giá trị khép kín (tích hợp dọc)</strong>:</li>
+</ul>
+<ul>
+<li>Từ <strong>khai thác quặng</strong> → <strong>sản xuất P4</strong> → <strong>axit phosphoric</strong> → <strong>phân bón (DAP, MAP)</strong>.</li>
+</ul>
+<ul>
+<li>Nhờ tích hợp dọc:</li>
+</ul>
+<ul>
+<li><strong>Biên lợi nhuận cao hơn</strong>.</li>
+<li><strong>Giảm phụ thuộc</strong> vào nhà cung cấp đầu vào.</li>
+</ul>
+<h3>2. Kết quả kinh doanh Q3/2025</h3>
+<ul>
+<li>Doanh thu: <strong>2.815 tỷ đồng</strong>, <strong>+10% YoY</strong>.</li>
+<li>Lợi nhuận: <strong>752 tỷ đồng</strong>, <strong>+6% YoY</strong>.</li>
+<li><strong>Biên lợi nhuận gộp</strong>:</li>
+</ul>
+<ul>
+<li>Giảm xuống còn <strong>31.3%</strong>.</li>
+<li>Nguyên nhân:</li>
+</ul>
+<ul>
+<li>Sử dụng <strong>quặng chất lượng thấp hơn</strong>.</li>
+<li><strong>Giá điện tăng</strong>.</li>
+<li><strong>Tỷ trọng phân bón</strong> (biên lợi nhuận thấp hơn) tăng.</li>
+</ul>
+<h3>3. Bối cảnh thị trường &amp; Hỗ trợ từ phía cung</h3>
+<ul>
+<li>Việc <strong>Trung Quốc ngừng xuất khẩu phân bón</strong>:</li>
+</ul>
+<ul>
+<li>Làm cho <strong>thị trường phân bón &amp; sản phẩm phosphate trở nên khan hiếm</strong>.</li>
+<li>Tạo điều kiện để:</li>
+</ul>
+<ul>
+<li><strong>Giá bán sản phẩm của DGC tăng</strong>.</li>
+</ul>
+<ul>
+<li>Cụ thể:</li>
+</ul>
+<ul>
+<li>Giá <strong>P4</strong> tăng <strong>12%</strong>.</li>
+<li>Giá <strong>WPA</strong> tăng <strong>8%</strong>.</li>
+<li>Giá <strong>MAP</strong> tăng <strong>6%</strong>.</li>
+</ul>
+<ul>
+<li>Điều này:</li>
+</ul>
+<ul>
+<li>Hỗ trợ <strong>doanh thu &amp; lợi nhuận</strong> của DGC.</li>
+<li>Phần nào <strong>bù đắp</strong> cho chi phí đầu vào tăng.</li>
+</ul>
+<h3>4. Thách thức chính: Thuế xuất khẩu P4</h3>
+<ul>
+<li><strong>Thuế xuất khẩu P4</strong> là rủi ro lớn trong trung &amp; dài hạn.</li>
+<li>Lộ trình thuế:</li>
+</ul>
+<ul>
+<li><strong>Năm 2026</strong>: <strong>5%</strong>.</li>
+<li><strong>Năm 2027</strong>: <strong>10%</strong>.</li>
+<li>Sau đó có thể tăng lên <strong>15%</strong>.</li>
+</ul>
+<ul>
+<li>Tác động:</li>
+</ul>
+<ul>
+<li>DGC <strong>không thể chuyển toàn bộ phần thuế &amp; chi phí</strong> sang cho khách hàng.</li>
+<li>Dẫn tới:</li>
+</ul>
+<ul>
+<li><strong>Biên lợi nhuận gộp chịu áp lực giảm đáng kể</strong>.</li>
+</ul>
+<ul>
+<li>Kết luận:</li>
+</ul>
+<ul>
+<li>DGC có nền tảng tốt, hưởng lợi từ bối cảnh cung cầu toàn cầu,</li>
+<li>Nhưng <strong>thuế xuất khẩu P4</strong> là <strong>rủi ro trọng yếu cần theo dõi</strong>, vì nó <strong>ăn trực tiếp vào biên lợi nhuận</strong> trong tương lai.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<p>Nếu sếp muốn, em có thể giúp:</p>
+<ul>
+<li>Gộp riêng <strong>ACB</strong> và <strong>DGC</strong> thành <strong>2 “Investment Memo” ngắn gọn</strong> cho đội đầu tư.</li>
+<li>Hoặc biến phần <strong>ĐLC + danh mục kỳ vọng</strong> thành <strong>1 checklist 5–7 dòng</strong> để truyền đạt lại cho nhân sự mới trong team.</li>
+</ul>
+            </div>
+
+            <!-- FOOTER NAVIGATION -->
+            <div class="mt-16 pt-8 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 border-t">
+                <a href="Index.html" class="w-full md:w-auto px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition text-center">
+                    ← Quay lại Danh sách
+                </a>
+                <a href="Bai-30.html" class="w-full md:w-auto px-6 py-3 bg-topas-orange text-white rounded-lg font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 text-center flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE FAB -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fab-toc bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+
+    <!-- MOBILE TOC DRAWER -->
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+            <span class="font-bold text-slate-800">Mục lục bài học</span>
+            <button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="overflow-y-auto p-4 space-y-2 font-sans text-sm" id="mobile-toc-content"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1);
+            header.id = id;
+
+            const link = document.createElement('a');
+            link.href = '#' + id;
+            link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate';
+            link.innerText = header.innerText;
+            link.onclick = (e) => {
+                e.preventDefault();
+                highlightTOC(link);
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            desktopToc.appendChild(link);
+
+            const mobileLink = link.cloneNode(true);
+            mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => {
+                e.preventDefault();
+                toggleMobileTOC();
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            mobileTocContent.appendChild(mobileLink);
+        });
+
+        function highlightTOC(activeLink) {
+            document.querySelectorAll('#desktop-toc a').forEach(a => {
+                a.classList.remove('toc-active');
+                a.classList.add('border-transparent');
+            });
+            activeLink.classList.remove('border-transparent');
+            activeLink.classList.add('toc-active');
+        }
+
+        const drawer = document.getElementById('mobile-toc-drawer');
+        const overlay = document.getElementById('mobile-toc-overlay');
+        let isDrawerOpen = false;
+        function toggleMobileTOC() {
+            isDrawerOpen = !isDrawerOpen;
+            if (isDrawerOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-y-full');
+            } else {
+                overlay.classList.add('opacity-0');
+                drawer.classList.add('translate-y-full');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+    </script>
+</body>
+</html>
