@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 28: Rủi ro & Đa dạng hóa</title>
+
+    <!-- CẤU HÌNH THƯ VIỆN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' },
+                        paper: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .content-area p { margin-bottom: 1.5rem; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem 2rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .fab-toc { position: fixed; bottom: 20px; right: 20px; z-index: 50; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .table-wrap { margin: 1rem 0; overflow-x: auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER: Minimalist, Sticky -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="Bai-27.html" class="p-2 hover:bg-slate-100 rounded-full transition text-slate-500 hover:text-topas-orange" title="Về trang chủ">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase tracking-wider">Khóa Đầu tư Chứng khoán</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi 28: Rủi ro & Đa dạng hóa</div>
+                </div>
+            </div>
+
+            <a href="Bai-29.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">
+                Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- LAYOUT CHÍNH: 2 Cột (Sidebar trái + Content phải) -->
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+
+        <!-- SIDEBAR MỤC LỤC (Desktop: Sticky, Mobile: Hidden) -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2 pb-10">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục nội dung</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200">
+                <!-- Javascript sẽ tự điền mục lục vào đây -->
+            </nav>
+        </aside>
+
+        <!-- NỘI DUNG CHÍNH -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+
+            <!-- Hero Title -->
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase tracking-wide mb-4">Module Chiến lược</span>
+                <h1>Rủi ro & Đa dạng hóa</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Ba loại rủi ro, độ lệch chuẩn và lợi ích danh mục</p>
+                <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-6">
+                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">TE</div>
+                    <div class="text-sm font-sans">
+                        <div class="font-bold text-slate-900">Topas Education</div>
+                        <div class="text-slate-500">Buổi 28 • Khóa 31</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG CHI TIẾT -->
+            <div id="article-content" class="space-y-8">
+<h2>I. Giới thiệu Buổi 28 và Các Loại Rủi Ro</h2>
+<ul>
+<li>Buổi học này là <strong>Buổi 28</strong>, nội dung chính xoay quanh:</li>
+</ul>
+<ul>
+<li><strong>Rủi ro (risk)</strong> khi đầu tư.</li>
+<li><strong>Đa dạng hóa</strong> để giảm thiểu rủi ro.</li>
+</ul>
+<ul>
+<li>Người hướng dẫn dành thêm thời gian để giảng sâu hơn cho học viên nắm rõ bản chất.</li>
+<li>Ba loại rủi ro chính trong đầu tư:</li>
+</ul>
+<ol>
+<li><strong>Rủi ro mất hẳn vốn</strong> (mất sạch hoặc gần như mất sạch số tiền đầu tư).</li>
+<li><strong>Rủi ro không đạt tỷ suất lợi nhuận như kỳ vọng</strong> (ví dụ kỳ vọng 15% nhưng thực tế chỉ 8% hoặc âm).</li>
+<li><strong>Rủi ro thanh khoản</strong> – khó chuyển đổi tài sản thành tiền mặt khi cần (ít người mua, cổ phiếu bị “đơ”…).</li>
+</ol>
+<hr class="my-6 border-slate-200" />
+<h2>II. Đa dạng hóa để giảm Rủi ro Mất hẳn Vốn</h2>
+<ul>
+<li>Nếu nhà đầu tư <strong>không đa dạng hóa</strong> mà chỉ tập trung vào <strong>một cổ phiếu</strong>, rủi ro chọn nhầm <strong>cổ phiếu rất xấu</strong> là rất lớn → có thể <strong>mất hẳn vốn</strong>.</li>
+<li>Ví dụ minh họa với <strong>6 cổ phiếu H, I, K, M, N, O</strong>:</li>
+</ul>
+<ul>
+<li><strong>H</strong>: Cổ phiếu xấu, bị <strong>hủy niêm yết</strong>, nhà đầu tư coi như <strong>mất trắng</strong>.</li>
+<li><strong>I</strong>: 100 triệu sau 20 năm chỉ còn <strong>18 triệu</strong>, coi như <strong>mất gần hết vốn</strong>.</li>
+<li><strong>K</strong>: Cổ phiếu trung bình, tỷ suất lợi nhuận <strong>9%/năm</strong>.</li>
+<li><strong>M</strong>: Cổ phiếu trung bình, tỷ suất lợi nhuận <strong>10%/năm</strong>.</li>
+<li><strong>N</strong>: Cổ phiếu tốt, tỷ suất lợi nhuận <strong>16%/năm</strong>.</li>
+<li><strong>O</strong>: Cổ phiếu rất tốt, tỷ suất lợi nhuận <strong>21%/năm</strong>.</li>
+</ul>
+<ul>
+<li>Giả sử nhà đầu tư có <strong>600 triệu</strong>, chia đều:</li>
+</ul>
+<ul>
+<li>Mỗi cổ phiếu <strong>100 triệu</strong> → đầu tư vào cả H, I, K, M, N, O.</li>
+</ul>
+<ul>
+<li>Sau <strong>20 năm</strong>:</li>
+</ul>
+<ul>
+<li>Tổng số tiền thu được từ danh mục = <strong>7,7 tỷ đồng</strong>.</li>
+<li><strong>Tỷ suất lợi nhuận bình quân</strong> của cả danh mục ≈ <strong>13,63%/năm</strong>.</li>
+</ul>
+<ul>
+<li>Kết luận:</li>
+</ul>
+<ul>
+<li>Khi <strong>đa dạng hóa</strong>, nhà đầu tư:</li>
+</ul>
+<ul>
+<li>Chấp nhận mức lợi nhuận bình quân (không “đỉnh” như cổ phiếu O).</li>
+<li>Nhưng <strong>tránh được rủi ro mất hẳn vốn</strong>:</li>
+</ul>
+<ul>
+<li>600 triệu ban đầu <strong>không những không mất</strong>, mà còn tăng lên <strong>7,7 tỷ</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>III. Rủi ro Biến động Tỷ suất Lợi nhuận</h2>
+<ul>
+<li>Rủi ro thứ hai: <strong>rủi ro biến động</strong>, làm cho:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận thực tế <strong>khác xa kỳ vọng</strong>, có khi <strong>âm</strong>, dù về dài hạn vẫn có vẻ ổn.</li>
+</ul>
+<ul>
+<li>Ví dụ với <strong>ba cổ phiếu A, B, C</strong>:</li>
+</ul>
+<ul>
+<li>Cả ba đều:</li>
+</ul>
+<ul>
+<li>Bắt đầu từ <strong>100 đồng</strong>.</li>
+<li>Kết thúc tại <strong>215 đồng</strong> sau <strong>10 năm</strong>.</li>
+</ul>
+<ul>
+<li><strong>Tỷ suất lợi nhuận trung bình tài chính (geometric)</strong> của A, B, C đều <strong>giống nhau</strong>.</li>
+</ul>
+<ul>
+<li>Tuy nhiên, <strong>tỷ suất lợi nhuận từng năm</strong> lại rất khác:</li>
+</ul>
+<ul>
+<li><strong>Đường B</strong>:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận <strong>7,96% mỗi năm</strong>, <strong>ổn định</strong>, không dao động.</li>
+<li>Rủi ro biến động <strong>thấp nhất</strong>.</li>
+</ul>
+<ul>
+<li><strong>Đường C</strong>:</li>
+</ul>
+<ul>
+<li>Biến động rất lớn:</li>
+</ul>
+<ul>
+<li>Có năm tăng tới <strong>+26,92%</strong>.</li>
+<li>Có năm giảm tới <strong>-20,79%</strong>.</li>
+</ul>
+<ul>
+<li>Gây <strong>tâm lý hoang mang</strong> cho nhà đầu tư, nhất là:</li>
+</ul>
+<ul>
+<li>Mới đầu tư đã bị <strong>lỗ 30%</strong>, rất dễ bỏ cuộc.</li>
+</ul>
+<ul>
+<li>Dù <strong>kết quả cuối 10 năm giống nhau</strong>, trải nghiệm cảm xúc của nhà đầu tư ở:</li>
+</ul>
+<ul>
+<li>Cổ phiếu ổn định (như B)</li>
+<li>và cổ phiếu biến động mạnh (như C)</li>
+<p class="ml-6">là <strong>rất khác nhau</strong>.</p>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>IV. Đo lường Rủi ro Biến động bằng Độ lệch chuẩn</h2>
+<ul>
+<li>Để đo và quản lý <strong>rủi ro biến động</strong>, tài chính và thống kê sử dụng chỉ số <strong>Độ lệch chuẩn (Standard Deviation)</strong>.</li>
+<li><strong>Ý nghĩa của Độ lệch chuẩn</strong>:</li>
+</ul>
+<ul>
+<li>Đo mức độ <strong>lên xuống, dao động</strong> của tỷ suất lợi nhuận.</li>
+<li>Độ lệch chuẩn càng <strong>cao</strong> → <strong>rủi ro biến động càng lớn</strong>.</li>
+<li>Độ lệch chuẩn càng <strong>thấp</strong> → đường lợi nhuận càng <strong>mềm, ổn định</strong>.</li>
+</ul>
+<ul>
+<li><strong>Kết quả tính Độ lệch chuẩn cho A, B, C</strong>:</li>
+</ul>
+<ul>
+<li><strong>B</strong>: Độ lệch chuẩn = <strong>0%</strong></li>
+</ul>
+<ul>
+<li>Vì năm nào cũng <strong>7,96%</strong>, không hề biến động.</li>
+</ul>
+<ul>
+<li><strong>A</strong>: Độ lệch chuẩn ≈ <strong>7,08%</strong>.</li>
+<li><strong>C</strong>: Độ lệch chuẩn ≈ <strong>10,71%</strong> (cao nhất, rủi ro nhất).</li>
+</ul>
+<ul>
+<li><strong>Cách tính Độ lệch chuẩn (logic)</strong>:</li>
+</ul>
+<ol>
+<li>Lấy tỷ suất lợi nhuận từng năm <strong>trừ đi trung bình số học</strong>.</li>
+<li><strong>Bình phương</strong> các phần chênh lệch đó (để luôn ra số dương).</li>
+<li><strong>Cộng tất cả</strong> các số bình phương lại.</li>
+<li>Chia cho <strong>số năm</strong> (hoặc n-1 tùy định nghĩa).</li>
+<li><strong>Khai căn</strong> kết quả cuối cùng → ra <strong>Độ lệch chuẩn</strong>.</li>
+</ol>
+<hr class="my-6 border-slate-200" />
+<h2>V. Lợi ích của Đa dạng hóa đối với Độ lệch chuẩn</h2>
+<ul>
+<li>Khi nhà đầu tư <strong>không chỉ mua một cổ phiếu</strong> mà <strong>đầu tư theo danh mục</strong>:</li>
+</ul>
+<ul>
+<li>Độ lệch chuẩn của <strong>cả danh mục</strong> thường <strong>thấp hơn</strong> từng cổ phiếu riêng lẻ.</li>
+<li>Tức là <strong>đường đi của cả danh mục “êm” hơn so với từng mã</strong>.</li>
+</ul>
+<ul>
+<li>Ví dụ với <strong>hai cổ phiếu A và B</strong> (đều biến động mạnh):</li>
+</ul>
+<ul>
+<li><strong>Cổ phiếu A</strong>:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận trung bình ≈ <strong>11,28%</strong>.</li>
+<li>Độ lệch chuẩn ≈ <strong>20,84%</strong>.</li>
+</ul>
+<ul>
+<li><strong>Cổ phiếu B</strong>:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận trung bình ≈ <strong>9,56%</strong>.</li>
+<li>Độ lệch chuẩn ≈ <strong>23,02%</strong>.</li>
+</ul>
+<ul>
+<li><strong>Danh mục C</strong> = kết hợp A + B:</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận trung bình ≈ <strong>10,46%</strong> (nằm giữa A và B).</li>
+<li>Độ lệch chuẩn ≈ <strong>10,31%</strong>.</li>
+</ul>
+<ul>
+<li>Điều đáng chú ý:</li>
+</ul>
+<ul>
+<li>Độ lệch chuẩn của <strong>danh mục C (10,31%)</strong></li>
+<p class="ml-6"><strong>thấp hơn cả A (20,84%) và B (23,02%)</strong>.</p>
+<li>Tức là:</li>
+</ul>
+<ul>
+<li><strong>Danh mục ít “nhảy múa” hơn bất kỳ cổ phiếu riêng lẻ nào trong nó</strong>.</li>
+</ul>
+<ul>
+<li>Ví dụ về biên độ giảm:</li>
+</ul>
+<ul>
+<li>A có thể rớt tới <strong>-25%</strong>.</li>
+<li>B có thể rớt tới <strong>-28%</strong>.</li>
+<li>Nhưng <strong>danh mục C</strong> chỉ rớt khoảng <strong>-14,59%</strong>.</li>
+</ul>
+<ul>
+<li>Kết luận:</li>
+</ul>
+<ul>
+<li><strong>Càng đa dạng hóa</strong>:</li>
+</ul>
+<ul>
+<li>Số lượng cổ phiếu nhiều hơn.</li>
+<li>Hoặc chọn các cổ phiếu <strong>có sự tương quan khác nhau</strong> (có lúc đi ngược nhau).</li>
+</ul>
+<ul>
+<li>Thì <strong>Độ lệch chuẩn của danh mục càng thấp</strong>, rủi ro biến động càng giảm.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>VI. Quy luật Phân phối chuẩn và Ý nghĩa với Đầu tư Dài hạn</h2>
+<ul>
+<li>Trong <strong>đầu tư ngắn hạn</strong> (vài ngày):</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận mang tính <strong>ngẫu nhiên (random)</strong>.</li>
+<li>Không thể dự đoán:</li>
+</ul>
+<ul>
+<li>Giống như <strong>gieo đồng xu</strong>:</li>
+</ul>
+<ul>
+<li>Gieo 3, 5, 10 lần → không biết cụ thể được có bao nhiêu lần sấp, bao nhiêu lần ngửa.</li>
+</ul>
+<ul>
+<li>Trong <strong>đầu tư dài hạn</strong>:</li>
+</ul>
+<ul>
+<li>Khi số lượng ngày đủ lớn (ví dụ <strong>trên 1.000 ngày</strong>, tương đương <strong>4 năm trở lên</strong>):</li>
+</ul>
+<ul>
+<li>Tỷ suất lợi nhuận sẽ có xu hướng <strong>tuân theo quy luật Phân phối chuẩn</strong> (hình chuông).</li>
+<li>Kết quả cuối cùng <strong>gần với tỷ suất lợi nhuận trung bình</strong>.</li>
+</ul>
+<ul>
+<li>Do đó:</li>
+</ul>
+<ul>
+<li><strong>Độ lệch chuẩn càng nhỏ</strong> (danh mục càng ổn định)</li>
+<li><strong>Thời gian nắm giữ càng dài</strong></li>
+<p class="ml-6">→ Kết quả đầu tư thực tế càng <strong>tiệm cận tỷ suất trung bình kỳ vọng</strong>, rủi ro càng <strong>giảm</strong>.</p>
+</ul>
+<ul>
+<li>Đây là lý do:</li>
+</ul>
+<ul>
+<li>Nên <strong>đầu tư theo danh mục</strong> (giảm Độ lệch chuẩn).</li>
+<li>Nên <strong>nắm giữ dài hạn</strong> (để quy luật phân phối chuẩn thể hiện).</li>
+</ul>
+<ul>
+<li>Ví dụ thực tế:</li>
+</ul>
+<ul>
+<li><strong>Cổ phiếu PNG</strong> từ <strong>2017 đến 2022</strong>:</li>
+</ul>
+<ul>
+<li>Giá từ khoảng <strong>35</strong> lên <strong>108</strong>.</li>
+<li>Tỷ suất lợi nhuận trung bình ≈ <strong>25%/năm</strong>.</li>
+<li>Tuy nhiên, <strong>đường đi rất “cay nghiệt”</strong>:</li>
+</ul>
+<ul>
+<li>Lên xuống thất thường, có giai đoạn giảm sâu.</li>
+<li>Cảm xúc nhà đầu tư rất dễ bị thử thách, dù kết quả dài hạn là đẹp.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>VII. Kế hoạch Cho Các Buổi Tiếp theo</h2>
+<ul>
+<li><strong>Buổi 29 (Thứ Tư)</strong>:</li>
+</ul>
+<ul>
+<li>Sẽ học về <strong>phương pháp đầu tư theo danh mục 8 bước</strong> một cách chi tiết, hệ thống.</li>
+</ul>
+<ul>
+<li>Sau đó sẽ có <strong>thêm một buổi nữa</strong>:</li>
+</ul>
+<ul>
+<li>Học về <strong>cách đặt lệnh</strong>.</li>
+<li>Cách <strong>chọn công ty chứng khoán</strong> phù hợp.</li>
+</ul>
+            </div>
+
+            <!-- FOOTER NAVIGATION -->
+            <div class="mt-16 pt-8 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 border-t">
+                <a href="Bai-27.html" class="w-full md:w-auto px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition text-center">
+                    ← Quay lại Danh sách
+                </a>
+                <a href="Bai-29.html" class="w-full md:w-auto px-6 py-3 bg-topas-orange text-white rounded-lg font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 text-center flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE FAB -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fab-toc bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+
+    <!-- MOBILE TOC DRAWER -->
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+            <span class="font-bold text-slate-800">Mục lục bài học</span>
+            <button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="overflow-y-auto p-4 space-y-2 font-sans text-sm" id="mobile-toc-content"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1);
+            header.id = id;
+
+            const link = document.createElement('a');
+            link.href = '#' + id;
+            link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate';
+            link.innerText = header.innerText;
+            link.onclick = (e) => {
+                e.preventDefault();
+                highlightTOC(link);
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            desktopToc.appendChild(link);
+
+            const mobileLink = link.cloneNode(true);
+            mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => {
+                e.preventDefault();
+                toggleMobileTOC();
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            mobileTocContent.appendChild(mobileLink);
+        });
+
+        function highlightTOC(activeLink) {
+            document.querySelectorAll('#desktop-toc a').forEach(a => {
+                a.classList.remove('toc-active');
+                a.classList.add('border-transparent');
+            });
+            activeLink.classList.remove('border-transparent');
+            activeLink.classList.add('toc-active');
+        }
+
+        const drawer = document.getElementById('mobile-toc-drawer');
+        const overlay = document.getElementById('mobile-toc-overlay');
+        let isDrawerOpen = false;
+        function toggleMobileTOC() {
+            isDrawerOpen = !isDrawerOpen;
+            if (isDrawerOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-y-full');
+            } else {
+                overlay.classList.add('opacity-0');
+                drawer.classList.add('translate-y-full');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+    </script>
+</body>
+</html>
