@@ -2,325 +2,305 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Buổi 5 - Chiến lược Đầu tư: Ngắn, Trung và Dài hạn</title>
+  <title>Buổi 5 - Chiến lược Đầu tư: Ngắn, Trung và Dài hạn | Khóa Đầu tư Chứng khoán</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --topas-orange: #e77a1a;
-      --topas-orange-soft: #ffeddc;
-      --topas-blue: #1b2559;
-      --topas-bg: #f3f4f8;
+      --topas-orange: #E77A1A;
+      --topas-navy: #1F2353;
+      --bg-soft: #f5f5fa;
       --text-main: #111827;
       --text-muted: #6b7280;
-      --card-bg: #ffffff;
-      --border-subtle: #e5e7eb;
+      --border-soft: #e5e7eb;
       --radius-lg: 18px;
       --radius-xl: 24px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
     }
 
     * {
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, sans-serif;
-      background: radial-gradient(circle at top left, #fef3e7 0, #f3f4f8 40%, #e5ecff 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #faf5ff 0, #f9fafb 40%, #f3f4f6 100%);
       color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
 
     .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 16px 16px 40px;
-    }
-
-    header.hero {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(
-          to bottom,
-          rgba(243, 244, 246, 0.95),
-          rgba(243, 244, 246, 0.85),
-          rgba(243, 244, 246, 0.0)
-      );
-      margin: 0 -16px 8px;
-      padding: 10px 16px 4px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-    }
-
-    .hero-inner {
-      max-width: 960px;
-      margin: 0 auto;
+      min-height: 100vh;
+      padding: 16px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      justify-content: center;
     }
 
-    .brand {
+    .shell {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+
+    .header {
+      padding: 18px 20px 16px;
+      background: radial-gradient(circle at top left, rgba(231,122,26,0.12), transparent 55%),
+                  radial-gradient(circle at top right, rgba(31,35,83,0.18), transparent 55%),
+                  #0f172a;
+      color: white;
+      position: relative;
+    }
+
+    .header-topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.9;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      box-shadow: 0 0 0 4px rgba(248, 250, 252, 0.1);
+    }
+
+    .header-main {
+      margin-top: 14px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .brand-badge {
+    .header-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .header-sub {
+      font-size: 14px;
+      color: rgb(226, 232, 240);
+      max-width: 640px;
+    }
+
+    .header-meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: rgb(203, 213, 225);
+    }
+
+    .meta-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(24, 35, 75, 0.05);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      font-weight: 600;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.5);
     }
 
-    .brand-badge span.dot {
-      width: 8px;
-      height: 8px;
+    .meta-dot {
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--topas-orange), #ffb347);
-      box-shadow: 0 0 0 4px rgba(231, 122, 26, 0.28);
+      background: #22c55e;
     }
 
-    .hero-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--topas-blue);
-      letter-spacing: 0.01em;
+    .nav-bar {
+      padding: 10px 20px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(to right, #ffffff, #f9fafb);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .hero-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .nav-links {
+    .nav-group {
       display: flex;
       gap: 8px;
-      align-items: center;
-      flex-shrink: 0;
+      flex-wrap: wrap;
     }
 
     .nav-btn {
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      padding: 6px 10px;
-      font-size: 11px;
-      background: rgba(255, 255, 255, 0.85);
-      color: var(--text-main);
+      border: 1px solid #e5e7eb;
+      background: white;
+      padding: 6px 12px;
+      font-size: 13px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      color: #374151;
       text-decoration: none;
+      transition: all 0.18s ease;
     }
 
-    .nav-btn.primary {
-      background: radial-gradient(circle at top left, #ffb347, var(--topas-orange));
-      color: #ffffff;
-      border-color: transparent;
-      box-shadow: 0 10px 25px rgba(231, 122, 26, 0.35);
+    .nav-btn-primary {
+      border-color: rgba(231, 122, 26, 0.5);
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: white;
+      box-shadow: 0 10px 18px rgba(234, 88, 12, 0.3);
     }
 
     .nav-btn span.icon {
       font-size: 14px;
     }
 
-    .layout-main {
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.2fr);
-      gap: 16px;
-      margin-top: 10px;
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
     }
 
-    @media (max-width: 900px) {
-      .layout-main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .sidebar {
-        order: -1;
-      }
+    .nav-btn-primary:hover {
+      box-shadow: 0 14px 26px rgba(234, 88, 12, 0.38);
     }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius-xl);
-      padding: 16px 16px 18px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.35);
+    .content {
+      padding: 18px 20px 22px;
+      background: white;
     }
 
-    .card + .card {
-      margin-top: 14px;
+    .intro-block {
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--border-soft);
     }
 
-    .pill {
-      display: inline-flex;
+    .intro-line1 {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .intro-main {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .intro-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .toc {
+      margin-bottom: 20px;
+      padding: 14px 14px 12px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(to right, rgba(231,122,26,0.08), rgba(31,35,83,0.06));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .toc h2 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      color: #111827;
     }
 
-    h1 {
-      font-size: 22px;
-      margin: 0 0 8px;
-      color: var(--topas-blue);
+    .toc-ol {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+      color: #374151;
+      display: grid;
+      gap: 3px;
+    }
+
+    .toc-ol li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .toc-ol li a:hover {
+      color: var(--topas-orange);
+      text-decoration: underline;
+    }
+
+    section {
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
     }
 
     h2 {
       font-size: 18px;
-      margin: 0 0 8px;
-      color: var(--topas-blue);
+      margin: 0 0 10px;
+      line-height: 1.4;
+      color: var(--topas-navy);
     }
 
     h3 {
       font-size: 15px;
-      margin: 12px 0 4px;
-      color: var(--topas-blue);
+      margin: 10px 0 6px;
+      color: #111827;
     }
 
     p {
-      margin: 6px 0;
+      margin: 5px 0;
       font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-main);
     }
 
     ul, ol {
       margin: 6px 0 6px 20px;
-      padding: 0;
+      padding-left: 18px;
       font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-main);
     }
 
-    .muted {
-      color: var(--text-muted);
-      font-size: 13px;
+    li {
+      margin: 2px 0;
     }
 
-    .toc {
-      position: sticky;
-      top: 72px;
-      border-radius: var(--radius-xl);
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
-      padding: 14px 14px 16px;
-    }
-
-    .toc-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--topas-blue);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .toc-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 13px;
-    }
-
-    .toc-list li {
-      margin-bottom: 4px;
-    }
-
-    .toc-list a {
-      display: flex;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--text-muted);
-      padding: 3px 6px;
-      border-radius: 999px;
-      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
-    }
-
-    .toc-list span.index {
-      font-weight: 600;
-      color: var(--topas-orange);
-    }
-
-    .toc-list a:hover {
-      background: rgba(231, 122, 26, 0.07);
-      color: var(--topas-blue);
-      transform: translateX(2px);
-    }
-
-    section {
-      scroll-margin-top: 80px;
-    }
-
-    .tagline {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    .section-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: rgba(231, 122, 26, 0.07);
-      color: var(--topas-orange);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-    }
-
-    .section-badge span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--topas-orange), #ffc857);
-    }
-
-    .highlight-box {
-      border-radius: var(--radius-lg);
+    .note-block {
+      margin-top: 8px;
       padding: 10px 12px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 237, 213, 0.9),
-        rgba(254, 243, 199, 0.9)
-      );
-      border: 1px solid rgba(234, 179, 8, 0.5);
-      font-size: 13px;
-      margin: 8px 0;
-    }
-
-    .quote {
-      border-left: 3px solid rgba(148, 163, 184, 0.8);
-      padding-left: 10px;
-      margin: 8px 0;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px dashed #e5e7eb;
       font-size: 13px;
       color: var(--text-muted);
-      font-style: italic;
     }
 
     .table-wrap {
-      margin: 8px 0;
+      margin: 10px 0;
       overflow-x: auto;
     }
 
@@ -328,633 +308,543 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
-      min-width: 320px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
     }
 
     th, td {
-      border: 1px solid var(--border-subtle);
       padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
       text-align: left;
       white-space: nowrap;
     }
 
     th {
-      background: rgba(15, 23, 42, 0.04);
+      background: #f9fafb;
       font-weight: 600;
+      font-size: 12px;
+      color: #374151;
     }
 
-    footer.page-footer {
-      margin-top: 18px;
-      font-size: 11px;
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .footer {
+      padding: 12px 20px 16px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 12px;
       color: var(--text-muted);
-      text-align: center;
-    }
-
-    .chip-row {
+      background: #f9fafb;
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
       gap: 6px;
-      margin: 4px 0 2px;
     }
 
-    .chip-small {
-      font-size: 11px;
-      border-radius: 999px;
-      padding: 3px 8px;
-      background: rgba(15, 23, 42, 0.03);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text-muted);
+    .footer strong {
+      color: #111827;
+    }
+
+    @media (min-width: 768px) {
+      .header {
+        padding: 20px 24px 18px;
+      }
+      .nav-bar {
+        padding-inline: 24px;
+      }
+      .content {
+        padding: 20px 24px 24px;
+      }
+      .footer {
+        padding-inline: 24px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HERO / HEADER -->
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="brand">
-          <div class="brand-badge">
-            <span class="dot"></span>
-            <span>Topas Education · Khóa Đầu tư Chứng khoán</span>
+    <div class="shell">
+      <div class="card">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header-topline">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              <span>TOPAS EDUCATION</span>
+            </div>
+            <span>·</span>
+            <span>KHÓA ĐẦU TƯ CHỨNG KHOÁN</span>
           </div>
-          <div class="hero-title">Buổi 5 – Chiến lược Đầu tư: Ngắn, Trung và Dài hạn</div>
-          <div class="hero-sub">Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính – Giảng viên: Lâm Minh Chánh</div>
-        </div>
-        <nav class="nav-links">
-          <a href="index.html" class="nav-btn">
-            <span class="icon">←</span>
-            <span>Danh sách buổi</span>
-          </a>
-          <a href="#" class="nav-btn primary">
-            <span>Buổi tiếp theo</span>
-            <span class="icon">⟶</span>
-          </a>
+          <div class="header-main">
+            <div class="header-title">
+              Buổi 5 – Chiến lược Đầu tư: Ngắn, Trung và Dài hạn
+            </div>
+            <div class="header-sub">
+              Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính – Giảng viên: Lâm Minh Chánh
+            </div>
+            <div class="header-meta">
+              <div class="meta-pill">
+                <span class="meta-dot"></span>
+                <span>Đầu tư ngắn hạn · trung hạn · dài hạn</span>
+              </div>
+              <div class="meta-pill">
+                📊 Random Walk · Zero Sum Game · Đa dạng hóa
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- NAV -->
+        <nav class="nav-bar">
+          <div class="nav-group">
+            <a href="index.html" class="nav-btn">
+              <span class="icon">←</span>
+              <span>Danh sách buổi</span>
+            </a>
+          </div>
+          <div class="nav-group">
+            <a href="bai-6.html" class="nav-btn nav-btn-primary">
+              <span>Buổi tiếp theo</span>
+              <span class="icon">⟶</span>
+            </a>
+          </div>
         </nav>
-      </div>
-    </header>
 
-    <main class="layout-main">
-      <!-- MAIN CONTENT -->
-      <div>
-        <!-- Giới thiệu & Mục lục tóm tắt -->
-        <article class="card">
-          <div class="pill">
-            <span>📊 Khóa học Đầu tư Chứng khoán · Buổi 5</span>
+        <!-- CONTENT -->
+        <main class="content">
+          <!-- Intro -->
+          <div class="intro-block">
+            <div class="intro-line1">TOPAS EDUCATION</div>
+            <div class="intro-main">
+              BUỔI 5 - CHIẾN LƯỢC ĐẦU TƯ: NGẮN, TRUNG VÀ DÀI HẠN
+            </div>
+            <div class="intro-sub">
+              Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính - Lâm Minh Chánh
+            </div>
           </div>
-          <h1>Chiến lược Đầu tư: Ngắn, Trung và Dài hạn</h1>
-          <p class="tagline">
-            Nội dung buổi học tập trung vào ba dạng đầu tư chính: <strong>ngắn hạn (lướt sóng)</strong>, 
-            <strong>trung hạn</strong> và <strong>dài hạn (đầu tư giá trị & tích lũy)</strong>, 
-            đi từ tính ngẫu nhiên, rủi ro, tâm lý nhà đầu tư cho tới chiến lược và quản lý rủi ro.
-          </p>
-          <div class="chip-row">
-            <span class="chip-small">Random Walk & Zero Sum Game</span>
-            <span class="chip-small">Tâm lý lời/lỗ</span>
-            <span class="chip-small">Quản lý rủi ro</span>
-            <span class="chip-small">Đầu tư giá trị dài hạn</span>
-          </div>
-          <div class="highlight-box">
-            <strong>Mục lục:</strong>
-            <ol>
-              <li>Tổng quan & Đầu tư ngắn hạn (Lướt sóng)</li>
-              <li>Rủi ro & Tính ngẫu nhiên (Random Walk)</li>
-              <li>Zero Sum Game & Tâm lý Lời/Lỗ</li>
-              <li>Chiến lược đầu tư ngắn hạn</li>
-              <li>Đầu tư trung hạn & 5 cơ hội</li>
-              <li>Chiến lược trung hạn & quản lý rủi ro</li>
-              <li>Đầu tư dài hạn (Giá trị & Tích lũy, Đa dạng hóa)</li>
+
+          <!-- TOC -->
+          <nav class="toc" aria-label="Mục lục">
+            <h2>📋 Mục lục</h2>
+            <ol class="toc-ol">
+              <li><a href="#sec-1">1. Tổng quan và Đầu tư ngắn hạn (Lướt sóng)</a></li>
+              <li><a href="#sec-2">2. Rủi ro và Tính ngẫu nhiên (Random Walk)</a></li>
+              <li><a href="#sec-3">3. Zero Sum Game và Tâm lý Lời/Lỗ</a></li>
+              <li><a href="#sec-4">4. Chiến lược đầu tư ngắn hạn</a></li>
+              <li><a href="#sec-5">5. Đầu tư trung hạn</a></li>
+              <li><a href="#sec-6">6. Chiến lược đầu tư trung hạn</a></li>
+              <li><a href="#sec-7">7. Đầu tư dài hạn (Đầu tư giá trị)</a></li>
             </ol>
-          </div>
-        </article>
+          </nav>
 
-        <!-- 1. Tổng quan & Đầu tư ngắn hạn -->
-        <section id="tong-quan-ngan-han" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 1</span>
-          </div>
-          <h2>1. Tổng quan và Đầu tư ngắn hạn (Lướt sóng)</h2>
-          <p>
-            Nội dung học kỳ này sẽ tập trung vào ba dạng đầu tư: <strong>ngắn hạn</strong>, 
-            <strong>trung hạn</strong> và <strong>dài hạn</strong>. 
-            <strong>Đầu tư ngắn hạn (lướt sóng)</strong> là việc dự đoán và đánh cược trên sự lên xuống của giá cổ phiếu.
-          </p>
+          <!-- 1 -->
+          <section id="sec-1">
+            <h2>📊 1. Tổng quan và Đầu tư ngắn hạn (Lướt sóng)</h2>
 
-          <h3>📈 Đặc điểm giao dịch và cơ chế thị trường</h3>
-          <p>
-            Trên đồ thị một tuần, có thể thấy các “cơn sóng” lên xuống, cho phép nhà đầu tư:
-          </p>
-          <ul>
-            <li>Mua ở vùng giá thấp hơn, bán ở vùng giá cao hơn để có lời.</li>
-            <li>Ngược lại, mua ở vùng giá cao rồi bán ở vùng giá thấp sẽ dẫn tới lỗ.</li>
-          </ul>
-          <p>
-            Ở Việt Nam, quy tắc thanh toán là ít nhất <strong>T+2</strong> (mua cổ phiếu hơn hai ngày sau mới về), 
-            nên không thể mua xong bán liền như nước ngoài. Tại các thị trường phát triển, 
-            hệ thống giao dịch <strong>real time (thời gian thực)</strong> cho phép giao dịch linh hoạt hơn.
-          </p>
+            <p>Nội dung học kỳ này sẽ tập trung vào ba dạng đầu tư: ngắn hạn, trung hạn và dài hạn. Đầu tư ngắn hạn (lướt sóng) là việc dự đoán và đánh cược trên sự lên xuống của giá cổ phiếu.</p>
 
-          <h3>📉 Kỹ thuật “lách luật” / Bán khống nội bộ</h3>
-          <ul>
-            <li>Có sẵn cổ phiếu: ví dụ 10.000 cổ phiếu FPT.</li>
-            <li>Muốn lướt sóng với 5.000 cổ phiếu.</li>
-            <li>
-              Cách làm: dùng cổ phiếu cũ bán ra, trong khi 5.000 cổ phiếu mới mua phải hơn 2 ngày sau mới về.
-            </li>
-            <li>Kết quả: Có thể mua rồi bán, hoặc bán rồi mua ngay lập tức.</li>
-          </ul>
+            <h3>📈 Đặc điểm giao dịch và cơ chế thị trường</h3>
+            <p>Chúng ta có thể thấy các cơn sóng lên xuống trên đồ thị một tuần, cho phép nhà đầu tư mua ở đây, bán ở đây để có lời. Ngược lại, mua ở đây, bán ở đây có thể dẫn đến lỗ.</p>
+            <p>Ở Việt Nam, quy tắc là ít nhất T+2 (mua cổ phiếu về hơn hai ngày sau mới về), nên không thể mua xong bán liền như nước ngoài. Nước ngoài có hệ thống mua bán real time (thời gian thực).</p>
 
-          <h3>🔄 Thuật ngữ giao dịch cơ bản</h3>
-          <ul>
-            <li><strong>Mở vị trí (open position):</strong> Khi nhà đầu tư chưa có vị thế nào.</li>
-            <li><strong>Long:</strong> Mua rồi chờ giá lên để bán.</li>
-            <li><strong>Short:</strong> Bán rồi chờ giá xuống để mua (bán khống).</li>
-            <li><strong>Đơn vị giao dịch:</strong> 100 cổ phiếu (1 lot).</li>
-          </ul>
+            <h3>Kỹ thuật Lách luật/Bán khống</h3>
+            <ul>
+              <li>Có sẵn cổ phiếu: 10,000 cổ phiếu FPT</li>
+              <li>Muốn lướt: 5,000 cổ phiếu</li>
+              <li>Cách thức: Dùng cổ phiếu cũ bán ra, dù 5,000 cổ phiếu mới mua phải hơn 2 ngày sau mới về</li>
+              <li>Kết quả: Có thể mua rồi bán, hoặc bán rồi mua ngay lập tức</li>
+            </ul>
 
-          <h3>Ví dụ bán khống (Short)</h3>
-          <ol>
-            <li>Bước 1: Bán 500 cổ phiếu khi giá 84.000 đồng.</li>
-            <li>Bước 2: Chờ giá xuống 82.000 đồng.</li>
-            <li>Bước 3: Mua lại 500 cổ phiếu.</li>
-          </ol>
-          <p>
-            Lợi nhuận: 2.000 đồng/cổ phiếu × 500 = <strong>1.000.000 đồng</strong>.
-          </p>
+            <h3>🔄 Thuật ngữ giao dịch</h3>
+            <ul>
+              <li>Mở vị trí (open position): Khi nhà đầu tư chưa có vị trí nào</li>
+              <li>Long: Mua rồi chờ giá lên để bán</li>
+              <li>Short: Bán rồi chờ giá xuống để mua (bán khống)</li>
+              <li>Đơn vị giao dịch: 100 cổ phiếu (lot)</li>
+            </ul>
 
-          <h3>Điều kiện học tập hiệu quả</h3>
-          <ul>
-            <li><strong>Thiết bị:</strong> Máy tính + điện thoại để xem rõ màn hình và Excel.</li>
-            <li><strong>Môi trường:</strong> Phòng yên tĩnh, tập trung cao.</li>
-            <li><strong>Tinh thần:</strong> Tự học cao, không dễ bị phân tâm.</li>
-            <li><strong>Thái độ:</strong> Nghiêm túc, không “lo ra” trong lúc học.</li>
-          </ul>
-        </section>
+            <h3>Ví dụ Bán khống (Short)</h3>
+            <ul>
+              <li>Bước 1: Bán 500 cổ phiếu khi giá 84,000 đồng</li>
+              <li>Bước 2: Chờ giá xuống 82,000 đồng</li>
+              <li>Bước 3: Mua lại 500 cổ phiếu</li>
+              <li>Lời: 2,000 đồng/cổ phiếu × 500 = 1,000,000 đồng</li>
+            </ul>
 
-        <!-- 2. Rủi ro & Random Walk -->
-        <section id="random-walk" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 2</span>
-          </div>
-          <h2>2. Rủi ro và Tính ngẫu nhiên của thị trường ngắn hạn (Random Walk)</h2>
-          <div class="quote">
-            “Ông đầu tư 30 năm nay cũng không chắc ngày mai thị trường tăng hay giảm.”<br />
-            — Chủ tịch Dragon Capital
-          </div>
-          <p>
-            Đầu tư ngắn hạn hấp dẫn vì mang lại <strong>lợi nhuận cao</strong> 
-            và nhìn thấy kết quả <strong>mau chóng</strong>. Tuy nhiên, rủi ro cũng rất cao – 
-            việc dự đoán đúng giá là <strong>rất khó</strong>.
-          </p>
+            <h3>Điều kiện học tập hiệu quả</h3>
+            <ul>
+              <li>Thiết bị: Máy tính + điện thoại để xem rõ màn hình và Excel</li>
+              <li>Môi trường: Phòng yên tĩnh, tập trung cao</li>
+              <li>Tinh thần: Tự học cao, không dễ bị phân tâm</li>
+              <li>Thái độ: Nghiêm túc, không "lo ra" trong lúc học</li>
+            </ul>
+          </section>
 
-          <h3>🔍 Đặc điểm thị trường ngắn hạn</h3>
-          <ul>
-            <li>Giá cổ phiếu bị ảnh hưởng bởi nhiều yếu tố, không đi theo một đường thẳng.</li>
-            <li>Khái niệm “thị trường hoàn hảo” chỉ xuất hiện trong <strong>dài hạn</strong>, không phải ngắn hạn.</li>
-            <li>
-              Tính ngẫu nhiên: giá lên xuống như <strong>bước đi ngẫu nhiên</strong> trên phố 
-              (“Random Walk Street”), giống như bước đi của người say rượu, không có chủ đích.
-            </li>
-          </ul>
+          <!-- 2 -->
+          <section id="sec-2">
+            <h2>🎲 2. Rủi ro và Tính ngẫu nhiên của thị trường ngắn hạn (Random Walk)</h2>
 
-          <h3>🎰 Phân tích theo mô hình Casino – Roulette châu Âu</h3>
-          <p>Cơ chế của Roulette châu Âu:</p>
-          <ul>
-            <li>37 con số (36 con số + 0).</li>
-            <li>Nếu đặt hết 36 con số, nhà cái vẫn thắng 1 con.</li>
-            <li>Tỷ lệ nhà cái thắng = 1/37 ≈ <strong>2,7%</strong>.</li>
-            <li>Thực tế: Đánh 100 đồng sẽ thua trung bình 2,7 đồng.</li>
-          </ul>
+            <p>"Ông đầu tư 30 năm nay cũng không chắc ngày mai thị trường tăng hay giảm"</p>
+            <p>— Chủ tịch Dragon Capital</p>
 
-          <h3>📊 Thống kê thực tế</h3>
-          <ul>
-            <li>10 người chơi lớn nhất: thua trung bình khoảng <strong>7%</strong>.</li>
-            <li>Có người thua tới <strong>15%</strong>.</li>
-            <li>
-              Con số này cao hơn nhiều so với <strong>house edge 2,7%</strong> – cho thấy 
-              yếu tố tâm lý & hành vi làm kết quả tệ hơn lý thuyết.
-            </li>
-          </ul>
+            <p>Đầu tư ngắn hạn hấp dẫn vì mang lại lợi nhuận cao và thấy mau chóng. Tuy nhiên, rủi ro cũng rất cao. Việc dự đoán đúng giá rất khó.</p>
 
-          <h3>🎯 House Edge các trò chơi</h3>
-          <ul>
-            <li>Roulette: 2,7%.</li>
-            <li>Bài cào kiểu Tây: 1–2,6%.</li>
-            <li>Bầu cua tôm cá: <strong>47%</strong>.</li>
-            <li>Máy giật (slot machine): hơn 10% (cao nhất trong các trò phổ biến).</li>
-          </ul>
+            <h3>🔍 Đặc điểm thị trường ngắn hạn</h3>
+            <ul>
+              <li>Giá cổ phiếu bị ảnh hưởng bởi nhiều yếu tố, không theo đường thẳng</li>
+              <li>Thị trường hoàn hảo: Chỉ có trong dài hạn, không có trong ngắn hạn</li>
+              <li>Tính ngẫu nhiên: Giá lên xuống như "bước đi ngẫu nhiên trên phố" (Random Walk Street)</li>
+              <li>Giống như bước đi của người say rượu, không có chủ đích</li>
+            </ul>
 
-          <h3>Tại sao tỷ lệ thua cao hơn House Edge?</h3>
-          <ul>
-            <li>Không duy trì mức cược đều; khi thắng/thua lại thay đổi cược.</li>
-            <li>Tâm lý “thấu cơ”: khi thua càng tăng cược lên vài ngàn đô.</li>
-            <li>Không kiểm soát được cảm xúc, bực mình khi thua dẫn tới đánh lớn.</li>
-            <li>
-              Môi trường casino được thiết kế để giữ chân người chơi: 
-              nhiệt độ thấp, không nhìn ra ngoài, phục vụ chu đáo…
-            </li>
-          </ul>
+            <h3>Phân tích theo mô hình Casino</h3>
 
-          <p class="highlight-box">
-            <strong>Kết luận:</strong> Nhà cái không cần gian lận, họ chỉ cần tạo 
-            môi trường thuận lợi và có lợi thế toán học là đủ để thắng lâu dài.
-          </p>
-        </section>
+            <h3>🎰 Roulette châu Âu</h3>
+            <ul>
+              <li>Cơ chế: 37 con số (36 con số + 0)</li>
+              <li>Nếu đặt hết 36 con số: Nhà cái vẫn thắng 1 con</li>
+              <li>Tỷ lệ nhà cái thắng = 1/37 = 2.7%</li>
+              <li>Thực tế: Đánh 100 đồng sẽ thua 2.7 đồng</li>
+            </ul>
 
-        <!-- 3. Zero Sum Game & Tâm lý -->
-        <section id="zero-sum-tam-ly" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 3</span>
-          </div>
-          <h2>3. Đầu tư ngắn hạn là Zero Sum Game và Tâm lý Lời/Lỗ</h2>
-          <p>
-            Trong <strong>ngắn hạn</strong>, thị trường chứng khoán giống như casino. 
-            Đường giá đi lên, đi xuống rồi quay về lại chỗ cũ (ví dụ từ 30 → vòng vèo → về lại 30). 
-            Đây là <strong>Zero Sum Game</strong>.
-          </p>
+            <h3>📊 Thống kê thực tế</h3>
+            <ul>
+              <li>10 người chơi lớn nhất:</li>
+              <li>Thua trung bình: 7%</li>
+              <li>Có người thua tới: 15%</li>
+              <li>Cao hơn house edge (2.7%) rất nhiều</li>
+            </ul>
 
-          <h3>Zero Sum Game – Lời của người này = Lỗ của người kia</h3>
-          <p>Ví dụ đơn giản:</p>
-          <ul>
-            <li>Giá cổ phiếu từ 30.000 đồng → lên xuống → về lại 30.000 đồng.</li>
-            <li>Người A mua 30k, bán 35k: lời +5.000 đồng.</li>
-            <li>Người B mua 35k, bán 30k: lỗ -5.000 đồng.</li>
-            <li>Tổng cộng: +5.000 + (-5.000) = 0.</li>
-          </ul>
+            <h3>🎯 House Edge các trò chơi</h3>
+            <ul>
+              <li>Roulette: 2.7%</li>
+              <li>Bài cào kiểu Tây: 1-2.6%</li>
+              <li>Bầu cua tôm cá: 47%</li>
+              <li>Máy giật (slot): Hơn 10% (cao nhất)</li>
+            </ul>
 
-          <p>
-            Tuy nhiên, nhà đầu tư <strong>không hòa vốn</strong> vì tất cả người chơi đều phải trả:
-          </p>
-          <ul>
-            <li>Phí giao dịch cho công ty chứng khoán.</li>
-            <li>Phí lưu ký cho Trung tâm lưu ký.</li>
-            <li>Phí sở giao dịch chứng khoán.</li>
-            <li>Thuế cho Nhà nước.</li>
-          </ul>
+            <h3>Tại sao tỷ lệ thua cao hơn House Edge?</h3>
+            <ul>
+              <li>Không duy trì mức cược đều: Khi thắng/thua thay đổi cược</li>
+              <li>Tâm lý "thấu cơ": Khi thua tăng cược lên 3-4 ngàn đô la</li>
+              <li>Không kiểm soát cảm xúc: Bực mình khi thua dẫn đến đánh lớn</li>
+              <li>Môi trường casino: Nhiệt độ thấp, không nhìn ra ngoài, phục vụ tốt để giữ chân</li>
+            </ul>
 
-          <h3>🧠 Tâm lý Lời/Lỗ điển hình</h3>
-          <p><strong>Khi Lời</strong> (ví dụ +50 triệu trên 1 tỷ):</p>
-          <ul>
-            <li>Mừng quá nên bán ngay.</li>
-            <li>Không “gồng lời” được.</li>
-            <li>Sợ mất phần lời đã có.</li>
-          </ul>
+            <p>Kết luận: Nhà cái không cần gian lận, họ chỉ cần tạo môi trường thoải mái và có lợi thế toán học.</p>
+          </section>
 
-          <p><strong>Khi Lỗ</strong> (ví dụ -30 triệu, còn 970 triệu):</p>
-          <ul>
-            <li>Xót ruột nên chờ giá lên lại.</li>
-            <li>“Gồng lỗ” rất giỏi.</li>
-            <li>Sợ bán ra là mất đứt vốn.</li>
-          </ul>
+          <!-- 3 -->
+          <section id="sec-3">
+            <h2>⚖️ 3. Đầu tư ngắn hạn là Zero Sum Game và Tâm lý Lời/Lỗ</h2>
 
-          <p>
-            <strong>Nguyên tắc đúng:</strong> Lời 10% khi đúng, cắt lỗ 7% khi sai.<br />
-            <strong>Thực tế thường thấy:</strong> Cắt lời 3%, gồng lỗ 15%.
-          </p>
+            <p>Thị trường chứng khoán trong ngắn hạn giống casino. Đường giá đi lên đi xuống rồi về lại chỗ cũ (ví dụ từ giá 30 về lại 30), đây là Zero Sum Game.</p>
 
-          <h3>Nguyên tắc lướt sóng thành công</h3>
-          <ul>
-            <li>Lời phải nhiều hơn lỗ: ví dụ lời 10%, cắt lỗ 7%.</li>
-            <li>Kiểm soát tâm lý, không để cảm xúc chi phối quyết định.</li>
-            <li>Kỷ luật nghiêm ngặt với nguyên tắc chốt lời & cắt lỗ.</li>
-            <li>
-              Chỉ dành cho nhà đầu tư <strong>chuyên nghiệp</strong>; nhà đầu tư nghiệp dư nên tránh xa lướt sóng.
-            </li>
-          </ul>
+            <h3>Zero Sum Game - Lời của người này = Lỗ của người kia</h3>
+            <p>Ví dụ: Giá cổ phiếu từ 30,000 đồng → lên xuống → về lại 30,000 đồng</p>
+            <ul>
+              <li>Người A mua 30k bán 35k: Lời +5,000 đồng</li>
+              <li>Người B mua 35k bán 30k: Lỗ -5,000 đồng</li>
+              <li>Tổng cộng: +5,000 + (-5,000) = 0</li>
+            </ul>
 
-          <p class="highlight-box">
-            <strong>Kết luận:</strong> Tâm lý con người thường làm ngược với nguyên tắc đúng. 
-            Đầu tư ngắn hạn về bản chất là cuộc chơi Zero Sum và chỉ phù hợp với người có 
-            kinh nghiệm, kỷ luật và tâm lý thép.
-          </p>
-        </section>
+            <p>Lợi thế "nhà cái" = Phí giao dịch + Phí lưu ký + Phí sở chứng khoán + Thuế</p>
+            <p>Tuy nhiên, nhà đầu tư không hòa vốn vì tất cả người chơi đều phải trả phí cho công ty chứng khoán, trung tâm lưu ký, sở chứng khoán và thuế nhà nước.</p>
 
-        <!-- 4. Chiến lược đầu tư ngắn hạn -->
-        <section id="chien-luoc-ngan-han" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 4</span>
-          </div>
-          <h2>4. Chiến lược đầu tư ngắn hạn và Quản lý rủi ro</h2>
-          <p>
-            Để tăng khả năng dự đoán trong ngắn hạn, nhà đầu tư chuyên nghiệp 
-            thường dùng hai phương pháp chính.
-          </p>
+            <h3>🧠 Tâm lý Lời/Lỗ</h3>
+            <p>Hành vi điển hình của nhà đầu tư</p>
 
-          <h3>📈 1. Phân tích kỹ thuật (Technical Analysis)</h3>
-          <ul>
-            <li>Cơ sở: dựa vào <strong>giá</strong> và <strong>khối lượng giao dịch (volume)</strong>.</li>
-            <li>Mục đích: dự đoán xu hướng, điểm mua và điểm bán.</li>
-            <li>Đặc điểm: rất phức tạp, thường phải dùng phần mềm, máy tính.</li>
-            <li>Phân tích bằng máy tính: <strong>chính xác 100%</strong> về mặt tính toán.</li>
-          </ul>
+            <h3>✅ Khi Lời (VD: +50 triệu/1 tỷ)</h3>
+            <ul>
+              <li>Mừng quá → Bán ngay</li>
+              <li>Không gồng lời được</li>
+              <li>Sợ mất lời đã có</li>
+            </ul>
 
-          <h3>📰 2. Dựa vào tin tức</h3>
-          <p>Ba dạng tin tức chính:</p>
-          <ul>
-            <li><strong>Tin không ảnh hưởng:</strong> Giá trị và giá đều không đổi.</li>
-            <li><strong>Tin tâm lý:</strong> Thay đổi giá nhưng không làm thay đổi giá trị nội tại.</li>
-            <li><strong>Tin quan trọng:</strong> Thay đổi cả giá trị lẫn giá.</li>
-          </ul>
+            <h3>❌ Khi Lỗ (VD: -30 triệu, còn 970 triệu)</h3>
+            <ul>
+              <li>Xót ruột → Chờ giá lên lại</li>
+              <li>Gồng lỗ giỏi</li>
+              <li>Sợ bán ra là mất đứt vốn</li>
+            </ul>
 
-          <h3>Tại sao <u>không</u> dùng giá trị nội tại trong ngắn hạn?</h3>
-          <p>Ví dụ: Giá trị nội tại 100k, giá thị trường 80k:</p>
-          <ul>
-            <li>Trong ngắn hạn, giá có thể tiếp tục xuống 70k, 60k do yếu tố tâm lý.</li>
-            <li>Do đó, phân tích cơ bản không phù hợp với lướt sóng ngắn hạn.</li>
-          </ul>
+            <p>Nguyên tắc đúng: Lời 10% khi đúng, cắt lỗ 7% khi sai Thực tế: Cắt lời 3%, gồng lỗ 15%</p>
 
-          <h3>🛡️ 4 nguyên tắc quản lý rủi ro khi lướt sóng</h3>
-          <ul>
-            <li>Chọn cổ phiếu <strong>thanh khoản tốt</strong>: lượng mua bán đầy đủ, dễ vào ra.</li>
-            <li>Tránh cổ phiếu rác (trash stocks): giá trị nội tại rất thấp so với giá thị trường.</li>
-            <li>
-              Tránh trở thành <strong>nhà đầu tư dài hạn bất đắc dĩ</strong>: lướt sóng sai thì phải cắt lỗ, 
-              không ôm mãi.
-            </li>
-            <li>Tuân thủ nghiêm ngặt nguyên tắc chốt lời – cắt lỗ, cần tâm lý vững và bản lĩnh.</li>
-          </ul>
+            <h3>Nguyên tắc lướt sóng thành công</h3>
+            <ul>
+              <li>Lời phải nhiều hơn lỗ: Ví dụ lời 10%, cắt lỗ 7%</li>
+              <li>Kiểm soát tâm lý: Không để cảm xúc chi phối quyết định</li>
+              <li>Kỷ luật nghiêm ngặt: Tuân thủ nguyên tắc chốt lời cắt lỗ</li>
+              <li>Chỉ dành cho chuyên nghiệp: Nhà đầu tư nghiệp dư nên tránh xa</li>
+            </ul>
 
-          <h3>⚠️ Cảnh báo về Cổ phiếu rác</h3>
-          <ul>
-            <li>
-              Định nghĩa: cổ phiếu có giá trị cơ bản (lợi nhuận tương lai) rất yếu, 
-              không tương xứng với giá.
-            </li>
-            <li>Ví dụ: FLC sau khi lãnh đạo bị bắt.</li>
-            <li>
-              Hậu quả: nắm lâu còn thua cả gửi ngân hàng (6%/năm); 
-              lỗ vốn nặng, không còn ai “đánh lên” nữa.
-            </li>
-          </ul>
+            <p>Kết luận: Tâm lý con người thường làm ngược với nguyên tắc đúng. Đầu tư ngắn hạn dành cho nhà đầu tư chuyên nghiệp.</p>
+          </section>
 
-          <h3>Những điều nhà đầu tư lướt sóng nên tránh</h3>
-          <ul>
-            <li>Đầu tư không chiến lược: không phân tích kỹ thuật, không nghiên cứu tin tức.</li>
-            <li>Đầu tư theo tin đồn, tin lừa đảo, tin vớ vẩn.</li>
-            <li>Theo mách bảo, tâm linh mà không có cơ sở khoa học.</li>
-            <li>
-              Trở thành nhà đầu tư dài hạn bất đắc dĩ: chuyển từ lướt sóng sang “ôm” khi đang thua lỗ.
-            </li>
-          </ul>
+          <!-- 4 -->
+          <section id="sec-4">
+            <h2>⚡ 4. Chiến lược đầu tư ngắn hạn và Quản lý rủi ro</h2>
 
-          <p class="highlight-box">
-            <strong>Chiến lược chính:</strong> dùng phân tích kỹ thuật và phân tích dòng tiền. 
-            Cần tâm lý vững, kỷ luật cao và tuyệt đối không lướt sóng theo cảm xúc.
-          </p>
-        </section>
+            <p>Để tăng khả năng dự đoán, nhà đầu tư chuyên nghiệp dùng hai phương pháp chính:</p>
 
-        <!-- 5. Đầu tư trung hạn -->
-        <section id="dau-tu-trung-han" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 5</span>
-          </div>
-          <h2>5. Đầu tư trung hạn</h2>
-          <p>
-            <strong>Khung thời gian:</strong> Vài tháng đến 1–3 năm.<br />
-            <strong>Chiến lược:</strong> Mua vào khi giá “hời” (khu vực trũng) và nắm giữ.
-          </p>
+            <h3>📈 1. Phân tích kỹ thuật (Technical Analysis)</h3>
+            <ul>
+              <li>Cơ sở: Dựa vào giá + khối lượng giao dịch (volume)</li>
+              <li>Mục đích: Dự đoán xu hướng, điểm mua và điểm bán</li>
+              <li>Đặc điểm: Rất phức tạp</li>
+              <li>Phân tích bằng máy tính: Chính xác 100%</li>
+            </ul>
 
-          <h3>Thực tế thị trường 1 năm qua</h3>
-          <ul>
-            <li>VN-Index: tăng khoảng <strong>8%</strong>.</li>
-            <li>
-              Cổ phiếu cơ bản: ACB, PNJ, FPT, Thế giới Di động… không tăng nhiều, thậm chí giảm.
-            </li>
-            <li>
-              Nhóm tăng mạnh: các cổ phiếu thuộc “dòng họ Vin, G, Tuấn M” – thường 
-              <strong>không cơ bản</strong>, được “đánh lên”.
-            </li>
-          </ul>
-          <p>
-            <strong>Kết luận:</strong> VN-Index tăng chủ yếu do nhóm cổ phiếu không cơ bản được kéo,
-            không phản ánh toàn bộ thực lực các doanh nghiệp tốt.
-          </p>
+            <h3>📰 2. Dựa vào tin tức</h3>
+            <p>3 dạng tin tức:</p>
+            <ul>
+              <li>Tin không ảnh hưởng: Giá trị và giá đều không đổi</li>
+              <li>Tin tâm lý: Thay đổi giá nhưng không thay đổi giá trị</li>
+              <li>Tin quan trọng: Thay đổi cả giá trị và giá</li>
+            </ul>
 
-          <h3>Ví dụ thành công đầu tư trung hạn</h3>
-          <ul>
-            <li><strong>Techcombank:</strong> 5 năm gần như gấp đôi.</li>
-            <li><strong>Masan:</strong> 3 tháng tăng khoảng 50%.</li>
-            <li>Cơ hội: nắm giữ sau sự kiện ngày 9/4 liên quan đến Fed của Mỹ.</li>
-          </ul>
+            <h3>Tại sao KHÔNG tính giá trị nội tại trong ngắn hạn?</h3>
+            <ul>
+              <li>Lý do: Giá đang thấp vẫn có thể thấp hơn, giá cao vẫn có thể cao hơn</li>
+              <li>Ví dụ: Giá trị nội tại 100k, giá thị trường 80k</li>
+              <li>Ngắn hạn: Giá có thể xuống 70k, 60k do tâm lý</li>
+            </ul>
 
-          <h3>🌊 5 Cơ hội đầu tư trung hạn</h3>
-          <h3>1. Cơn sóng kinh tế</h3>
-          <ul>
-            <li>Chứng khoán là phong vũ biểu, chạy trước khi nền kinh tế tăng trưởng.</li>
-            <li>GDP Việt Nam: 6–7%/năm.</li>
-            <li>VN-Index: 9–10%/năm (thường cao hơn khoảng 1,5 lần GDP).</li>
-          </ul>
+            <p>Kết luận: Phân tích cơ bản không phù hợp với lướt sóng</p>
 
-          <h3>2. Cơn sóng thị trường</h3>
-          <p>Ví dụ giai đoạn Covid-19:</p>
-          <ul>
-            <li>Giá giảm mạnh, sau đó phục hồi.</li>
-            <li>Tiền nhàn rỗi đổ vào đầu tư.</li>
-            <li>Lượng tài khoản chứng khoán mở mới kỷ lục trong năm 2021.</li>
-          </ul>
+            <h3>🛡️ Quản lý rủi ro</h3>
+            <p>4 nguyên tắc quản lý rủi ro</p>
+            <ul>
+              <li>Chọn cổ phiếu thanh khoản: Lượng mua bán đầy đủ</li>
+              <li>Tránh cổ phiếu rác (trash stocks): Giá trị nội tại rất thấp so với giá thị trường</li>
+              <li>Tránh trở thành nhà đầu tư dài hạn bất đắc dĩ: Khi lướt sóng sai, phải cắt lỗ</li>
+              <li>Tuân thủ nghiêm ngặt: Chốt lời cắt lỗ, cần tâm lý vững và bản lĩnh</li>
+            </ul>
 
-          <h3>3. Cơn sóng ngành</h3>
-          <p>Các ngành có thể tăng giá do giá trị hoặc tâm lý:</p>
-          <ul>
-            <li>Bán lẻ.</li>
-            <li>Bất động sản.</li>
-            <li>Chứng khoán.</li>
-            <li>Ngân hàng.</li>
-          </ul>
+            <h3>Cảnh báo về Cổ phiếu rác</h3>
+            <ul>
+              <li>Định nghĩa: Cổ phiếu có giá trị cơ bản (lợi nhuận tương lai) rất yếu</li>
+              <li>Ví dụ: FLC sau khi lãnh đạo bị bắt</li>
+              <li>Hậu quả: Nắm lâu thua hơn cả gửi ngân hàng (6%/năm)</li>
+              <li>Nguy hiểm: Lỗ vốn nặng nề, không ai "đánh lên" nữa</li>
+            </ul>
 
-          <h3>4. Sự bứt phá cổ phiếu</h3>
-          <ul>
-            <li>
-              Doanh nghiệp có lợi nhuận, doanh thu phát triển mạnh sẽ kéo giá cổ phiếu bứt phá.
-            </li>
-            <li>Ví dụ: FPT tăng mạnh nhờ xuất khẩu phần mềm, AI.</li>
-            <li>Các cổ phiếu cơ bản tốt có thể nắm giữ dài hạn ổn định.</li>
-          </ul>
+            <h3>Điều nhà đầu tư lướt sóng nên TRÁNH</h3>
+            <ul>
+              <li>Đầu tư không chiến lược: Không phân tích kỹ thuật, không nghiên cứu tin tức</li>
+              <li>Đầu tư theo tin đồn: Tin lừa đảo, tin vớ vẩn</li>
+              <li>Theo mách bảo hay tâm linh: Không có cơ sở khoa học</li>
+              <li>Trở thành nhà đầu tư dài hạn bất đắc dĩ: Chuyển từ lướt sóng sang nắm giữ khi thua lỗ</li>
+            </ul>
 
-          <h3>5. Sự trở lại sau cơn trũng</h3>
-          <p>
-            Diễn ra sau các cuộc khủng hoảng (Covid, vụ Vạn Thịnh Phát tháng 10/2022…).<br />
-            <strong>Case Study: Phát Đạt và Novaland sau vụ Vạn Thịnh Phát</strong>
-          </p>
-          <ul>
-            <li>Nguyên nhân rớt giá mạnh: Bán giải chấp (forced sell) ồ ạt.</li>
-            <li>Phát Đạt trước đó: 60–70 ngàn đồng.</li>
-            <li>Đáy: gần 10 ngàn đồng.</li>
-            <li>Sau phục hồi: 30–35 ngàn đồng.</li>
-            <li>Nhà đầu tư mua ở vùng 10–15k đã có thể lời gấp đôi.</li>
-          </ul>
-          <p><strong>Điều kiện:</strong> Thị trường cần ổn định trở lại.</p>
-        </section>
+            <p>Chiến lược chính: Dùng phân tích kỹ thuật và phân tích dòng tiền. Cần tâm lý vững, kỷ luật cao.</p>
+          </section>
 
-        <!-- 6. Chiến lược trung hạn & rủi ro -->
-        <section id="chien-luoc-trung-han" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 6</span>
-          </div>
-          <h2>6. Chiến lược đầu tư trung hạn và Quản lý rủi ro</h2>
+          <!-- 5 -->
+          <section id="sec-5">
+            <h2>📈 5. Đầu tư trung hạn</h2>
 
-          <h3>📊 Chiến lược chính</h3>
-          <h3>📈 Phân tích kỹ thuật trung hạn</h3>
-          <ul>
-            <li>
-              Sử dụng biểu đồ và các chỉ báo kỹ thuật cho khung thời gian 
-              3–6 tháng, 1 năm.
-            </li>
-          </ul>
+            <ul>
+              <li>Khung thời gian: Vài tháng đến 1-3 năm</li>
+              <li>Chiến lược: Mua vào khi giá hời (khu vực trũng) và nắm giữ</li>
+            </ul>
 
-          <h3>⚖️ Phân tích Giá và Giá trị</h3>
-          <ul>
-            <li>
-              Trong trung hạn, khi thị trường bình ổn, <strong>giá</strong> thường 
-              có xu hướng về gần <strong>giá trị</strong>.
-            </li>
-            <li>
-              Mục tiêu: tìm các trường hợp <strong>giá thấp hơn giá trị</strong> để mua, 
-              kỳ vọng lời 10–20% khi giá hồi phục về mức hợp lý.
-            </li>
-          </ul>
+            <h3>Thực tế thị trường 1 năm qua</h3>
+            <ul>
+              <li>VN-Index: Tăng khoảng 8%</li>
+              <li>Cổ phiếu cơ bản: ACB, PNJ, FPT, Thế giới di động → Không tăng, thậm chí giảm</li>
+              <li>Nhóm tăng mạnh: Dòng họ Vin, G, Tuấn M (không cơ bản)</li>
+              <li>Kết luận: VN-Index tăng do nhóm cổ phiếu không cơ bản được đánh lên</li>
+            </ul>
 
-          <p>Ví dụ phát hiện bất hợp lý:</p>
-          <ul>
-            <li>P/E trung bình ngành = 15.</li>
-            <li>P/E hiện tại của cổ phiếu = 10.</li>
-            <li>→ Giá đang thấp bất hợp lý, có xu hướng quay về mức P/E 15.</li>
-          </ul>
+            <h3>Ví dụ thành công đầu tư trung hạn</h3>
+            <ul>
+              <li>Techcombank: 5 năm gần gấp đôi</li>
+              <li>Masan: 3 tháng tăng khoảng 50%</li>
+              <li>Cơ hội: Nắm giữ sau sự kiện ngày 9/4 liên quan đến Fed của Mỹ</li>
+            </ul>
 
-          <p>
-            Nhà đầu tư cần tìm ra <strong>điểm trũng của thị trường</strong> (market) để mua, 
-            tránh mua khi cổ phiếu đã bị định giá quá cao (over value).
-          </p>
+            <h3>🌊 5 Cơ hội đầu tư trung hạn</h3>
 
-          <h3>🛡️ Quản lý rủi ro trung hạn – 3 nguyên tắc</h3>
-          <h3>1. Chọn cổ phiếu cơ bản</h3>
-          <ul>
-            <li>ROE (Return on Equity) &gt; 10%.</li>
-            <li>P/E (Price to Earnings) &lt; 30.</li>
-          </ul>
+            <h3>🌊 1. Cơn sóng kinh tế</h3>
+            <ul>
+              <li>Chứng khoán là phong vũ biểu, chạy trước khi nền kinh tế tăng trưởng</li>
+              <li>GDP Việt Nam: 6-7%/năm VN-Index: 9-10%/năm (gấp rưỡi GDP)</li>
+            </ul>
 
-          <h3>2. Kiên định với nhận định</h3>
-          <ul>
-            <li>Mua và theo dõi sát sao.</li>
-            <li>Không để các tin tức ngoài lề, “tin vịt” làm thay đổi nhận định.</li>
-            <li>Chỉ rút vốn nếu thông tin về giá trị doanh nghiệp không như kỳ vọng ban đầu.</li>
-          </ul>
+            <h3>📊 2. Cơn sóng thị trường</h3>
+            <p>Ví dụ Covid-19:</p>
+            <ul>
+              <li>Giá giảm mạnh → Phục hồi</li>
+              <li>Tiền nhàn rỗi đổ vào đầu tư</li>
+              <li>Lượng tài khoản mở mới cao kỷ lục năm 2021</li>
+            </ul>
 
-          <h3>3. Chốt lời – Cắt lỗ</h3>
-          <ul>
-            <li>Khác với dài hạn, trung hạn <strong>phải</strong> chốt lời khi đạt mục tiêu.</li>
-            <li>Phải cắt lỗ nếu giá trị doanh nghiệp thật sự có vấn đề.</li>
-            <li>Cũng cần cắt lỗ nếu thị trường quá bi quan và rơi sâu.</li>
-          </ul>
+            <h3>🏭 3. Cơn sóng ngành</h3>
+            <p>Ngành tăng giá:</p>
+            <ul>
+              <li>Bán lẻ</li>
+              <li>Bất động sản</li>
+              <li>Chứng khoán</li>
+              <li>Ngân hàng</li>
+              <li>(Do giá trị hoặc tâm lý)</li>
+            </ul>
 
-          <p>Ví dụ cắt lỗ khi thị trường bi quan:</p>
-          <ul>
-            <li>Giá trị thực: 100.000 đồng.</li>
-            <li>Giá mua vào: 70.000 đồng (giá “hời”).</li>
-            <li>Thị trường bi quan mạnh, giá rớt xuống 50.000 đồng.</li>
-            <li>Quyết định: cắt lỗ để bảo vệ vốn, chờ cơ hội tốt hơn.</li>
-          </ul>
+            <h3>🚀 4. Sự bứt phá cổ phiếu</h3>
+            <ul>
+              <li>Doanh nghiệp phát triển lợi nhuận, doanh thu</li>
+              <li>Ví dụ FPT: Tăng mạnh nhờ xuất khẩu phần mềm, AI</li>
+              <li>Các cổ phiếu cơ bản tốt nắm dài hạn ổn</li>
+            </ul>
 
-          <p class="highlight-box">
-            <strong>Điểm khác biệt:</strong> Đầu tư trung hạn không ôm mãi như dài hạn. 
-            Phải có kỷ luật chốt lời – cắt lỗ rõ ràng, dựa trên giá trị doanh nghiệp và 
-            trạng thái thị trường.
-          </p>
-        </section>
+            <h3>🔄 5. Sự trở lại sau cơn trũng</h3>
+            <ul>
+              <li>Xảy ra sau các cuộc khủng hoảng (Covid, vụ Vạn Thịnh Phát tháng 10/2022)</li>
+              <li>Case Study: Phát Đạt và Novaland sau vụ Vạn Thịnh Phát</li>
+              <li>Nguyên nhân rớt giá: Bán giải chấp (forced sell) mạnh mẽ</li>
+            </ul>
 
-        <!-- 7. Đầu tư dài hạn -->
-        <section id="dau-tu-dai-han" class="card">
-          <div class="section-badge">
-            <span class="dot"></span><span>Phần 7</span>
-          </div>
-          <h2>7. Đầu tư dài hạn (Đầu tư giá trị và Tích lũy)</h2>
-          <p>
-            Đầu tư dài hạn là chọn những doanh nghiệp có <strong>đường giá trị tăng trưởng 
-            bền vững</strong> trong dài hạn, chấp nhận đường giá ngắn hạn lên xuống.
-          </p>
+            <ul>
+              <li>Phát Đạt:
+                <ul>
+                  <li>Trước: 60-70 ngàn đồng</li>
+                  <li>Đáy: Gần 10 ngàn đồng</li>
+                  <li>Sau phục hồi: 30-35 ngàn đồng</li>
+                </ul>
+              </li>
+              <li>Lợi nhuận: Những người mua ở 10-15k đã kiếm gấp đôi</li>
+              <li>Điều kiện: Thị trường ổn định trở lại</li>
+            </ul>
+          </section>
 
-          <h3>Ví dụ FPT – Tăng trưởng dài hạn</h3>
-          <ul>
-            <li>Năm 2016: giá khoảng 13.000 đồng.</li>
-            <li>Hiện tại: khoảng 121.000 đồng.</li>
-            <li>Đường giá trị: tăng trưởng rất tốt và liên tục.</li>
-            <li>Đường giá: lên xuống nhưng xu hướng tăng theo giá trị doanh nghiệp.</li>
-          </ul>
+          <!-- 6 -->
+          <section id="sec-6">
+            <h2>🎯 6. Chiến lược đầu tư trung hạn và Quản lý rủi ro</h2>
 
-          <h3>Phương pháp tối ưu: Đầu tư đều đặn</h3>
-          <ul>
-            <li>Đầu tư đều đặn (DCA) thường tốt hơn dồn một lần.</li>
-            <li>Nếu đầu tư số tiền lớn cùng lúc, có thể vô tình mua ngay vùng đỉnh.</li>
-          </ul>
+            <h3>📊 Chiến lược chính</h3>
 
-          <h3>Rủi ro khi chỉ nắm một cổ phiếu</h3>
-          <p>Ví dụ Thế Giới Di Động (MWG):</p>
-          <ul>
-            <li>Có giai đoạn đường giá trị đi xuống do làm ăn không tốt.</li>
-            <li>Nếu chỉ đầu tư một mã MWG, nắm 5 năm có thể không lời nhiều.</li>
-          </ul>
+            <h3>📈 Phân tích kỹ thuật trung hạn</h3>
+            <p>Sử dụng biểu đồ và chỉ báo kỹ thuật cho khung thời gian 3-6 tháng, 1 năm</p>
 
-          <h3>Website đánh giá nước ngoài (ví dụ minh họa)</h3>
-          <ul>
-            <li>VinFast (VFS): Score = 0.</li>
-            <li>FPT: Score = 7,52 (được đánh giá tốt).</li>
-          </ul>
+            <h3>⚖️ Phân tích Giá và Giá trị</h3>
+            <p>Trong trung hạn, khi thị trường bình ổn lại, giá thường sẽ về gần giá trị</p>
+            <p>Mục tiêu: Tìm sự bất hợp lý của giá (giá thấp hơn giá trị) để mua, mong đợi lời 10-20% khi giá hồi phục về giá trị.</p>
+            <p>Ví dụ phát hiện bất hợp lý: P/E trung bình = 15 P/E hiện tại = 10 → Giá đang thấp bất hợp lý → Xu hướng trở về mức hợp lý</p>
+            <p>Phải tìm ra điểm trũng của thị trường (market). Không nên mua khi cổ phiếu bị định giá quá cao (over value).</p>
 
-          <h3>🎯 5 Nguyên tắc thành công trong đầu tư dài hạn</h3>
-          <ul>
-            <li>Chọn cổ phiếu có giá trị tăng trưởng: trung bình trên 15%/năm.</li>
-            <li><strong>Đa dạng hóa danh mục</strong>, không bao giờ dồn hết vào một cổ phiếu.</li>
-            <li>
-              Giá trị nội tại tăng trưởng khi ROE tốt và lợi nhuận năm sau cao hơn năm trước.
-            </li>
-            <li>Chọn thời điểm mua khi giá thấp hơn giá trị nội tại.</li>
-            <li>
-              Tiêu chí doanh nghiệp tốt: ROE trên 15%, tăng trưởng lợi nhuận 10–15%/năm.
-            </li>
-          </ul>
+            <h3>🛡️ Quản lý rủi ro trung hạn</h3>
+            <p>3 nguyên tắc quản lý rủi ro</p>
 
-          <div class="quote">
-            “Quá khứ không chắc chắn tương lai. Nhưng những gì đã xảy ra trong quá khứ có 
-            khả năng lặp lại trong tương lai cao hơn những gì chưa xảy ra.”<br />
-            — Nguyên lý đầu tư dài hạn
-          </div>
+            <ul>
+              <li>Chọn cổ phiếu cơ bản:
+                <ul>
+                  <li>ROE (Return on Equity) &gt; 10%</li>
+                  <li>P/E (Price to Earnings) &lt; 30</li>
+                </ul>
+              </li>
+            </ul>
 
-          <h3>Vai trò của quá khứ trong dự đoán</h3>
-          <ul>
-            <li>
-              Học sinh trung bình 8 điểm sẽ khó đột ngột xuống 6 hoặc lên 10 nếu không có
-              sự kiện đặc biệt.
-            </li>
-            <li>
-              Doanh nghiệp đang làm ăn tốt, mọi thứ bình thường thì năm sau nhiều khả năng 
-              vẫn tiếp tục làm ăn tốt.
-            </li>
-          </ul>
+            <ul>
+              <li>Kiên định:
+                <ul>
+                  <li>Mua và theo dõi sát sao</li>
+                  <li>Không để tin tức ngoài lề (tin vịt) làm thay đổi nhận định</li>
+                  <li>Chỉ rút vốn nếu tin về giá trị DN không đúng như mong muốn</li>
+                </ul>
+              </li>
+            </ul>
 
-          <p>
-            Ứng dụng: Dựa vào quá khứ để xây dựng và quản lý danh mục đầu tư dài hạn.
-          </p>
+            <ul>
+              <li>Chốt lời cắt lỗ:
+                <ul>
+                  <li>Khác với dài hạn, phải chốt lời khi đạt mục tiêu</li>
+                  <li>Phải cắt lỗ nếu giá trị DN thật sự có vấn đề</li>
+                  <li>Cắt lỗ nếu thị trường quá bi quan</li>
+                </ul>
+              </li>
+            </ul>
 
-          <h3>🏛️ Quản lý rủi ro dài hạn: Đa dạng hóa</h3>
-          <p>Đa dạng hóa giúp giảm rủi ro mất vốn gốc.</p>
+            <h3>Ví dụ cắt lỗ khi thị trường bi quan</h3>
+            <ul>
+              <li>Giá trị thực: 100,000 đồng</li>
+              <li>Giá mua vào: 70,000 đồng (giá hời)</li>
+              <li>Thị trường bi quan: Giá rớt xuống 50,000 đồng</li>
+              <li>Quyết định: Cắt lỗ vì thị trường quá bi quan, có thể rớt sâu hơn</li>
+              <li>Lý do: Bảo vệ vốn, chờ cơ hội tốt hơn</li>
+            </ul>
 
-          <h3>Ví dụ cụ thể về Đa dạng hóa</h3>
-          <ul>
-            <li>Vốn ban đầu: 600 triệu.</li>
-            <li>Chia đều: 6 cổ phiếu × 100 triệu/cổ phiếu.</li>
-            <li>Thời gian nắm giữ: 20 năm.</li>
-          </ul>
+            <p>Điểm khác biệt với đầu tư dài hạn: Đầu tư trung hạn phải chốt lời cắt lỗ nghiêm túc, không "ôm" mãi như dài hạn.</p>
+          </section>
 
-          <div class="table-wrap">
-            <table>
-              <thead>
+          <!-- 7 -->
+          <section id="sec-7">
+            <h2>💎 7. Đầu tư dài hạn (Đầu tư giá trị và Tích lũy)</h2>
+
+            <p>Đầu tư dài hạn là chọn những doanh nghiệp có đường giá trị tăng trưởng về đường dài, mặc kệ đường giá lên xuống.</p>
+
+            <h3>Ví dụ FPT - Tăng trưởng dài hạn</h3>
+            <ul>
+              <li>Năm 2016: 13,000 đồng</li>
+              <li>Hiện tại: Khoảng 121,000 đồng</li>
+              <li>Đường giá trị: Tăng trưởng rất tốt và liên tục</li>
+              <li>Đường giá: Lên xuống nhưng xu hướng tăng theo giá trị</li>
+            </ul>
+
+            <p>Phương pháp tối ưu: Đầu tư đều đặn tốt hơn đầu tư một lần. Nếu đầu tư số tiền lớn cùng lúc, có thể mua nhầm ngay đỉnh.</p>
+
+            <h3>Ví dụ rủi ro đầu tư một cổ phiếu</h3>
+            <ul>
+              <li>Thế giới di động: Đường giá trị có lúc rớt xuống do làm ăn không tốt</li>
+              <li>Nếu chỉ đầu tư vào MWG: Nắm 5 năm có thể không có lời nhiều</li>
+            </ul>
+
+            <p>Website nước ngoài đánh giá:</p>
+            <ul>
+              <li>Vinfast (VFS): Score = 0</li>
+              <li>FPT: Score = 7.52 (tốt)</li>
+            </ul>
+
+            <h3>🎯 5 Nguyên tắc thành công</h3>
+            <p>Chiến lược và Nguyên tắc đầu tư dài hạn</p>
+            <ul>
+              <li>Chọn cổ phiếu có giá trị tăng trưởng: Đường dài bình quân trên 15%/năm</li>
+              <li>Đa dạng hóa danh mục: KHÔNG BAO GIỜ đầu tư vào một cổ phiếu</li>
+              <li>Giá trị nội tại tăng trưởng khi: ROE tốt và lợi nhuận năm sau cao hơn năm trước</li>
+              <li>Chọn thời điểm: Nên chọn cổ phiếu đang có giá thấp hơn giá trị nội tại</li>
+              <li>Tiêu chí doanh nghiệp tốt: ROE trên 15%, tăng trưởng lợi nhuận 10-15%</li>
+            </ul>
+
+            <p>"Quá khứ không chắc chắn tương lai. Nhưng những gì đã xảy ra trong quá khứ có khả năng lặp lại trong tương lai cao hơn những gì chưa xảy ra"</p>
+            <p>— Nguyên lý đầu tư dài hạn</p>
+
+            <h3>Vai trò của quá khứ trong dự đoán</h3>
+            <ul>
+              <li>Ví dụ học sinh: Trung bình 8 điểm sẽ khó đột ngột xuống 6 hoặc lên 10 mà không có sự kiện đặc biệt</li>
+              <li>Ví dụ doanh nghiệp: Đang làm ăn tốt, mọi thứ bình thường → Năm nay sẽ tiếp tục làm ăn tốt</li>
+              <li>Ứng dụng: Dựa vào quá khứ để xây dựng và quản lý danh mục</li>
+            </ul>
+
+            <h3>🏛️ Quản lý rủi ro dài hạn: Đa dạng hóa</h3>
+            <p>Phải đa dạng hóa. Đa dạng hóa giảm rủi ro mất vốn gốc.</p>
+
+            <h3>Ví dụ cụ thể về Đa dạng hóa</h3>
+            <ul>
+              <li>Vốn ban đầu: 600 triệu</li>
+              <li>Chia đều: 6 cổ phiếu × 100 triệu/cổ phiếu</li>
+              <li>Thời gian: 20 năm</li>
+            </ul>
+
+            <div class="table-wrap">
+              <table>
                 <tr>
                   <th>Cổ phiếu</th>
                   <th>Loại</th>
                   <th>Tỷ suất/năm</th>
                   <th>Giá trị cuối</th>
                 </tr>
-              </thead>
-              <tbody>
                 <tr>
                   <td>A, B</td>
                   <td>Cổ phiếu rác</td>
@@ -964,7 +854,7 @@
                 <tr>
                   <td>C, D</td>
                   <td>Cổ phiếu bình quân</td>
-                  <td>9–10%/năm</td>
+                  <td>9-10%/năm</td>
                   <td>Trung bình</td>
                 </tr>
                 <tr>
@@ -973,106 +863,53 @@
                   <td>19%, 22%/năm</td>
                   <td>Rất cao</td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
+              </table>
+            </div>
 
-          <p>
-            Kết quả sau 20 năm: danh mục có thể đạt khoảng <strong>9 tỷ đồng</strong> 
-            với tỷ suất lợi nhuận tổng thể ~15%/năm, quan trọng là không bị mất vốn.
-          </p>
+            <p>Kết quả sau 20 năm: 9 tỷ đồng Tỷ suất lợi nhuận tổng thể: 15%/năm Quan trọng: KHÔNG bị mất vốn</p>
 
-          <p>
-            So sánh:
-          </p>
-          <ul>
-            <li>Nếu dồn hết vào A hoặc B (cổ phiếu rác): rất dễ mất vốn.</li>
-            <li>Nếu đa dạng hóa: vẫn đạt lợi nhuận 15%/năm và bảo vệ vốn.</li>
-          </ul>
+            <h3>So sánh:</h3>
+            <ul>
+              <li>Nếu đầu tư tất cả vào A hoặc B: Mất vốn</li>
+              <li>Nếu đa dạng hóa: Vẫn đạt 15%/năm và bảo vệ vốn</li>
+            </ul>
 
-          <h3>Lợi ích của Đa dạng hóa</h3>
-          <ul>
-            <li>Giảm rủi ro mất vốn do một vài cổ phiếu rác.</li>
-            <li>Giảm biến động, tỷ suất lợi nhuận ổn định hơn.</li>
-            <li>Đường cong giá trị danh mục “mềm mại”, không rớt sâu 30–40% như từng cổ phiếu đơn lẻ.</li>
-            <li>Tâm lý thoải mái hơn, không quá lo lắng vào một mã duy nhất.</li>
-          </ul>
+            <h3>Lợi ích của Đa dạng hóa</h3>
+            <ul>
+              <li>Giảm rủi ro mất vốn: Cổ phiếu rác không làm mất hết vốn</li>
+              <li>Giảm biến động: Tỷ suất lợi nhuận ổn định hơn</li>
+              <li>Đường công mềm mại: Không bị rớt 30-40% như cổ phiếu đơn lẻ</li>
+              <li>Tâm lý thoải mái: Không lo lắng quá mức về 1 cổ phiếu</li>
+            </ul>
 
-          <h3>Kế hoạch học tập tiếp theo</h3>
-          <ul>
-            <li>Buổi sau: học về đa dạng hóa chi tiết (giảm biến động, độ lệch chuẩn).</li>
-            <li>Đào sâu quản lý rủi ro trong đầu tư dài hạn.</li>
-            <li>Kiến thức cơ bản về tài chính cá nhân, lãi suất và nền tảng tài chính vững.</li>
-            <li>Sau đó quay lại chứng khoán và thị trường chứng khoán.</li>
-          </ul>
+            <h3>Kế hoạch học tập tiếp theo</h3>
+            <ul>
+              <li>Buổi sau sẽ học:
+                <ul>
+                  <li>Đa dạng hóa chi tiết (giảm biến động, độ lệch chuẩn)</li>
+                  <li>Quản lý rủi ro đầu tư dài hạn sâu hơn</li>
+                  <li>Kiến thức cơ bản về tài chính cá nhân</li>
+                  <li>Lãi suất và xây dựng nền tảng vững chắc</li>
+                  <li>Quay lại chứng khoán và thị trường chứng khoán</li>
+                </ul>
+              </li>
+            </ul>
 
-          <p class="highlight-box">
-            <strong>Kết luận chung:</strong> Đầu tư dài hạn thành công cần chiến lược rõ ràng, 
-            đa dạng hóa thông minh và kiên nhẫn theo đuổi mục tiêu, dựa trên doanh nghiệp tốt 
-            chứ không phải sóng ngắn hạn.
-          </p>
-        </section>
+            <p>Kết luận: Đầu tư dài hạn thành công cần có chiến lược rõ ràng, đa dạng hóa thông minh và kiên nhẫn theo đuổi mục tiêu.</p>
 
-        <!-- Closing -->
-        <footer class="page-footer">
-          TOPAS EDUCATION · Đầu tư Chứng khoán – Lâm Minh Chánh · © 2025 TOPAS. Tất cả quyền được bảo lưu.
+            <p>TOPAS EDUCATION</p>
+            <p>Đầu tư Chứng khoán - Lâm Minh Chánh</p>
+            <p>© 2025 TOPAS. Tất cả quyền được bảo lưu.</p>
+          </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <span><strong>TOPAS EDUCATION</strong> · Khóa Đầu tư Chứng khoán</span>
+          <span>Buổi 5 – Chiến lược Đầu tư: Ngắn, Trung và Dài hạn · © 2025 TOPAS</span>
         </footer>
       </div>
-
-      <!-- SIDEBAR (Mục lục điều hướng) -->
-      <aside class="sidebar">
-        <div class="toc">
-          <div class="toc-title">Mục lục nhanh</div>
-          <ol class="toc-list">
-            <li>
-              <a href="#tong-quan-ngan-han">
-                <span class="index">1.</span>
-                <span>Tổng quan & Đầu tư ngắn hạn</span>
-              </a>
-            </li>
-            <li>
-              <a href="#random-walk">
-                <span class="index">2.</span>
-                <span>Rủi ro & Random Walk</span>
-              </a>
-            </li>
-            <li>
-              <a href="#zero-sum-tam-ly">
-                <span class="index">3.</span>
-                <span>Zero Sum Game & Tâm lý</span>
-              </a>
-            </li>
-            <li>
-              <a href="#chien-luoc-ngan-han">
-                <span class="index">4.</span>
-                <span>Chiến lược ngắn hạn</span>
-              </a>
-            </li>
-            <li>
-              <a href="#dau-tu-trung-han">
-                <span class="index">5.</span>
-                <span>Đầu tư trung hạn & 5 cơ hội</span>
-              </a>
-            </li>
-            <li>
-              <a href="#chien-luoc-trung-han">
-                <span class="index">6.</span>
-                <span>Chiến lược trung hạn & Rủi ro</span>
-              </a>
-            </li>
-            <li>
-              <a href="#dau-tu-dai-han">
-                <span class="index">7.</span>
-                <span>Đầu tư dài hạn & Đa dạng hóa</span>
-              </a>
-            </li>
-          </ol>
-          <p class="muted" style="margin-top:8px;">
-            Gợi ý: trên điện thoại có thể chạm từng mục để nhảy đến phần tương ứng.
-          </p>
-        </div>
-      </aside>
-    </main>
+    </div>
   </div>
 </body>
 </html>
