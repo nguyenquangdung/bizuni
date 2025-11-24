@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 27: Giá, Giá trị & Kiểu đầu tư</title>
+
+    <!-- CẤU HÌNH THƯ VIỆN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' },
+                        paper: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .content-area p { margin-bottom: 1.5rem; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem 2rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .fab-toc { position: fixed; bottom: 20px; right: 20px; z-index: 50; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .table-wrap { margin: 1rem 0; overflow-x: auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER: Minimalist, Sticky -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="Index.html" class="p-2 hover:bg-slate-100 rounded-full transition text-slate-500 hover:text-topas-orange" title="Về trang chủ">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase tracking-wider">Khóa Đầu tư Chứng khoán</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi 27: Giá & Giá trị</div>
+                </div>
+            </div>
+
+            <a href="Bai-28.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">
+                Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- LAYOUT CHÍNH: 2 Cột (Sidebar trái + Content phải) -->
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+
+        <!-- SIDEBAR MỤC LỤC (Desktop: Sticky, Mobile: Hidden) -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2 pb-10">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục nội dung</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200">
+                <!-- Javascript sẽ tự điền mục lục vào đây -->
+            </nav>
+        </aside>
+
+        <!-- NỘI DUNG CHÍNH -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+
+            <!-- Hero Title -->
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase tracking-wide mb-4">Module Chiến lược</span>
+                <h1>Giá, Giá trị & Kiểu đầu tư</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Phân biệt giá-giá trị, 3 phong cách đầu tư và khởi động 8 bước dài hạn</p>
+                <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-6">
+                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">TE</div>
+                    <div class="text-sm font-sans">
+                        <div class="font-bold text-slate-900">Topas Education</div>
+                        <div class="text-slate-500">Buổi 27 • Khóa 31</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG CHI TIẾT -->
+            <div id="article-content" class="space-y-8">
+<p>Dưới đây là bản <strong>tổng hợp lại Buổi 27</strong>, chia theo các đề mục logic, giữ <strong>đủ 100% ý và 100% ví dụ</strong> như nội dung anh gửi.</p>
+<hr class="my-6 border-slate-200" />
+<h2>I. Bối cảnh Buổi 27 và Mục tiêu học</h2>
+<ul>
+<li>Đây là <strong>Buổi 27</strong> của <strong>Khóa 31</strong>, sau đó còn <strong>Buổi 28</strong> rồi khóa học coi như tạm xong.</li>
+<li>Nếu sau này có chương trình phù hợp, người hướng dẫn sẽ tiếp tục mở thêm để đồng hành với học viên.</li>
+<li>Nội dung chính của buổi này:</li>
+</ul>
+<ul>
+<li>Khái niệm <strong>Giá và Giá trị</strong>.</li>
+<li>Giới thiệu <strong>các kiểu đầu tư</strong>: ngắn hạn, trung hạn, dài hạn.</li>
+<li>Dẫn nhập vào <strong>phương pháp đầu tư dài hạn theo danh mục cổ phiếu giá trị</strong>, gồm <strong>8 bước</strong>:</li>
+</ul>
+<ul>
+<li>Buổi này học <strong>Bước 1 và Bước 2</strong> (và chạm nhẹ vào phương pháp dài hạn).</li>
+<li>Buổi sau sẽ học chi tiết toàn bộ <strong>8 bước</strong>.</li>
+</ul>
+<ul>
+<li>Thời lượng buổi học: dự kiến đến khoảng <strong>10 giờ tối</strong>, có thể kết thúc sớm hơn để chừa nội dung cho buổi sau.</li>
+<li>Nếu có trục trặc về màn hình, học viên có thể gọi số <strong>0933696988</strong> để hỗ trợ.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>II. Giá và Giá trị – Cách Thị trường Vận động</h2>
+<h3>1. Đường Giá trị (Intrinsic Value – “đường tím”)</h3>
+<ul>
+<li>Đường <strong>Giá trị nội tại</strong> được minh họa bằng <strong>đường màu tím</strong>, áp dụng cho:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp sản xuất thương mại.</li>
+<li>Ngân hàng.</li>
+<li>Doanh nghiệp bất động sản.</li>
+</ul>
+<ul>
+<li>Đường này <strong>tăng dần theo thời gian</strong> vì:</li>
+</ul>
+<ul>
+<li>Lợi nhuận doanh nghiệp tăng hàng năm.</li>
+</ul>
+<ul>
+<li>Có những giai đoạn <strong>giá trị tăng vọt</strong>, ví dụ:</li>
+</ul>
+<ul>
+<li>Giai đoạn khoảng <strong>2008–2009</strong>, một số doanh nghiệp có <strong>sản phẩm mới, đột phá</strong>, làm lợi nhuận tăng mạnh.</li>
+<li>Khi đó, <strong>giá trị nội tại được tính lại</strong> và tăng theo.</li>
+</ul>
+<ul>
+<li>Giá trị nội tại <strong>thường không thay đổi trong thời gian rất ngắn</strong> (ví dụ trong vòng 1 tháng, giá trị không biến động nhiều như giá).</li>
+</ul>
+<h3>2. Đường Giá (Price Line – “đường xanh”)</h3>
+<ul>
+<li>Đường <strong>Giá cổ phiếu</strong> được biểu diễn bằng <strong>đường màu xanh</strong>, luôn:</li>
+</ul>
+<ul>
+<li><strong>Lên xuống thất thường</strong> do <strong>tâm lý thị trường</strong>.</li>
+</ul>
+<ul>
+<li>Khi so với đường tím:</li>
+</ul>
+<ul>
+<li><strong>Giá &lt; Giá trị</strong> → cổ phiếu đang <strong>bị định giá thấp</strong>.</li>
+<li><strong>Giá &gt; Giá trị</strong> → cổ phiếu đang <strong>bị định giá cao</strong>.</li>
+</ul>
+<h3>3. Các yếu tố tác động lên Giá trị &amp; Giá</h3>
+<p><strong>(a) Yếu tố ảnh hưởng đến Giá trị nội tại (Đường tím)</strong></p>
+<ul>
+<li>Kinh tế vĩ mô thế giới và Việt Nam.</li>
+<li>Ngành kinh doanh mà doanh nghiệp đang hoạt động.</li>
+<li>Tình hình tài chính doanh nghiệp.</li>
+<li>Năng lực và khả năng lãnh đạo của ban điều hành.</li>
+</ul>
+<p><strong>(b) Yếu tố ảnh hưởng đến Đường Giá (Đường xanh)</strong></p>
+<ul>
+<li>Cảm nhận, kỳ vọng của nhà đầu tư về:</li>
+</ul>
+<ul>
+<li>Kinh tế vĩ mô, vi mô.</li>
+<li>Ngành kinh doanh.</li>
+<li>Tình hình doanh nghiệp.</li>
+</ul>
+<ul>
+<li>Báo cáo, tin tức của doanh nghiệp.</li>
+<li>Dòng tiền ra vào cổ phiếu.</li>
+<li>Giao dịch mua bán của <strong>cổ đông lớn</strong>.</li>
+</ul>
+<h3>4. Tạo lập thị trường và Lũng đoạn</h3>
+<ul>
+<li><strong>Tạo lập thị trường (market making):</strong></li>
+</ul>
+<ul>
+<li>Một số lúc giá cổ phiếu tăng giảm “lạ lùng” là do <strong>chủ doanh nghiệp hoặc bên liên quan tạo lập thị trường</strong>, tức là mua bán để <strong>điều hòa thanh khoản, giá cả</strong>.</li>
+<li>Đây là hoạt động được <strong>Nhà nước cho phép</strong>.</li>
+</ul>
+<ul>
+<li><strong>Lũng đoạn thị trường:</strong></li>
+</ul>
+<ul>
+<li>Là khi chủ động <strong>đẩy giá lên hoặc dìm giá xuống</strong> để trục lợi.</li>
+<li>Một hình thức nổi tiếng là <strong>“Pump and Dump”</strong>:</li>
+</ul>
+<ul>
+<li>Tung tin tốt + mua vào mạnh → giá tăng.</li>
+<li>Nhiều nhà đầu tư FOMO nhảy vào mua → giá bị đẩy lên cao.</li>
+<li>Sau đó <strong>nhóm thao túng</strong> (có thể là chủ doanh nghiệp hoặc nhóm lợi ích) <strong>bán xả</strong> → giá rơi thẳng đứng.</li>
+<li>Đáng chú ý: những biến động này <strong>không liên quan gì đến giá trị nội tại</strong>.</li>
+</ul>
+<h3>5. Quan hệ Dài hạn giữa Giá và Giá trị</h3>
+<ul>
+<li>Trong <strong>ngắn hạn</strong>, đường giá (xanh) có thể <strong>xa rời</strong> đường giá trị (tím) và <strong>rất khó đoán</strong>.</li>
+<li>Tuy nhiên, trong <strong>dài hạn</strong>:</li>
+</ul>
+<ul>
+<li>Giá cổ phiếu <strong>không thể đi quá xa giá trị nội tại mãi được</strong>.</li>
+<li>Nếu giá quá thấp → lực mua xuất hiện, <strong>kéo giá lên gần giá trị</strong>.</li>
+<li>Nếu giá quá cao → nhà đầu tư bán ra, <strong>kéo giá giảm về gần giá trị</strong>.</li>
+</ul>
+<ul>
+<li><strong>Về dài hạn</strong>, đường giá xanh <strong>phải tiệm cận</strong>, “nối lại” với đường giá trị tím.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>III. Ba Kiểu Đầu tư: Ngắn hạn – Trung hạn – Dài hạn</h2>
+<p>Người hướng dẫn phân loại cách đầu tư dựa trên <strong>mối quan hệ giữa giá &amp; giá trị</strong> và <strong>thời gian nắm giữ</strong>.</p>
+<hr class="my-6 border-slate-200" />
+<h3>1. Đầu tư Ngắn hạn – Lướt Sóng</h3>
+<h4>1.1. Bản chất &amp; Cách làm</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Mua rồi <strong>bán nhanh</strong>, ăn chênh lệch ngắn hạn.</li>
+<li><strong>Cơ hội:</strong></li>
+</ul>
+<ul>
+<li>Biên độ dao động giá ngắn hạn có thể <strong>5–20%</strong>.</li>
+<li>Nhà đầu tư thường dùng <strong>margin (đòn bẩy)</strong>, ví dụ:</li>
+</ul>
+<ul>
+<li>Có 100 đồng, mượn thêm 100 → đầu tư 200 đồng.</li>
+</ul>
+<ul>
+<li><strong>Đặc điểm:</strong></li>
+</ul>
+<ul>
+<li>Dự đoán giá trong <strong>1 phiên, vài ngày, 1 tuần</strong>.</li>
+<li><strong>Day trader</strong> là người giao dịch trong ngày:</li>
+</ul>
+<ul>
+<li>Hiện tại Việt Nam là <strong>T+2.5</strong>.</li>
+<li>Sau này có thể lên <strong>T+0</strong> (mua bán trong ngày).</li>
+</ul>
+<h4>1.2. Tính ngẫu nhiên của giá ngắn hạn</h4>
+<ul>
+<li>Trong ngắn hạn, giá cổ phiếu <strong>rất ngẫu nhiên (random)</strong>.</li>
+<li><strong>Không thể dự đoán chính xác dựa hoàn toàn vào dữ liệu quá khứ</strong>.</li>
+<li>Chủ tịch Dragon Capital <strong>Dominic</strong>, với <strong>30 năm kinh nghiệm</strong>, vẫn nói:</li>
+</ul>
+<ul>
+<li>Ông <strong>không chắc</strong> ngày mai thị trường tăng hay giảm.</li>
+</ul>
+<h4>1.3. Sức hấp dẫn &amp; Rủi ro</h4>
+<ul>
+<li><strong>Hấp dẫn vì:</strong></li>
+</ul>
+<ul>
+<li>Có ngày <strong>+7%</strong> (trần) trên HOSE.</li>
+<li>Có cổ phiếu <strong>+20% trong 1 tuần</strong>.</li>
+<li>Dùng margin, lợi nhuận có thể <strong>nhân đôi</strong>.</li>
+</ul>
+<ul>
+<li><strong>Rủi ro rất lớn:</strong></li>
+</ul>
+<ul>
+<li>Nếu giá đi <strong>ngược kỳ vọng</strong>, đặc biệt khi dùng margin, nhà đầu tư có thể lỗ <strong>30–40%</strong>, thậm chí bị <strong>call margin</strong>, phải bán trong hoảng loạn.</li>
+</ul>
+<ul>
+<li>Người hướng dẫn <strong>không khuyến khích lướt sóng</strong> cho đa số nhà đầu tư.</li>
+</ul>
+<h4>1.4. Xác suất thắng – Zero Game</h4>
+<ul>
+<li>Nếu không giỏi về kỹ thuật:</li>
+</ul>
+<ul>
+<li>Xác suất đoán đúng <strong>khoảng 50/50</strong>.</li>
+</ul>
+<ul>
+<li>Nếu giỏi phân tích kỹ thuật:</li>
+</ul>
+<ul>
+<li>Tỷ lệ có thể <strong>cao hơn</strong>, nhưng vẫn không tuyệt đối.</li>
+</ul>
+<ul>
+<li>Bản chất <strong>Zero Game (trò chơi tổng bằng 0)</strong>:</li>
+</ul>
+<ul>
+<li>Nếu giá cuối cùng quay về mức ban đầu,</li>
+<li><strong>Tổng lợi nhuận của người thắng = tổng thua lỗ của người thua</strong>.</li>
+<li>Nhưng <strong>tất cả mọi người đều phải trả phí giao dịch + thuế</strong>.</li>
+<li>Người “đánh giỏi” mà chỉ huề vốn thực ra đã <strong>mất tiền phí</strong>.</li>
+</ul>
+<h4>1.5. Tâm lý Nhà đầu tư – Tham lam &amp; Sợ hãi</h4>
+<ul>
+<li>Hành vi thường thấy:</li>
+</ul>
+<ul>
+<li><strong>Thắng thì chốt lời sớm, lời ít</strong> (ví dụ lời 7 đồng là bán).</li>
+<li><strong>Thua thì gồng lỗ</strong>, không chịu cắt (lỗ 7 đồng thì giữ, hy vọng giá quay về).</li>
+<li>Giá có thể <strong>giảm sâu hơn</strong>, đặc biệt khi dùng margin.</li>
+</ul>
+<ul>
+<li>Hai cảm xúc chi phối:</li>
+</ul>
+<ul>
+<li><strong>Tham lam</strong>:</li>
+</ul>
+<ul>
+<li>Thấy thị trường lên.</li>
+<li>Nghe người khác khoe lời.</li>
+<li>Dễ nhảy vào <strong>lúc cuộc chơi sắp tàn</strong>.</li>
+<li>Dễ bị cuốn vào <strong>đầu tư lừa đảo</strong> hoặc <strong>lướt sóng khi không có kỹ năng</strong>.</li>
+</ul>
+<ul>
+<li><strong>Sợ hãi</strong>:</li>
+</ul>
+<ul>
+<li>Sợ mất tiền, không dám cắt lỗ.</li>
+</ul>
+<ul>
+<li>Tài chính là <strong>lĩnh vực logic</strong>, nhưng <strong>hành vi con người lại bị chi phối mạnh bởi cảm xúc</strong>.</li>
+</ul>
+<h4>1.6. Cách giảm rủi ro nếu vẫn muốn đánh ngắn</h4>
+<ul>
+<li>Cần:</li>
+</ul>
+<ul>
+<li><strong>Giỏi phân tích kỹ thuật</strong>.</li>
+<li><strong>Giảm số lệnh mua bán</strong> để tiết kiệm phí.</li>
+<li>Áp dụng <strong>kỷ luật chốt lời – cắt lỗ</strong>:</li>
+</ul>
+<ul>
+<li>Ví dụ: lời <strong>10% thì chốt</strong>, lỗ <strong>7% thì cắt</strong>.</li>
+<li>Mức lời phải <strong>lớn hơn mức lỗ</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>2. Đầu tư Trung hạn</h3>
+<h4>2.1. Bản chất</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Mua tại một thời điểm, <strong>giữ trong vài tháng đến 1–3 năm</strong>, đến khi đạt mục tiêu lợi nhuận thì <strong>bán ra</strong>.</li>
+<li>Khoảng thời gian có thể là:</li>
+</ul>
+<ul>
+<li>Vài tháng,</li>
+<li>1 năm,</li>
+<li>2 năm,</li>
+<li>Thậm chí 3 năm.</li>
+</ul>
+<h4>2.2. Dựa trên các “sóng” trong thị trường</h4>
+<ul>
+<li><strong>Sóng kinh tế vĩ mô:</strong></li>
+</ul>
+<ul>
+<li>Ví dụ: chu kỳ tăng trưởng GDP Việt Nam.</li>
+</ul>
+<ul>
+<li><strong>Sóng ngành:</strong></li>
+</ul>
+<ul>
+<li>Ngành nào đang “ngon”, tăng trưởng mạnh.</li>
+</ul>
+<ul>
+<li><strong>Sự bứt phá của doanh nghiệp hoặc cổ phiếu:</strong></li>
+</ul>
+<ul>
+<li>Lợi nhuận tăng mạnh.</li>
+<li>Tin đồn/tin tức thuận lợi (ví dụ: câu chuyện về VinGroup…).</li>
+</ul>
+<ul>
+<li><strong>Sự hồi phục sau “cơn trũng”:</strong></li>
+</ul>
+<ul>
+<li>Thị trường rơi mạnh do:</li>
+</ul>
+<ul>
+<li>Tin xấu như vụ Vạn Thịnh Phát.</li>
+<li>Chiến tranh Nga–Ukraina.</li>
+<li>Dịch Covid.</li>
+</ul>
+<ul>
+<li>Sau đó, thị trường thường có <strong>giai đoạn hồi phục</strong>.</li>
+</ul>
+<h4>2.3. Chiến lược và Công cụ</h4>
+<ul>
+<li>Đầu tư trung hạn <strong>rủi ro thấp hơn</strong> lướt sóng.</li>
+<li>Nên:</li>
+</ul>
+<ul>
+<li>Đầu tư <strong>3–5 cổ phiếu</strong>.</li>
+<li>Kết hợp:</li>
+</ul>
+<ul>
+<li><strong>Phân tích kỹ thuật</strong> (xác định xu hướng giá).</li>
+<li><strong>Phân tích cơ bản</strong> (doanh nghiệp tốt).</li>
+</ul>
+<ul>
+<li>Công cụ <strong>Wikimoney</strong> (đang chỉnh sửa giao diện):</li>
+</ul>
+<ul>
+<li>Lọc ra những cổ phiếu:</li>
+</ul>
+<ul>
+<li><strong>Sóng kỹ thuật trung hạn đang tăng</strong>.</li>
+<li><strong>Giá trị nội tại</strong> (do CTCK và BitUni Wikimoney tính) <strong>cao hơn giá hiện tại</strong>.</li>
+</ul>
+<h4>2.4. Phân bổ vốn</h4>
+<ul>
+<li>Nếu có kiến thức và thời gian:</li>
+</ul>
+<ul>
+<li>Có thể chia:</li>
+</ul>
+<ul>
+<li><strong>70%</strong> vốn cho <strong>đầu tư dài hạn</strong>.</li>
+<li><strong>30%</strong> vốn cho <strong>đầu tư trung hạn</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>3. Đầu tư Dài hạn</h3>
+<h4>3.1. Bản chất &amp; Thời gian nắm giữ</h4>
+<ul>
+<li><strong>Khái niệm:</strong> Đầu tư dài hạn là <strong>nắm giữ cổ phiếu bền vững</strong>, có thể:</li>
+</ul>
+<ul>
+<li>2–5 năm,</li>
+<li>Hoặc <strong>vĩnh viễn</strong>,</li>
+<li>Chỉ <strong>thay đổi danh mục</strong>, không phải mua bán liên tục.</li>
+</ul>
+<ul>
+<li>Có thể hình dung:</li>
+</ul>
+<ul>
+<li>Danh mục cổ phiếu như <strong>con thuyền lên xuống theo thị trường</strong>, nhưng <strong>trong dài hạn vẫn đi lên</strong> nếu chọn đúng doanh nghiệp.</li>
+</ul>
+<h4>3.2. Nguyên tắc sử dụng tiền</h4>
+<ul>
+<li>Cổ phiếu dài hạn là <strong>tài sản tăng trưởng</strong>.</li>
+<li>Khi cần tiền:</li>
+</ul>
+<ul>
+<li><strong>Bán ra vừa đủ để chi tiêu</strong>.</li>
+<li>Không nên bán hết rồi cầm tiền mặt dài, vì:</li>
+</ul>
+<ul>
+<li>Tiền mặt <strong>không sinh lời</strong> như tài sản tăng trưởng.</li>
+</ul>
+<h4>3.3. Cổ phiếu Giá trị &amp; Danh mục</h4>
+<ul>
+<li><strong>Cổ phiếu giá trị</strong>:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp chất lượng.</li>
+<li>Có <strong>giá trị nội tại tăng trưởng</strong>.</li>
+<li>Mua khi <strong>giá thị trường nằm trong vùng giá trị</strong>.</li>
+</ul>
+<ul>
+<li><strong>Đầu tư theo danh mục</strong>:</li>
+</ul>
+<ul>
+<li>Nắm giữ khoảng <strong>10–12 cổ phiếu</strong>.</li>
+<li>Giúp:</li>
+</ul>
+<ul>
+<li><strong>Đa dạng hóa rủi ro</strong>.</li>
+<li>Giảm biến động của từng mã đơn lẻ.</li>
+</ul>
+<ul>
+<li>Ví dụ:</li>
+</ul>
+<ul>
+<li>Một cổ phiếu như <strong>MWG</strong> có thể <strong>âm 32% trong 2 năm</strong>,</li>
+<li>Nhưng nếu nằm trong <strong>danh mục đa mã</strong>, tổng thể vẫn có thể <strong>sinh lời tốt</strong>.</li>
+</ul>
+<h4>3.4. Lợi suất kỳ vọng &amp; Quản lý danh mục</h4>
+<ul>
+<li>Ví dụ một <strong>danh mục 4 cổ phiếu trong 10 năm (2015–2024)</strong>:</li>
+</ul>
+<ul>
+<li>Tỷ suất sinh lời trung bình <strong>23%/năm</strong>,</li>
+<li>Cao hơn nhiều so với <strong>VN-Index ~8,36%</strong>.</li>
+</ul>
+<ul>
+<li>Dù là dài hạn, vẫn phải:</li>
+</ul>
+<ul>
+<li><strong>Rà soát danh mục định kỳ</strong> (hàng tháng, hàng quý).</li>
+<li><strong>Loại bớt</strong> cổ phiếu không còn phù hợp.</li>
+<li><strong>Thêm</strong> cổ phiếu mới tốt hơn khi cần.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>IV. Phân loại Cổ phiếu &amp; Doanh nghiệp trong Dài hạn</h2>
+<h3>1. Định nghĩa Cổ phiếu Tốt &amp; Doanh nghiệp Tốt</h3>
+<ul>
+<li><strong>Cổ phiếu Tốt (về giá):</strong></li>
+</ul>
+<ul>
+<li>Cổ phiếu có <strong>giá tăng bền vững</strong>,</li>
+<li>Tỷ suất lợi nhuận bình quân <strong>≥ 15%/năm trong 5 năm</strong>.</li>
+</ul>
+<ul>
+<li><strong>Doanh nghiệp Tốt (về giá trị):</strong></li>
+</ul>
+<ul>
+<li><strong>Giá trị nội tại tăng trưởng</strong>, lợi nhuận năm sau cao hơn năm trước.</li>
+<li><strong>ROE ≥ 15%</strong>:</li>
+</ul>
+<ul>
+<li>Nếu ROE dưới 15%, xét về dài hạn:</li>
+</ul>
+<ul>
+<li>Gửi ngân hàng còn hợp lý hơn:</li>
+</ul>
+<ul>
+<li><strong>Linh hoạt rút tiền</strong>.</li>
+<li><strong>Rủi ro thấp hơn</strong>.</li>
+</ul>
+<h3>2. Bốn loại cổ phiếu khi nhìn từ góc độ Giá &amp; Giá trị</h3>
+<p>| Loại  | Cổ phiếu (Giá)          | Doanh nghiệp (Giá trị)   | Mô tả                                                                               | Lựa chọn                                                 |</p>
+<p>| ----- | ----------------------- | ------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------- |</p>
+<p>| <strong>1</strong> | Tốt (giá tăng bền)      | Tốt (giá trị tăng)       | Loại <strong>lý tưởng</strong>: giá trị nội tại tăng, có lúc giá thấp hơn giá trị.               | <strong>Nên chọn vào danh mục dài hạn</strong>. Ví dụ: PNG, ACB, FPT. |</p>
+<p>| <strong>2</strong> | Tốt (giá tăng)          | Không tốt (giá trị thấp) | Giá tăng do <strong>cung cầu/tin tức</strong>, không phải giá trị; giá trị nội tại thấp hơn giá. | <strong>Rất nguy hiểm</strong>, dễ mua nhầm đỉnh.                     |</p>
+<p>| <strong>3</strong> | Xấu (giá ì, không tăng) | Tốt (giá trị cao)        | Giá thấp hơn giá trị nội tại <strong>trong thời gian dài</strong>.                               | Không hấp dẫn nếu <strong>phải chờ quá lâu</strong>, “chôn vốn”.      |</p>
+<p>| <strong>4</strong> | Xấu (giá không tăng)    | Không tốt (giá trị thấp) | Cổ phiếu xấu cả về giá lẫn giá trị.                                                 | <strong>Tuyệt đối tránh</strong>. Ví dụ: DPR giai đoạn 2012–2021.     |</p>
+<hr class="my-6 border-slate-200" />
+<h2>V. Phương pháp Đầu tư Dài hạn 8 Bước – Phần Dẫn Nhập</h2>
+<p>Buổi 27 <strong>chỉ giới thiệu sơ</strong> 5 ý đầu, buổi sau sẽ đi sâu toàn bộ <strong>8 bước</strong>.</p>
+<h3>1. Bước 1 – Hạn chế số lượng cổ phiếu cần quan sát</h3>
+<ul>
+<li>Thị trường có:</li>
+</ul>
+<ul>
+<li>Khoảng <strong>1.700 cổ phiếu</strong> trên 3 sàn, hoặc</li>
+<li>Hơn <strong>800 cổ phiếu trên HOSE và HNX</strong>.</li>
+</ul>
+<ul>
+<li>Không thể phân tích hết → cần <strong>lọc trước</strong>:</li>
+</ul>
+<ul>
+<li>Chỉ giữ lại các cổ phiếu có <strong>vốn hóa &gt; 1.000 tỷ</strong>.</li>
+<li>Dùng các danh sách uy tín (ví dụ: <strong>FPTS</strong>, <strong>Nhịp cầu đầu tư 50 ...</strong>) để:</li>
+</ul>
+<ul>
+<li>Thu hẹp danh sách xuống <strong>khoảng 100–200 cổ phiếu sơ bộ</strong>.</li>
+</ul>
+<h3>2. Bước 2 – Tìm Cổ phiếu Tốt (về Giá)</h3>
+<ul>
+<li>Từ nhóm 100–200 mã lọc được ở Bước 1:</li>
+</ul>
+<ul>
+<li>Lọc tiếp những cổ phiếu có <strong>giá tăng bền vững</strong>,</li>
+<li>Tỷ suất bình quân trên <strong>15%/năm trong khoảng 5 năm</strong>.</li>
+</ul>
+<h3>3. Bước 3 – Tìm Doanh nghiệp Tốt (về Giá trị)</h3>
+<ul>
+<li>Trong số các cổ phiếu “giá tăng bền”, tiếp tục:</li>
+</ul>
+<ul>
+<li>Lọc theo <strong>chất lượng doanh nghiệp</strong>:</li>
+</ul>
+<ul>
+<li>ROE ổn định &amp; trên 15%.</li>
+<li>Lợi nhuận tăng trưởng.</li>
+<li>Tài chính lành mạnh…</li>
+</ul>
+<ul>
+<li>Kết quả là danh sách <strong>doanh nghiệp thật sự tốt</strong>, vừa <strong>giá tốt, vừa nền tảng tốt</strong>.</li>
+</ul>
+<h3>4. Bước 4 – Tính Giá trị Nội tại và Vùng Mua</h3>
+<ul>
+<li>Mục tiêu:</li>
+</ul>
+<ul>
+<li>Xác định <strong>giá trị nội tại</strong> của từng cổ phiếu.</li>
+<li>Tìm ra <strong>vùng giá hợp lý để mua</strong>:</li>
+</ul>
+<ul>
+<li>Giá thị trường <strong>≤ giá trị nội tại</strong>, hoặc</li>
+<li>Giá <strong>thấp hơn giá trị</strong> một khoảng an toàn.</li>
+</ul>
+<h3>5. Bước 5 – Tải Giá Đóng Cửa Điều Chỉnh (Dữ liệu lịch sử)</h3>
+<ul>
+<li>Cần dữ liệu giá đã điều chỉnh (chia tách, cổ tức…) để:</li>
+</ul>
+<ul>
+<li>Lập danh mục.</li>
+<li>Tính độ lệch chuẩn, đánh giá rủi ro – lợi suất.</li>
+</ul>
+<ul>
+<li>Hướng dẫn tải từ <strong>CafeF</strong>:</li>
+</ul>
+<ol>
+<li>Vào trang <strong>CafeF</strong>.</li>
+<li>Chọn mục <strong>Dữ liệu</strong>.</li>
+<li>Chọn <strong>Công cụ phân tích kỹ thuật</strong>.</li>
+<li>Chọn <strong>Dữ liệu AmiBroker</strong>.</li>
+<li>Tick vào:</li>
+</ol>
+<ul>
+<li><strong>Giá đã điều chỉnh</strong>.</li>
+<li><strong>Up to ba sàn</strong>.</li>
+</ul>
+<ol>
+<li>Tải file Zip về, giải nén:</li>
+</ol>
+<ul>
+<li>Sẽ có <strong>3 file Excel</strong> cho 3 sàn:</li>
+</ul>
+<ul>
+<li>Sài Gòn (HOSE)</li>
+<li>Hà Nội (HNX)</li>
+<li>UPCoM</li>
+</ul>
+<ul>
+<li>Ghi chú:</li>
+</ul>
+<ul>
+<li>Sau này <strong>Wikimoney</strong> sẽ cung cấp dữ liệu:</li>
+</ul>
+<ul>
+<li>Giá đóng cửa <strong>đã điều chỉnh</strong> và <strong>chưa điều chỉnh</strong> trên cùng hệ thống.</li>
+</ul>
+<h3>6. Bước tiếp theo – Dùng Web BitUni / Wikimoney (sẽ học ở buổi sau)</h3>
+<ul>
+<li>Buổi sau:</li>
+</ul>
+<ul>
+<li>Hướng dẫn dùng <strong>web cập nhật của BitUni/Wikimoney</strong> để:</li>
+</ul>
+<ul>
+<li>Chọn <strong>danh mục tối ưu</strong> giữa:</li>
+</ul>
+<ul>
+<li>Tỷ suất sinh lời.</li>
+<li>Độ lệch chuẩn (rủi ro).</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>VI. Tổng kết Buổi 27 &amp; Kế hoạch Buổi Sau</h2>
+<ul>
+<li><strong>Tổng số buổi của khóa</strong>: dự kiến <strong>29 buổi</strong>.</li>
+<li>Sau Buổi 27:</li>
+</ul>
+<ul>
+<li>Còn <strong>2 buổi nữa</strong> (thứ Hai và thứ Tư tuần sau).</li>
+</ul>
+<ul>
+<li>Nội dung 2 buổi cuối:</li>
+</ul>
+<ol>
+<li><strong>Một buổi về chứng khoán và cách đặt lệnh (CK)</strong>.</li>
+<li><strong>Một buổi về 8 bước đầu tư dài hạn</strong> (đi sâu toàn bộ phương pháp).</li>
+</ol>
+<ul>
+<li>Theo ý kiến học viên:</li>
+</ul>
+<ul>
+<li><strong>Buổi thứ Hai</strong> tuần sau sẽ là buổi <strong>giảng kỹ về 8 bước đầu tư</strong>.</li>
+</ul>
+<ul>
+<li>Người hướng dẫn:</li>
+</ul>
+<ul>
+<li>Đề nghị học viên nếu thấy khóa học hữu ích, hãy <strong>đánh giá 5 sao</strong> trên:</li>
+</ul>
+<ul>
+<li>Trang Facebook của BitUni.</li>
+<li>Google Review của BitUni.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+            </div>
+
+            <!-- FOOTER NAVIGATION -->
+            <div class="mt-16 pt-8 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 border-t">
+                <a href="Index.html" class="w-full md:w-auto px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition text-center">
+                    ← Quay lại Danh sách
+                </a>
+                <a href="Bai-28.html" class="w-full md:w-auto px-6 py-3 bg-topas-orange text-white rounded-lg font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 text-center flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE FAB -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fab-toc bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+
+    <!-- MOBILE TOC DRAWER -->
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+            <span class="font-bold text-slate-800">Mục lục bài học</span>
+            <button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="overflow-y-auto p-4 space-y-2 font-sans text-sm" id="mobile-toc-content"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1);
+            header.id = id;
+
+            const link = document.createElement('a');
+            link.href = '#' + id;
+            link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate';
+            link.innerText = header.innerText;
+            link.onclick = (e) => {
+                e.preventDefault();
+                highlightTOC(link);
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            desktopToc.appendChild(link);
+
+            const mobileLink = link.cloneNode(true);
+            mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => {
+                e.preventDefault();
+                toggleMobileTOC();
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            mobileTocContent.appendChild(mobileLink);
+        });
+
+        function highlightTOC(activeLink) {
+            document.querySelectorAll('#desktop-toc a').forEach(a => {
+                a.classList.remove('toc-active');
+                a.classList.add('border-transparent');
+            });
+            activeLink.classList.remove('border-transparent');
+            activeLink.classList.add('toc-active');
+        }
+
+        const drawer = document.getElementById('mobile-toc-drawer');
+        const overlay = document.getElementById('mobile-toc-overlay');
+        let isDrawerOpen = false;
+        function toggleMobileTOC() {
+            isDrawerOpen = !isDrawerOpen;
+            if (isDrawerOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-y-full');
+            } else {
+                overlay.classList.add('opacity-0');
+                drawer.classList.add('translate-y-full');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+    </script>
+</body>
+</html>
