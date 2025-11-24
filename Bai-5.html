@@ -1,243 +1,915 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài 5: Định giá & Chiến lược Mua Bán - Topas Education</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' } }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] } } }
-        }
-    </script>
-    <style>
-        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
-        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
-        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; color: #0f172a; }
-        .content-area h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
-        .content-area h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
-        .content-area h3 { font-size: 1.35rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #f97316; }
-        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; marker: #f97316; }
-        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; font-weight: 600; color: #0f172a; }
-        .content-area ol li span { font-weight: 400; color: #334155; }
-        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
-        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        /* Custom Tables */
-        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
-        th { background-color: #f1f5f9; text-align: left; padding: 0.75rem; font-weight: 700; color: #0f172a; border-bottom: 2px solid #e2e8f0; }
-        td { padding: 0.75rem; border-bottom: 1px solid #e2e8f0; color: #334155; }
-        
-        /* Custom Utilities */
-        .box-info { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 0.5rem; padding: 1.5rem; color: #1e40af; margin: 1.5rem 0; }
-        .box-alert { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; padding: 1.5rem; color: #991b1b; margin: 1.5rem 0; }
-        .box-success { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; color: #166534; margin: 1.5rem 0; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-        .tag-green { background: #dcfce7; color: #166534; }
-        .tag-red { background: #fee2e2; color: #991b1b; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Buổi 5 - Chiến lược Đầu tư: Ngắn, Trung và Dài hạn | Khóa Đầu tư Chứng khoán</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --topas-orange: #E77A1A;
+      --topas-navy: #1F2353;
+      --bg-soft: #f5f5fa;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #faf5ff 0, #f9fafb 40%, #f3f4f6 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+
+    .header {
+      padding: 18px 20px 16px;
+      background: radial-gradient(circle at top left, rgba(231,122,26,0.12), transparent 55%),
+                  radial-gradient(circle at top right, rgba(31,35,83,0.18), transparent 55%),
+                  #0f172a;
+      color: white;
+      position: relative;
+    }
+
+    .header-topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.9;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #facc15);
+      box-shadow: 0 0 0 4px rgba(248, 250, 252, 0.1);
+    }
+
+    .header-main {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .header-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .header-sub {
+      font-size: 14px;
+      color: rgb(226, 232, 240);
+      max-width: 640px;
+    }
+
+    .header-meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      color: rgb(203, 213, 225);
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .nav-bar {
+      padding: 10px 20px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(to right, #ffffff, #f9fafb);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      padding: 6px 12px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #374151;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .nav-btn-primary {
+      border-color: rgba(231, 122, 26, 0.5);
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: white;
+      box-shadow: 0 10px 18px rgba(234, 88, 12, 0.3);
+    }
+
+    .nav-btn span.icon {
+      font-size: 14px;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-btn-primary:hover {
+      box-shadow: 0 14px 26px rgba(234, 88, 12, 0.38);
+    }
+
+    .content {
+      padding: 18px 20px 22px;
+      background: white;
+    }
+
+    .intro-block {
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--border-soft);
+    }
+
+    .intro-line1 {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .intro-main {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .intro-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .toc {
+      margin-bottom: 20px;
+      padding: 14px 14px 12px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(to right, rgba(231,122,26,0.08), rgba(31,35,83,0.06));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .toc h2 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #111827;
+    }
+
+    .toc-ol {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+      color: #374151;
+      display: grid;
+      gap: 3px;
+    }
+
+    .toc-ol li a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .toc-ol li a:hover {
+      color: var(--topas-orange);
+      text-decoration: underline;
+    }
+
+    section {
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      line-height: 1.4;
+      color: var(--topas-navy);
+    }
+
+    h3 {
+      font-size: 15px;
+      margin: 10px 0 6px;
+      color: #111827;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    ul, ol {
+      margin: 6px 0 6px 20px;
+      padding-left: 18px;
+      font-size: 14px;
+    }
+
+    li {
+      margin: 2px 0;
+    }
+
+    .note-block {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px dashed #e5e7eb;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .table-wrap {
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .footer {
+      padding: 12px 20px 16px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: #f9fafb;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .footer strong {
+      color: #111827;
+    }
+
+    @media (min-width: 768px) {
+      .header {
+        padding: 20px 24px 18px;
+      }
+      .nav-bar {
+        padding-inline: 24px;
+      }
+      .content {
+        padding: 20px 24px 24px;
+      }
+      .footer {
+        padding-inline: 24px;
+      }
+    }
+  </style>
 </head>
-<body class="antialiased">
-    <!-- HEADER -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="p-2 hover:bg-slate-100 rounded-full transition"><i data-lucide="arrow-left" class="w-6 h-6 text-slate-500"></i></a>
-                <div>
-                    <div class="text-xs font-bold text-topas-orange uppercase">Khóa học Tài chính</div>
-                    <div class="font-bold text-slate-800 text-sm md:text-base line-clamp-1">Định giá & Chiến lược Mua Bán</div>
-                </div>
+<body>
+  <div class="page">
+    <div class="shell">
+      <div class="card">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="header-topline">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              <span>TOPAS EDUCATION</span>
             </div>
-            <a href="bai-6.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
-        </div>
-    </header>
-
-    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
-        <!-- SIDEBAR TOC -->
-        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2">
-            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục</h4>
-            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200"></nav>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
-            <div class="mb-10">
-                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase mb-4">Bài 5</span>
-                <h1>Định giá Cổ phiếu & Thời điểm Mua Bán</h1>
-                <p class="text-xl text-slate-500 font-sans mt-4">Phương pháp P/E thực chiến, Biên an toàn và Nghệ thuật đi tiền.</p>
+            <span>·</span>
+            <span>KHÓA ĐẦU TƯ CHỨNG KHOÁN</span>
+          </div>
+          <div class="header-main">
+            <div class="header-title">
+              Buổi 5 – Chiến lược Đầu tư: Ngắn, Trung và Dài hạn
             </div>
-            
-            <div id="article-content">
-                
-                <div class="box-info mb-8">
-                    <strong>Mục tiêu bài học:</strong> Không chỉ biết cổ phiếu tốt, bạn cần biết mua nó ở mức giá nào để tối đa hóa lợi nhuận và giảm thiểu rủi ro.
-                </div>
+            <div class="header-sub">
+              Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính – Giảng viên: Lâm Minh Chánh
+            </div>
+            <div class="header-meta">
+              <div class="meta-pill">
+                <span class="meta-dot"></span>
+                <span>Đầu tư ngắn hạn · trung hạn · dài hạn</span>
+              </div>
+              <div class="meta-pill">
+                📊 Random Walk · Zero Sum Game · Đa dạng hóa
+              </div>
+            </div>
+          </div>
+        </header>
 
-                <h2 id="part-1">1. Phương pháp Định giá P/E Thực chiến</h2>
-                <p>Ở bài trước chúng ta đã biết công thức P/E. Nhưng áp dụng thế nào để ra quyết định mua bán? Chúng ta sẽ sử dụng phương pháp <strong>So sánh P/E Lịch sử</strong>.</p>
-                
-                <h3>Case Study 1: Vinamilk (VNM) - Cổ phiếu Ổn định</h3>
-                <p>Vinamilk là doanh nghiệp tăng trưởng bền vững, ít biến động mạnh. Chiến lược phù hợp là mua khi P/E thấp hơn trung bình lịch sử.</p>
-                
-                <div class="overflow-x-auto bg-white rounded-lg border border-slate-200 shadow-sm my-6">
-                    <table class="mb-0">
-                        <thead class="bg-slate-100">
-                            <tr>
-                                <th>Năm</th>
-                                <th>Giá (P)</th>
-                                <th>EPS (E)</th>
-                                <th>P/E</th>
-                                <th>Đánh giá</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2018</td>
-                                <td>120.000</td>
-                                <td>5.500</td>
-                                <td>21.8</td>
-                                <td><span class="tag tag-red">Đắt</span></td>
-                            </tr>
-                            <tr>
-                                <td>2020</td>
-                                <td>90.000</td>
-                                <td>5.000</td>
-                                <td>18.0</td>
-                                <td><span class="tag">Trung bình</span></td>
-                            </tr>
-                            <tr>
-                                <td>2023</td>
-                                <td>65.000</td>
-                                <td>4.500</td>
-                                <td><strong>14.4</strong></td>
-                                <td><span class="tag tag-green">Rẻ (MUA)</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p><strong>Kết luận:</strong> Với VNM, P/E trung bình 5 năm là khoảng 17-18. Khi P/E về vùng 13-14 là cơ hội tích sản tuyệt vời.</p>
+        <!-- NAV -->
+        <nav class="nav-bar">
+          <div class="nav-group">
+            <a href="index.html" class="nav-btn">
+              <span class="icon">←</span>
+              <span>Danh sách buổi</span>
+            </a>
+          </div>
+          <div class="nav-group">
+            <a href="bai-6.html" class="nav-btn nav-btn-primary">
+              <span>Buổi tiếp theo</span>
+              <span class="icon">⟶</span>
+            </a>
+          </div>
+        </nav>
 
-                <h3>Case Study 2: Hòa Phát (HPG) - Cổ phiếu Chu kỳ (Cyclical)</h3>
-                <p>Hòa Phát là doanh nghiệp ngành Thép, lợi nhuận phụ thuộc giá thép thế giới. <strong>TUYỆT ĐỐI KHÔNG</strong> dùng tư duy thông thường cho cổ phiếu chu kỳ.</p>
-                
-                <div class="box-alert">
-                    <h4 class="mt-0 mb-2 text-red-800 flex items-center gap-2"><i data-lucide="alert-triangle"></i> BẪY P/E CỔ PHIẾU CHU KỲ</h4>
-                    <p class="mb-2 text-sm"><strong>Sai lầm chết người:</strong> Thấy P/E = 4 (Rất thấp) -> Lao vào mua. Thấy P/E = 20 (Rất cao) -> Bán ra.</p>
-                    <p class="mb-0 text-sm"><strong>Sự thật ngược lại:</strong>
-                        <br>❌ <strong>P/E thấp nhất (4-5):</strong> Là lúc lợi nhuận đạt ĐỈNH lịch sử. Giá thép sắp giảm -> Giá cổ phiếu sẽ lao dốc.
-                        <br>✅ <strong>P/E cao ngất (20-30):</strong> Là lúc lợi nhuận chạm ĐÁY (thậm chí lỗ). Giá thép sắp hồi phục -> Giá cổ phiếu sẽ tăng bằng lần.
-                    </p>
-                </div>
+        <!-- CONTENT -->
+        <main class="content">
+          <!-- Intro -->
+          <div class="intro-block">
+            <div class="intro-line1">TOPAS EDUCATION</div>
+            <div class="intro-main">
+              BUỔI 5 - CHIẾN LƯỢC ĐẦU TƯ: NGẮN, TRUNG VÀ DÀI HẠN
+            </div>
+            <div class="intro-sub">
+              Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính - Lâm Minh Chánh
+            </div>
+          </div>
 
-                <h2 id="part-2">2. Biên An toàn (Margin of Safety)</h2>
-                <p>Benjamin Graham - thầy của Warren Buffett dạy rằng: <em>"3 từ quan trọng nhất trong đầu tư là BIÊN AN TOÀN"</em>.</p>
-                <p>Bạn định giá cổ phiếu là 100.000đ. Bạn có chắc chắn 100% không? Không. Vì vậy, hãy trừ đi một khoảng sai số.</p>
-                
-                <div class="bg-slate-900 text-white p-6 rounded-xl text-center font-mono my-6 shadow-lg">
-                    <div class="text-slate-400 text-sm uppercase mb-2">Công thức Mua</div>
-                    <div class="text-2xl md:text-3xl font-bold text-topas-orange">Giá Mua = Giá Trị Thực x (70% ~ 80%)</div>
-                </div>
-                
-                <ul class="space-y-2">
-                    <li><strong>Giá trị thực:</strong> 100.000đ</li>
-                    <li><strong>Biên an toàn 30%:</strong> Trừ đi 30.000đ</li>
-                    <li><strong>Giá Mua mục tiêu:</strong> Dưới 70.000đ</li>
-                </ul>
-                <p>Nếu giá thị trường đang là 90.000đ -> <strong>CHỜ ĐỢI</strong>. Kiên nhẫn là phẩm chất số 1 của nhà đầu tư.</p>
+          <!-- TOC -->
+          <nav class="toc" aria-label="Mục lục">
+            <h2>📋 Mục lục</h2>
+            <ol class="toc-ol">
+              <li><a href="#sec-1">1. Tổng quan và Đầu tư ngắn hạn (Lướt sóng)</a></li>
+              <li><a href="#sec-2">2. Rủi ro và Tính ngẫu nhiên (Random Walk)</a></li>
+              <li><a href="#sec-3">3. Zero Sum Game và Tâm lý Lời/Lỗ</a></li>
+              <li><a href="#sec-4">4. Chiến lược đầu tư ngắn hạn</a></li>
+              <li><a href="#sec-5">5. Đầu tư trung hạn</a></li>
+              <li><a href="#sec-6">6. Chiến lược đầu tư trung hạn</a></li>
+              <li><a href="#sec-7">7. Đầu tư dài hạn (Đầu tư giá trị)</a></li>
+            </ol>
+          </nav>
 
-                <h2 id="part-3">3. Chiến lược Giải ngân (Cách đi tiền)</h2>
-                <p>Đừng bao giờ "All-in" (mua hết tiền) trong một lần lệnh. Hãy chia nhỏ để quản trị rủi ro.</p>
+          <!-- 1 -->
+          <section id="sec-1">
+            <h2>📊 1. Tổng quan và Đầu tư ngắn hạn (Lướt sóng)</h2>
 
-                <h3>Chiến lược 1: Tích sản đều đặn (DCA)</h3>
+            <p>Nội dung học kỳ này sẽ tập trung vào ba dạng đầu tư: ngắn hạn, trung hạn và dài hạn. Đầu tư ngắn hạn (lướt sóng) là việc dự đoán và đánh cược trên sự lên xuống của giá cổ phiếu.</p>
+
+            <h3>📈 Đặc điểm giao dịch và cơ chế thị trường</h3>
+            <p>Chúng ta có thể thấy các cơn sóng lên xuống trên đồ thị một tuần, cho phép nhà đầu tư mua ở đây, bán ở đây để có lời. Ngược lại, mua ở đây, bán ở đây có thể dẫn đến lỗ.</p>
+            <p>Ở Việt Nam, quy tắc là ít nhất T+2 (mua cổ phiếu về hơn hai ngày sau mới về), nên không thể mua xong bán liền như nước ngoài. Nước ngoài có hệ thống mua bán real time (thời gian thực).</p>
+
+            <h3>Kỹ thuật Lách luật/Bán khống</h3>
+            <ul>
+              <li>Có sẵn cổ phiếu: 10,000 cổ phiếu FPT</li>
+              <li>Muốn lướt: 5,000 cổ phiếu</li>
+              <li>Cách thức: Dùng cổ phiếu cũ bán ra, dù 5,000 cổ phiếu mới mua phải hơn 2 ngày sau mới về</li>
+              <li>Kết quả: Có thể mua rồi bán, hoặc bán rồi mua ngay lập tức</li>
+            </ul>
+
+            <h3>🔄 Thuật ngữ giao dịch</h3>
+            <ul>
+              <li>Mở vị trí (open position): Khi nhà đầu tư chưa có vị trí nào</li>
+              <li>Long: Mua rồi chờ giá lên để bán</li>
+              <li>Short: Bán rồi chờ giá xuống để mua (bán khống)</li>
+              <li>Đơn vị giao dịch: 100 cổ phiếu (lot)</li>
+            </ul>
+
+            <h3>Ví dụ Bán khống (Short)</h3>
+            <ul>
+              <li>Bước 1: Bán 500 cổ phiếu khi giá 84,000 đồng</li>
+              <li>Bước 2: Chờ giá xuống 82,000 đồng</li>
+              <li>Bước 3: Mua lại 500 cổ phiếu</li>
+              <li>Lời: 2,000 đồng/cổ phiếu × 500 = 1,000,000 đồng</li>
+            </ul>
+
+            <h3>Điều kiện học tập hiệu quả</h3>
+            <ul>
+              <li>Thiết bị: Máy tính + điện thoại để xem rõ màn hình và Excel</li>
+              <li>Môi trường: Phòng yên tĩnh, tập trung cao</li>
+              <li>Tinh thần: Tự học cao, không dễ bị phân tâm</li>
+              <li>Thái độ: Nghiêm túc, không "lo ra" trong lúc học</li>
+            </ul>
+          </section>
+
+          <!-- 2 -->
+          <section id="sec-2">
+            <h2>🎲 2. Rủi ro và Tính ngẫu nhiên của thị trường ngắn hạn (Random Walk)</h2>
+
+            <p>"Ông đầu tư 30 năm nay cũng không chắc ngày mai thị trường tăng hay giảm"</p>
+            <p>— Chủ tịch Dragon Capital</p>
+
+            <p>Đầu tư ngắn hạn hấp dẫn vì mang lại lợi nhuận cao và thấy mau chóng. Tuy nhiên, rủi ro cũng rất cao. Việc dự đoán đúng giá rất khó.</p>
+
+            <h3>🔍 Đặc điểm thị trường ngắn hạn</h3>
+            <ul>
+              <li>Giá cổ phiếu bị ảnh hưởng bởi nhiều yếu tố, không theo đường thẳng</li>
+              <li>Thị trường hoàn hảo: Chỉ có trong dài hạn, không có trong ngắn hạn</li>
+              <li>Tính ngẫu nhiên: Giá lên xuống như "bước đi ngẫu nhiên trên phố" (Random Walk Street)</li>
+              <li>Giống như bước đi của người say rượu, không có chủ đích</li>
+            </ul>
+
+            <h3>Phân tích theo mô hình Casino</h3>
+
+            <h3>🎰 Roulette châu Âu</h3>
+            <ul>
+              <li>Cơ chế: 37 con số (36 con số + 0)</li>
+              <li>Nếu đặt hết 36 con số: Nhà cái vẫn thắng 1 con</li>
+              <li>Tỷ lệ nhà cái thắng = 1/37 = 2.7%</li>
+              <li>Thực tế: Đánh 100 đồng sẽ thua 2.7 đồng</li>
+            </ul>
+
+            <h3>📊 Thống kê thực tế</h3>
+            <ul>
+              <li>10 người chơi lớn nhất:</li>
+              <li>Thua trung bình: 7%</li>
+              <li>Có người thua tới: 15%</li>
+              <li>Cao hơn house edge (2.7%) rất nhiều</li>
+            </ul>
+
+            <h3>🎯 House Edge các trò chơi</h3>
+            <ul>
+              <li>Roulette: 2.7%</li>
+              <li>Bài cào kiểu Tây: 1-2.6%</li>
+              <li>Bầu cua tôm cá: 47%</li>
+              <li>Máy giật (slot): Hơn 10% (cao nhất)</li>
+            </ul>
+
+            <h3>Tại sao tỷ lệ thua cao hơn House Edge?</h3>
+            <ul>
+              <li>Không duy trì mức cược đều: Khi thắng/thua thay đổi cược</li>
+              <li>Tâm lý "thấu cơ": Khi thua tăng cược lên 3-4 ngàn đô la</li>
+              <li>Không kiểm soát cảm xúc: Bực mình khi thua dẫn đến đánh lớn</li>
+              <li>Môi trường casino: Nhiệt độ thấp, không nhìn ra ngoài, phục vụ tốt để giữ chân</li>
+            </ul>
+
+            <p>Kết luận: Nhà cái không cần gian lận, họ chỉ cần tạo môi trường thoải mái và có lợi thế toán học.</p>
+          </section>
+
+          <!-- 3 -->
+          <section id="sec-3">
+            <h2>⚖️ 3. Đầu tư ngắn hạn là Zero Sum Game và Tâm lý Lời/Lỗ</h2>
+
+            <p>Thị trường chứng khoán trong ngắn hạn giống casino. Đường giá đi lên đi xuống rồi về lại chỗ cũ (ví dụ từ giá 30 về lại 30), đây là Zero Sum Game.</p>
+
+            <h3>Zero Sum Game - Lời của người này = Lỗ của người kia</h3>
+            <p>Ví dụ: Giá cổ phiếu từ 30,000 đồng → lên xuống → về lại 30,000 đồng</p>
+            <ul>
+              <li>Người A mua 30k bán 35k: Lời +5,000 đồng</li>
+              <li>Người B mua 35k bán 30k: Lỗ -5,000 đồng</li>
+              <li>Tổng cộng: +5,000 + (-5,000) = 0</li>
+            </ul>
+
+            <p>Lợi thế "nhà cái" = Phí giao dịch + Phí lưu ký + Phí sở chứng khoán + Thuế</p>
+            <p>Tuy nhiên, nhà đầu tư không hòa vốn vì tất cả người chơi đều phải trả phí cho công ty chứng khoán, trung tâm lưu ký, sở chứng khoán và thuế nhà nước.</p>
+
+            <h3>🧠 Tâm lý Lời/Lỗ</h3>
+            <p>Hành vi điển hình của nhà đầu tư</p>
+
+            <h3>✅ Khi Lời (VD: +50 triệu/1 tỷ)</h3>
+            <ul>
+              <li>Mừng quá → Bán ngay</li>
+              <li>Không gồng lời được</li>
+              <li>Sợ mất lời đã có</li>
+            </ul>
+
+            <h3>❌ Khi Lỗ (VD: -30 triệu, còn 970 triệu)</h3>
+            <ul>
+              <li>Xót ruột → Chờ giá lên lại</li>
+              <li>Gồng lỗ giỏi</li>
+              <li>Sợ bán ra là mất đứt vốn</li>
+            </ul>
+
+            <p>Nguyên tắc đúng: Lời 10% khi đúng, cắt lỗ 7% khi sai Thực tế: Cắt lời 3%, gồng lỗ 15%</p>
+
+            <h3>Nguyên tắc lướt sóng thành công</h3>
+            <ul>
+              <li>Lời phải nhiều hơn lỗ: Ví dụ lời 10%, cắt lỗ 7%</li>
+              <li>Kiểm soát tâm lý: Không để cảm xúc chi phối quyết định</li>
+              <li>Kỷ luật nghiêm ngặt: Tuân thủ nguyên tắc chốt lời cắt lỗ</li>
+              <li>Chỉ dành cho chuyên nghiệp: Nhà đầu tư nghiệp dư nên tránh xa</li>
+            </ul>
+
+            <p>Kết luận: Tâm lý con người thường làm ngược với nguyên tắc đúng. Đầu tư ngắn hạn dành cho nhà đầu tư chuyên nghiệp.</p>
+          </section>
+
+          <!-- 4 -->
+          <section id="sec-4">
+            <h2>⚡ 4. Chiến lược đầu tư ngắn hạn và Quản lý rủi ro</h2>
+
+            <p>Để tăng khả năng dự đoán, nhà đầu tư chuyên nghiệp dùng hai phương pháp chính:</p>
+
+            <h3>📈 1. Phân tích kỹ thuật (Technical Analysis)</h3>
+            <ul>
+              <li>Cơ sở: Dựa vào giá + khối lượng giao dịch (volume)</li>
+              <li>Mục đích: Dự đoán xu hướng, điểm mua và điểm bán</li>
+              <li>Đặc điểm: Rất phức tạp</li>
+              <li>Phân tích bằng máy tính: Chính xác 100%</li>
+            </ul>
+
+            <h3>📰 2. Dựa vào tin tức</h3>
+            <p>3 dạng tin tức:</p>
+            <ul>
+              <li>Tin không ảnh hưởng: Giá trị và giá đều không đổi</li>
+              <li>Tin tâm lý: Thay đổi giá nhưng không thay đổi giá trị</li>
+              <li>Tin quan trọng: Thay đổi cả giá trị và giá</li>
+            </ul>
+
+            <h3>Tại sao KHÔNG tính giá trị nội tại trong ngắn hạn?</h3>
+            <ul>
+              <li>Lý do: Giá đang thấp vẫn có thể thấp hơn, giá cao vẫn có thể cao hơn</li>
+              <li>Ví dụ: Giá trị nội tại 100k, giá thị trường 80k</li>
+              <li>Ngắn hạn: Giá có thể xuống 70k, 60k do tâm lý</li>
+            </ul>
+
+            <p>Kết luận: Phân tích cơ bản không phù hợp với lướt sóng</p>
+
+            <h3>🛡️ Quản lý rủi ro</h3>
+            <p>4 nguyên tắc quản lý rủi ro</p>
+            <ul>
+              <li>Chọn cổ phiếu thanh khoản: Lượng mua bán đầy đủ</li>
+              <li>Tránh cổ phiếu rác (trash stocks): Giá trị nội tại rất thấp so với giá thị trường</li>
+              <li>Tránh trở thành nhà đầu tư dài hạn bất đắc dĩ: Khi lướt sóng sai, phải cắt lỗ</li>
+              <li>Tuân thủ nghiêm ngặt: Chốt lời cắt lỗ, cần tâm lý vững và bản lĩnh</li>
+            </ul>
+
+            <h3>Cảnh báo về Cổ phiếu rác</h3>
+            <ul>
+              <li>Định nghĩa: Cổ phiếu có giá trị cơ bản (lợi nhuận tương lai) rất yếu</li>
+              <li>Ví dụ: FLC sau khi lãnh đạo bị bắt</li>
+              <li>Hậu quả: Nắm lâu thua hơn cả gửi ngân hàng (6%/năm)</li>
+              <li>Nguy hiểm: Lỗ vốn nặng nề, không ai "đánh lên" nữa</li>
+            </ul>
+
+            <h3>Điều nhà đầu tư lướt sóng nên TRÁNH</h3>
+            <ul>
+              <li>Đầu tư không chiến lược: Không phân tích kỹ thuật, không nghiên cứu tin tức</li>
+              <li>Đầu tư theo tin đồn: Tin lừa đảo, tin vớ vẩn</li>
+              <li>Theo mách bảo hay tâm linh: Không có cơ sở khoa học</li>
+              <li>Trở thành nhà đầu tư dài hạn bất đắc dĩ: Chuyển từ lướt sóng sang nắm giữ khi thua lỗ</li>
+            </ul>
+
+            <p>Chiến lược chính: Dùng phân tích kỹ thuật và phân tích dòng tiền. Cần tâm lý vững, kỷ luật cao.</p>
+          </section>
+
+          <!-- 5 -->
+          <section id="sec-5">
+            <h2>📈 5. Đầu tư trung hạn</h2>
+
+            <ul>
+              <li>Khung thời gian: Vài tháng đến 1-3 năm</li>
+              <li>Chiến lược: Mua vào khi giá hời (khu vực trũng) và nắm giữ</li>
+            </ul>
+
+            <h3>Thực tế thị trường 1 năm qua</h3>
+            <ul>
+              <li>VN-Index: Tăng khoảng 8%</li>
+              <li>Cổ phiếu cơ bản: ACB, PNJ, FPT, Thế giới di động → Không tăng, thậm chí giảm</li>
+              <li>Nhóm tăng mạnh: Dòng họ Vin, G, Tuấn M (không cơ bản)</li>
+              <li>Kết luận: VN-Index tăng do nhóm cổ phiếu không cơ bản được đánh lên</li>
+            </ul>
+
+            <h3>Ví dụ thành công đầu tư trung hạn</h3>
+            <ul>
+              <li>Techcombank: 5 năm gần gấp đôi</li>
+              <li>Masan: 3 tháng tăng khoảng 50%</li>
+              <li>Cơ hội: Nắm giữ sau sự kiện ngày 9/4 liên quan đến Fed của Mỹ</li>
+            </ul>
+
+            <h3>🌊 5 Cơ hội đầu tư trung hạn</h3>
+
+            <h3>🌊 1. Cơn sóng kinh tế</h3>
+            <ul>
+              <li>Chứng khoán là phong vũ biểu, chạy trước khi nền kinh tế tăng trưởng</li>
+              <li>GDP Việt Nam: 6-7%/năm VN-Index: 9-10%/năm (gấp rưỡi GDP)</li>
+            </ul>
+
+            <h3>📊 2. Cơn sóng thị trường</h3>
+            <p>Ví dụ Covid-19:</p>
+            <ul>
+              <li>Giá giảm mạnh → Phục hồi</li>
+              <li>Tiền nhàn rỗi đổ vào đầu tư</li>
+              <li>Lượng tài khoản mở mới cao kỷ lục năm 2021</li>
+            </ul>
+
+            <h3>🏭 3. Cơn sóng ngành</h3>
+            <p>Ngành tăng giá:</p>
+            <ul>
+              <li>Bán lẻ</li>
+              <li>Bất động sản</li>
+              <li>Chứng khoán</li>
+              <li>Ngân hàng</li>
+              <li>(Do giá trị hoặc tâm lý)</li>
+            </ul>
+
+            <h3>🚀 4. Sự bứt phá cổ phiếu</h3>
+            <ul>
+              <li>Doanh nghiệp phát triển lợi nhuận, doanh thu</li>
+              <li>Ví dụ FPT: Tăng mạnh nhờ xuất khẩu phần mềm, AI</li>
+              <li>Các cổ phiếu cơ bản tốt nắm dài hạn ổn</li>
+            </ul>
+
+            <h3>🔄 5. Sự trở lại sau cơn trũng</h3>
+            <ul>
+              <li>Xảy ra sau các cuộc khủng hoảng (Covid, vụ Vạn Thịnh Phát tháng 10/2022)</li>
+              <li>Case Study: Phát Đạt và Novaland sau vụ Vạn Thịnh Phát</li>
+              <li>Nguyên nhân rớt giá: Bán giải chấp (forced sell) mạnh mẽ</li>
+            </ul>
+
+            <ul>
+              <li>Phát Đạt:
                 <ul>
-                    <li><strong>Cách làm:</strong> Mỗi tháng trích 10 triệu lương mua cổ phiếu FPT, bất chấp giá xanh hay đỏ.</li>
-                    <li><strong>Ưu điểm:</strong> Không cần canh bảng điện, mua được giá trung bình tốt trong dài hạn.</li>
-                    <li><strong>Phù hợp:</strong> Người làm công ăn lương, bận rộn.</li>
+                  <li>Trước: 60-70 ngàn đồng</li>
+                  <li>Đáy: Gần 10 ngàn đồng</li>
+                  <li>Sau phục hồi: 30-35 ngàn đồng</li>
                 </ul>
+              </li>
+              <li>Lợi nhuận: Những người mua ở 10-15k đã kiếm gấp đôi</li>
+              <li>Điều kiện: Thị trường ổn định trở lại</li>
+            </ul>
+          </section>
 
-                <h3>Chiến lược 2: Mua gom vùng giá thấp (Pyramiding)</h3>
+          <!-- 6 -->
+          <section id="sec-6">
+            <h2>🎯 6. Chiến lược đầu tư trung hạn và Quản lý rủi ro</h2>
+
+            <h3>📊 Chiến lược chính</h3>
+
+            <h3>📈 Phân tích kỹ thuật trung hạn</h3>
+            <p>Sử dụng biểu đồ và chỉ báo kỹ thuật cho khung thời gian 3-6 tháng, 1 năm</p>
+
+            <h3>⚖️ Phân tích Giá và Giá trị</h3>
+            <p>Trong trung hạn, khi thị trường bình ổn lại, giá thường sẽ về gần giá trị</p>
+            <p>Mục tiêu: Tìm sự bất hợp lý của giá (giá thấp hơn giá trị) để mua, mong đợi lời 10-20% khi giá hồi phục về giá trị.</p>
+            <p>Ví dụ phát hiện bất hợp lý: P/E trung bình = 15 P/E hiện tại = 10 → Giá đang thấp bất hợp lý → Xu hướng trở về mức hợp lý</p>
+            <p>Phải tìm ra điểm trũng của thị trường (market). Không nên mua khi cổ phiếu bị định giá quá cao (over value).</p>
+
+            <h3>🛡️ Quản lý rủi ro trung hạn</h3>
+            <p>3 nguyên tắc quản lý rủi ro</p>
+
+            <ul>
+              <li>Chọn cổ phiếu cơ bản:
                 <ul>
-                    <li><strong>Bước 1:</strong> Mua thăm dò 30% vị thế.</li>
-                    <li><strong>Bước 2:</strong> Nếu giá giảm tiếp (vẫn trong biên an toàn) -> Mua thêm 30%.</li>
-                    <li><strong>Bước 3:</strong> Nếu giá tăng đúng dự đoán -> Mua nốt 40%.</li>
+                  <li>ROE (Return on Equity) &gt; 10%</li>
+                  <li>P/E (Price to Earnings) &lt; 30</li>
                 </ul>
+              </li>
+            </ul>
 
-                <h2 id="part-4">4. Khi nào Bán Cổ phiếu?</h2>
-                <p>Mua đã khó, bán còn khó hơn. Chỉ bán khi gặp 1 trong 3 trường hợp sau:</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 text-sm font-sans">
-                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-red-300 transition">
-                        <div class="text-2xl mb-2">❌</div>
-                        <div class="font-bold text-slate-800 mb-1">Sai nhận định</div>
-                        <p class="text-slate-500 mb-0">Công ty không tốt như mình nghĩ. Có gian lận, mất khách hàng lớn. -> Bán cắt lỗ ngay lập tức.</p>
-                    </div>
-                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-green-300 transition">
-                        <div class="text-2xl mb-2">💰</div>
-                        <div class="font-bold text-slate-800 mb-1">Giá quá cao</div>
-                        <p class="text-slate-500 mb-0">Giá tăng nóng, vượt xa giá trị thực (P/E lên 40-50). -> Bán chốt lời để bảo toàn vốn.</p>
-                    </div>
-                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-blue-300 transition">
-                        <div class="text-2xl mb-2">🔄</div>
-                        <div class="font-bold text-slate-800 mb-1">Cơ hội tốt hơn</div>
-                        <p class="text-slate-500 mb-0">Tìm thấy cổ phiếu khác rẻ hơn, ngon hơn cổ phiếu đang nắm giữ. -> Bán để đảo danh mục.</p>
-                    </div>
-                </div>
+            <ul>
+              <li>Kiên định:
+                <ul>
+                  <li>Mua và theo dõi sát sao</li>
+                  <li>Không để tin tức ngoài lề (tin vịt) làm thay đổi nhận định</li>
+                  <li>Chỉ rút vốn nếu tin về giá trị DN không đúng như mong muốn</li>
+                </ul>
+              </li>
+            </ul>
 
-                <div class="quote-box">
-                    "Đừng bao giờ bán một công ty tốt chỉ vì giá nó vừa giảm (nếu nội tại vẫn tốt). Và đừng bao giờ giữ một công ty tồi chỉ vì hy vọng nó sẽ hòa vốn."
-                </div>
+            <ul>
+              <li>Chốt lời cắt lỗ:
+                <ul>
+                  <li>Khác với dài hạn, phải chốt lời khi đạt mục tiêu</li>
+                  <li>Phải cắt lỗ nếu giá trị DN thật sự có vấn đề</li>
+                  <li>Cắt lỗ nếu thị trường quá bi quan</li>
+                </ul>
+              </li>
+            </ul>
 
-                <h2 id="part-5">5. Tổng kết Bài học</h2>
-                <div class="box-success">
-                    <ul class="mb-0 pl-4 list-decimal space-y-2 font-bold text-slate-700">
-                        <li>Định giá là tìm ra giá trị thực, không phải đoán giá ngày mai.</li>
-                        <li>Với cổ phiếu chu kỳ (Thép, Dầu), hãy tư duy ngược về P/E.</li>
-                        <li>Luôn mua với Biên an toàn (Rẻ hơn giá trị thực ít nhất 20-30%).</li>
-                        <li>Kiên nhẫn chờ đợi cơ hội, không FOMO đu đỉnh.</li>
-                    </ul>
-                </div>
+            <h3>Ví dụ cắt lỗ khi thị trường bi quan</h3>
+            <ul>
+              <li>Giá trị thực: 100,000 đồng</li>
+              <li>Giá mua vào: 70,000 đồng (giá hời)</li>
+              <li>Thị trường bi quan: Giá rớt xuống 50,000 đồng</li>
+              <li>Quyết định: Cắt lỗ vì thị trường quá bi quan, có thể rớt sâu hơn</li>
+              <li>Lý do: Bảo vệ vốn, chờ cơ hội tốt hơn</li>
+            </ul>
 
+            <p>Điểm khác biệt với đầu tư dài hạn: Đầu tư trung hạn phải chốt lời cắt lỗ nghiêm túc, không "ôm" mãi như dài hạn.</p>
+          </section>
+
+          <!-- 7 -->
+          <section id="sec-7">
+            <h2>💎 7. Đầu tư dài hạn (Đầu tư giá trị và Tích lũy)</h2>
+
+            <p>Đầu tư dài hạn là chọn những doanh nghiệp có đường giá trị tăng trưởng về đường dài, mặc kệ đường giá lên xuống.</p>
+
+            <h3>Ví dụ FPT - Tăng trưởng dài hạn</h3>
+            <ul>
+              <li>Năm 2016: 13,000 đồng</li>
+              <li>Hiện tại: Khoảng 121,000 đồng</li>
+              <li>Đường giá trị: Tăng trưởng rất tốt và liên tục</li>
+              <li>Đường giá: Lên xuống nhưng xu hướng tăng theo giá trị</li>
+            </ul>
+
+            <p>Phương pháp tối ưu: Đầu tư đều đặn tốt hơn đầu tư một lần. Nếu đầu tư số tiền lớn cùng lúc, có thể mua nhầm ngay đỉnh.</p>
+
+            <h3>Ví dụ rủi ro đầu tư một cổ phiếu</h3>
+            <ul>
+              <li>Thế giới di động: Đường giá trị có lúc rớt xuống do làm ăn không tốt</li>
+              <li>Nếu chỉ đầu tư vào MWG: Nắm 5 năm có thể không có lời nhiều</li>
+            </ul>
+
+            <p>Website nước ngoài đánh giá:</p>
+            <ul>
+              <li>Vinfast (VFS): Score = 0</li>
+              <li>FPT: Score = 7.52 (tốt)</li>
+            </ul>
+
+            <h3>🎯 5 Nguyên tắc thành công</h3>
+            <p>Chiến lược và Nguyên tắc đầu tư dài hạn</p>
+            <ul>
+              <li>Chọn cổ phiếu có giá trị tăng trưởng: Đường dài bình quân trên 15%/năm</li>
+              <li>Đa dạng hóa danh mục: KHÔNG BAO GIỜ đầu tư vào một cổ phiếu</li>
+              <li>Giá trị nội tại tăng trưởng khi: ROE tốt và lợi nhuận năm sau cao hơn năm trước</li>
+              <li>Chọn thời điểm: Nên chọn cổ phiếu đang có giá thấp hơn giá trị nội tại</li>
+              <li>Tiêu chí doanh nghiệp tốt: ROE trên 15%, tăng trưởng lợi nhuận 10-15%</li>
+            </ul>
+
+            <p>"Quá khứ không chắc chắn tương lai. Nhưng những gì đã xảy ra trong quá khứ có khả năng lặp lại trong tương lai cao hơn những gì chưa xảy ra"</p>
+            <p>— Nguyên lý đầu tư dài hạn</p>
+
+            <h3>Vai trò của quá khứ trong dự đoán</h3>
+            <ul>
+              <li>Ví dụ học sinh: Trung bình 8 điểm sẽ khó đột ngột xuống 6 hoặc lên 10 mà không có sự kiện đặc biệt</li>
+              <li>Ví dụ doanh nghiệp: Đang làm ăn tốt, mọi thứ bình thường → Năm nay sẽ tiếp tục làm ăn tốt</li>
+              <li>Ứng dụng: Dựa vào quá khứ để xây dựng và quản lý danh mục</li>
+            </ul>
+
+            <h3>🏛️ Quản lý rủi ro dài hạn: Đa dạng hóa</h3>
+            <p>Phải đa dạng hóa. Đa dạng hóa giảm rủi ro mất vốn gốc.</p>
+
+            <h3>Ví dụ cụ thể về Đa dạng hóa</h3>
+            <ul>
+              <li>Vốn ban đầu: 600 triệu</li>
+              <li>Chia đều: 6 cổ phiếu × 100 triệu/cổ phiếu</li>
+              <li>Thời gian: 20 năm</li>
+            </ul>
+
+            <div class="table-wrap">
+              <table>
+                <tr>
+                  <th>Cổ phiếu</th>
+                  <th>Loại</th>
+                  <th>Tỷ suất/năm</th>
+                  <th>Giá trị cuối</th>
+                </tr>
+                <tr>
+                  <td>A, B</td>
+                  <td>Cổ phiếu rác</td>
+                  <td>-20%/năm</td>
+                  <td>Mất vốn</td>
+                </tr>
+                <tr>
+                  <td>C, D</td>
+                  <td>Cổ phiếu bình quân</td>
+                  <td>9-10%/năm</td>
+                  <td>Trung bình</td>
+                </tr>
+                <tr>
+                  <td>E, F</td>
+                  <td>Cổ phiếu tốt</td>
+                  <td>19%, 22%/năm</td>
+                  <td>Rất cao</td>
+                </tr>
+              </table>
             </div>
 
-            <!-- FOOTER NAV -->
-            <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-4">
-                <a href="index.html" class="px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 text-center shadow-sm hover:bg-slate-50 transition">
-                    ← Về danh sách
-                </a>
-                <a href="bai-6.html" class="px-6 py-3 bg-topas-orange text-white rounded-lg font-bold text-center shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
-                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-            </div>
+            <p>Kết quả sau 20 năm: 9 tỷ đồng Tỷ suất lợi nhuận tổng thể: 15%/năm Quan trọng: KHÔNG bị mất vốn</p>
+
+            <h3>So sánh:</h3>
+            <ul>
+              <li>Nếu đầu tư tất cả vào A hoặc B: Mất vốn</li>
+              <li>Nếu đa dạng hóa: Vẫn đạt 15%/năm và bảo vệ vốn</li>
+            </ul>
+
+            <h3>Lợi ích của Đa dạng hóa</h3>
+            <ul>
+              <li>Giảm rủi ro mất vốn: Cổ phiếu rác không làm mất hết vốn</li>
+              <li>Giảm biến động: Tỷ suất lợi nhuận ổn định hơn</li>
+              <li>Đường công mềm mại: Không bị rớt 30-40% như cổ phiếu đơn lẻ</li>
+              <li>Tâm lý thoải mái: Không lo lắng quá mức về 1 cổ phiếu</li>
+            </ul>
+
+            <h3>Kế hoạch học tập tiếp theo</h3>
+            <ul>
+              <li>Buổi sau sẽ học:
+                <ul>
+                  <li>Đa dạng hóa chi tiết (giảm biến động, độ lệch chuẩn)</li>
+                  <li>Quản lý rủi ro đầu tư dài hạn sâu hơn</li>
+                  <li>Kiến thức cơ bản về tài chính cá nhân</li>
+                  <li>Lãi suất và xây dựng nền tảng vững chắc</li>
+                  <li>Quay lại chứng khoán và thị trường chứng khoán</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p>Kết luận: Đầu tư dài hạn thành công cần có chiến lược rõ ràng, đa dạng hóa thông minh và kiên nhẫn theo đuổi mục tiêu.</p>
+
+            <p>TOPAS EDUCATION</p>
+            <p>Đầu tư Chứng khoán - Lâm Minh Chánh</p>
+            <p>© 2025 TOPAS. Tất cả quyền được bảo lưu.</p>
+          </section>
         </main>
-    </div>
 
-    <!-- MOBILE TOC -->
-    <button onclick="toggleMobileTOC()" class="lg:hidden fixed bottom-5 right-5 z-50 bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110"><i data-lucide="list"></i></button>
-    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
-        <div class="p-4 border-b flex justify-between items-center"><span class="font-bold text-slate-800">Mục lục</span><button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button></div>
-        <div class="overflow-y-auto p-4 space-y-2" id="mobile-toc-content"></div>
+        <!-- FOOTER -->
+        <footer class="footer">
+          <span><strong>TOPAS EDUCATION</strong> · Khóa Đầu tư Chứng khoán</span>
+          <span>Buổi 5 – Chiến lược Đầu tư: Ngắn, Trung và Dài hạn · © 2025 TOPAS</span>
+        </footer>
+      </div>
     </div>
-    
-    <script>
-        lucide.createIcons();
-        const headers = document.querySelectorAll('#article-content h2');
-        const desktopToc = document.getElementById('desktop-toc');
-        const mobileTocContent = document.getElementById('mobile-toc-content');
-        headers.forEach((header, index) => {
-            const id = 'section-' + (index + 1); header.id = id;
-            const link = document.createElement('a'); link.href = '#' + id; link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate'; link.innerText = header.innerText;
-            link.onclick = (e) => { e.preventDefault(); highlightTOC(link); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
-            desktopToc.appendChild(link);
-            const mobileLink = link.cloneNode(true); mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
-            mobileLink.onclick = (e) => { e.preventDefault(); toggleMobileTOC(); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
-            mobileTocContent.appendChild(mobileLink);
-        });
-        function highlightTOC(activeLink) { document.querySelectorAll('#desktop-toc a').forEach(a => { a.classList.remove('toc-active'); a.classList.add('border-transparent'); }); activeLink.classList.remove('border-transparent'); activeLink.classList.add('toc-active'); }
-        function toggleMobileTOC() { const d = document.getElementById('mobile-toc-drawer'); const o = document.getElementById('mobile-toc-overlay'); d.classList.toggle('translate-y-full'); o.classList.toggle('hidden'); setTimeout(() => o.classList.toggle('opacity-0'), 10); }
-    </script>
+  </div>
 </body>
 </html>
