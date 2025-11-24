@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 30: Giao dịch & Đặt lệnh</title>
+
+    <!-- CẤU HÌNH THƯ VIỆN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' },
+                        paper: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; color: #334155; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .content-area p { margin-bottom: 1.5rem; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+        .content-area li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem 2rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .fab-toc { position: fixed; bottom: 20px; right: 20px; z-index: 50; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .table-wrap { margin: 1rem 0; overflow-x: auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER: Minimalist, Sticky -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="Bai-29.html" class="p-2 hover:bg-slate-100 rounded-full transition text-slate-500 hover:text-topas-orange" title="Về trang chủ">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase tracking-wider">Khóa Đầu tư Chứng khoán</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi 30: Giao dịch & Đặt lệnh</div>
+                </div>
+            </div>
+
+            <a href="Index.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">
+                Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- LAYOUT CHÍNH: 2 Cột (Sidebar trái + Content phải) -->
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+
+        <!-- SIDEBAR MỤC LỤC (Desktop: Sticky, Mobile: Hidden) -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2 pb-10">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục nội dung</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200">
+                <!-- Javascript sẽ tự điền mục lục vào đây -->
+            </nav>
+        </aside>
+
+        <!-- NỘI DUNG CHÍNH -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+
+            <!-- Hero Title -->
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase tracking-wide mb-4">Module Cơ bản</span>
+                <h1>Giao dịch & Đặt lệnh chứng khoán</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Cổ phiếu thường/ưu đãi, sàn, công ty chứng khoán và thao tác lệnh</p>
+                <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-6">
+                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">TE</div>
+                    <div class="text-sm font-sans">
+                        <div class="font-bold text-slate-900">Topas Education</div>
+                        <div class="text-slate-500">Buổi 30 • Khóa 31</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG CHI TIẾT -->
+            <div id="article-content" class="space-y-8">
+<h2>I. Giới thiệu Buổi 30 &amp; Mục tiêu</h2>
+<ul>
+<li>Buổi học thứ <strong>30</strong>, nội dung:</li>
+</ul>
+<ul>
+<li>Các khái niệm <strong>cơ bản về thị trường chứng khoán</strong>.</li>
+<li><strong>Cách giao dịch, đặt lệnh, đọc bảng điện</strong>.</li>
+<li>Các loại <strong>giao dịch</strong>.</li>
+<li><strong>Công ty chứng khoán</strong> và cách <strong>mở tài khoản</strong>.</li>
+</ul>
+<ul>
+<li>Đây là phần tổng kết cơ bản để:</li>
+</ul>
+<ul>
+<li>Ai cũng có thể <strong>tự mở tài khoản</strong>,</li>
+<li><strong>Tự đặt lệnh</strong>,</li>
+<li>Hiểu rõ <strong>môi trường giao dịch</strong> mà mình đầu tư dài hạn.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>II. Các loại Cổ phiếu: Cổ phiếu Thường &amp; Cổ phiếu Ưu đãi</h2>
+<h3>1. Cổ phiếu Thường (Common Stock)</h3>
+<ul>
+<li>Ở Việt Nam hiện tại <strong>chỉ có một loại</strong> đang giao dịch: <strong>cổ phiếu thường</strong>.</li>
+<li><strong>Cổ phiếu thường (cổ phiếu phổ thông / common stock)</strong>:</li>
+</ul>
+<ul>
+<li>Là <strong>chứng chỉ</strong> do <strong>công ty cổ phần</strong> phát hành.</li>
+<li>Xác nhận <strong>quyền sở hữu số cổ phần</strong> trong công ty.</li>
+<li>Người nắm giữ trở thành <strong>cổ đông</strong>, cũng là <strong>chủ sở hữu doanh nghiệp</strong>.</li>
+</ul>
+<h4>Quyền lợi của cổ phiếu thường</h4>
+<ol>
+<li><strong>Quyền tự do chuyển nhượng</strong>:</li>
+</ol>
+<ul>
+<li>Có thể <strong>chuyển nhượng quyền sở hữu</strong> cổ phần cho người khác.</li>
+<li>Nếu công ty <strong>chưa niêm yết</strong>: chuyển nhượng nội bộ, theo quy định công ty.</li>
+<li>Nếu <strong>đã niêm yết</strong>: có thể <strong>bán trên sàn chứng khoán</strong>.</li>
+</ul>
+<ol>
+<li><strong>Quyền biểu quyết</strong>:</li>
+</ol>
+<ul>
+<li>Tham gia <strong>Đại hội cổ đông</strong>.</li>
+<li>Có <strong>quyền bỏ phiếu</strong>, <strong>ứng cử</strong>, <strong>bầu HĐQT</strong>.</li>
+<li>Tham gia quyết định các vấn đề <strong>quan trọng của doanh nghiệp</strong>.</li>
+</ul>
+<ol>
+<li><strong>Quyền nhận cổ tức</strong>:</li>
+</ol>
+<ul>
+<li>Được nhận <strong>phần lợi nhuận</strong> mà doanh nghiệp chia cho cổ đông hàng năm dưới dạng <strong>cổ tức</strong> (tiền mặt hoặc cổ phiếu).</li>
+</ul>
+<ol>
+<li><strong>Quyền nhận phần tài sản còn lại khi giải thể</strong>:</li>
+</ol>
+<ul>
+<li>Khi doanh nghiệp <strong>giải thể/phá sản</strong>, sau khi:</li>
+</ul>
+<ul>
+<li>Trả <strong>nợ ngân hàng</strong>.</li>
+<li>Trả nợ <strong>nhà nước</strong>, <strong>đối tác</strong>.</li>
+<li>Trả cho <strong>cổ đông ưu đãi</strong>.</li>
+</ul>
+<ul>
+<li>Nếu còn dư, <strong>cổ đông thường</strong> được nhận phần còn lại.</li>
+<li>Trong nhiều trường hợp <strong>phá sản</strong>, cổ đông thường gần như <strong>không còn gì</strong>.</li>
+</ul>
+<ol>
+<li><strong>Quyền ưu tiên mua cổ phiếu mới</strong>:</li>
+</ol>
+<ul>
+<li>Khi công ty phát hành thêm cổ phiếu, cổ đông hiện hữu có <strong>quyền ưu tiên đăng ký mua trước</strong> theo tỷ lệ sở hữu.</li>
+</ul>
+<h4>Thứ tự ưu tiên khi doanh nghiệp phá sản</h4>
+<ul>
+<li>Vốn chia làm:</li>
+</ul>
+<ul>
+<li><strong>Vốn nợ</strong> (ngân hàng, trái chủ, nhà cung cấp…).</li>
+<li><strong>Vốn chủ sở hữu</strong> (cổ đông).</li>
+</ul>
+<ul>
+<li>Khi phá sản / giải thể, thứ tự ưu tiên thanh toán:</li>
+</ul>
+<ol>
+<li><strong>Nợ vay ngân hàng</strong>, nợ Nhà nước, nợ đối tác.</li>
+<li><strong>Cổ đông ưu đãi</strong>.</li>
+<li>Sau cùng mới tới <strong>cổ đông thường</strong>.</li>
+</ol>
+<ul>
+<li>Nếu tài sản sau thanh lý <strong>không đủ</strong> → cổ đông thường <strong>có thể không nhận được gì</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>2. Cổ phiếu Ưu đãi (Preferred Stock)</h3>
+<p>&gt; Việt Nam <strong>hiện chưa giao dịch phổ biến</strong> cổ phiếu ưu đãi trên sàn, chủ yếu là <strong>cổ phiếu thường</strong>. Cổ phiếu ưu đãi chủ yếu là khái niệm để hiểu thêm.</p>
+<ul>
+<li>Cổ phiếu ưu đãi cũng là <strong>chứng nhận quyền sở hữu</strong>, nhưng:</li>
+</ul>
+<ul>
+<li>Được <strong>ưu tiên hơn</strong> về <strong>quyền lợi tài chính / biểu quyết / hoàn lại</strong>.</li>
+<li>Do có ưu đãi nên:</li>
+</ul>
+<ul>
+<li><strong>Giá thường cao hơn</strong>, hoặc</li>
+<li>Có những <strong>ràng buộc khác</strong>.</li>
+</ul>
+<p>Ba loại cổ phiếu ưu đãi chính:</p>
+<ol>
+<li><strong>Cổ phiếu ưu đãi có quyền biểu quyết đặc biệt</strong>:</li>
+</ol>
+<ul>
+<li>Ví dụ: <strong>1 cổ phiếu = 2 hoặc 3 phiếu bầu</strong>.</li>
+<li>Thường dùng trong <strong>startup / công ty công nghệ</strong> để:</li>
+</ul>
+<ul>
+<li><strong>Nhà sáng lập giữ quyền kiểm soát</strong>,</li>
+<li>Dù <strong>sở hữu không còn đa số tuyệt đối</strong>.</li>
+</ul>
+<ul>
+<li>Thường được công bố rõ trong <strong>bản cáo bạch</strong>.</li>
+<li>Được ưu đãi một mặt → có thể <strong>mất ưu đãi ở mặt khác</strong>, hoặc <strong>giá cao hơn</strong> cổ phiếu thường.</li>
+</ul>
+<ol>
+<li><strong>Cổ phiếu ưu đãi cổ tức</strong>:</li>
+</ol>
+<ul>
+<li>Khác với cổ phiếu thường:</li>
+</ul>
+<ul>
+<li>Cổ phiếu thường: công ty <strong>có thể không chia cổ tức</strong>, giữ lại để <strong>tái đầu tư</strong>.</li>
+</ul>
+<ul>
+<li>Cổ phiếu ưu đãi cổ tức:</li>
+</ul>
+<ul>
+<li><strong>Bắt buộc / cam kết</strong> phải chi trả cổ tức với mức nào đó.</li>
+</ul>
+<ul>
+<li>Vì <strong>được đảm bảo cổ tức</strong> nên:</li>
+</ul>
+<ul>
+<li><strong>Giá thường cao hơn</strong> cổ phiếu thường.</li>
+</ul>
+<ol>
+<li><strong>Cổ phiếu ưu đãi hoàn lại</strong>:</li>
+</ol>
+<ul>
+<li>Người nắm giữ có <strong>quyền yêu cầu công ty hoàn lại</strong> (mua lại) cổ phiếu:</li>
+</ul>
+<ul>
+<li>Tức là có <strong>quyền thoát ra</strong> với giá trị thỏa thuận/định trước.</li>
+</ul>
+<p>&gt; Kết luận:</p>
+<p>&gt;</p>
+<p>&gt; * <strong>Thị trường Việt Nam hiện tại trên sàn</strong>: gần như <strong>chỉ giao dịch cổ phiếu thường</strong>.</p>
+<p>&gt; * Cổ phiếu ưu đãi chủ yếu là <strong>khái niệm để hiểu thêm và có thể gặp trong tài liệu quốc tế</strong>.</p>
+<hr class="my-6 border-slate-200" />
+<h2>III. Sàn Giao dịch Chứng khoán &amp; Công ty Chứng khoán</h2>
+<h3>1. Sàn giao dịch Chứng khoán là gì?</h3>
+<ul>
+<li>Sàn giao dịch chứng khoán là:</li>
+</ul>
+<ul>
+<li><strong>“Cái chợ lớn”</strong> dành riêng cho <strong>chứng khoán</strong>.</li>
+<li>Nơi <strong>nhà đầu tư gửi lệnh</strong> mua/bán thông qua công ty chứng khoán.</li>
+</ul>
+<ul>
+<li>Tại sàn có thể:</li>
+</ul>
+<ul>
+<li>Giao dịch:</li>
+</ul>
+<ul>
+<li><strong>Cổ phiếu</strong>.</li>
+<li><strong>Trái phiếu</strong>.</li>
+<li><strong>Chứng chỉ quỹ</strong>.</li>
+<li><strong>Chứng khoán phái sinh</strong>.</li>
+<li>Các <strong>sản phẩm đầu tư khác</strong>.</li>
+</ul>
+<ul>
+<li>Sàn hỗ trợ:</li>
+</ul>
+<ul>
+<li><strong>Phát hành</strong> và <strong>thu hồi</strong> sản phẩm chứng khoán.</li>
+<li>Đảm bảo doanh nghiệp thực hiện <strong>nghĩa vụ nợ &amp; vốn</strong>.</li>
+<li>Là nơi thực hiện <strong>chi trả cổ tức</strong> (qua công ty chứng khoán).</li>
+</ul>
+<ul>
+<li>Sàn cung cấp:</li>
+</ul>
+<ul>
+<li><strong>Thông tin thị trường &amp; doanh nghiệp</strong> để nhà đầu tư tham khảo.</li>
+<li><strong>Tiêu chuẩn niêm yết</strong> cho doanh nghiệp muốn lên sàn.</li>
+</ul>
+<h3>2. Ba sàn chính tại Việt Nam</h3>
+<ol>
+<li><strong>HOSE – Sở Giao dịch Chứng khoán TP.HCM</strong></li>
+</ol>
+<ul>
+<li>Thành lập: <strong>năm 2000</strong>.</li>
+<li><strong>Tiêu chuẩn niêm yết cao nhất</strong>.</li>
+<li>Là đơn vị <strong>trực thuộc Ủy ban Chứng khoán Nhà nước</strong>.</li>
+<li>Chỉ số tổng hợp: <strong>VNIndex</strong>.</li>
+<li>Tổ chức:</li>
+</ul>
+<ul>
+<li>Công ty TNHH một thành viên, <strong>100% vốn nhà nước</strong>.</li>
+<li><strong>Vốn điều lệ: 1.000 tỷ</strong>.</li>
+</ul>
+<ul>
+<li>Tên tiếng Anh: <strong>Ho Chi Minh Stock Exchange (HOSE hoặc HSX)</strong>.</li>
+</ul>
+<ol>
+<li><strong>HNX – Sở Giao dịch Chứng khoán Hà Nội</strong></li>
+</ol>
+<ul>
+<li>Thành lập: <strong>năm 2009</strong>.</li>
+<li><strong>Tiêu chuẩn</strong> thấp hơn HOSE nhưng vẫn khá <strong>cao &amp; chặt chẽ</strong>.</li>
+</ul>
+<ol>
+<li><strong>UPCOM – Unlisted Public Company Market</strong></li>
+</ol>
+<ul>
+<li>Dành cho:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp đã <strong>công ty đại chúng hóa</strong> nhưng <strong>chưa đủ chuẩn</strong> lên HOSE/HNX.</li>
+</ul>
+<ul>
+<li>Đặc điểm:</li>
+</ul>
+<ul>
+<li>Là <strong>trạm trung chuyển</strong> trước khi lên sàn chính.</li>
+<li>Lượng chứng khoán lớn, nhưng:</li>
+</ul>
+<ul>
+<li><strong>Tiêu chuẩn niêm yết thấp hơn</strong>.</li>
+<li><strong>Minh bạch kém hơn</strong>.</li>
+</ul>
+<ul>
+<li>Biên độ dao động (trần/sàn) <strong>rộng nhất</strong>:</li>
+</ul>
+<ul>
+<li>Dễ “nhảy nhót”, biến động rất mạnh.</li>
+</ul>
+<ul>
+<li>Khuyến nghị:</li>
+</ul>
+<ul>
+<li>Nên <strong>hạn chế đầu tư</strong> UPCOM nếu không nắm rất rõ doanh nghiệp.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>3. Công ty Chứng khoán (CTCK)</h3>
+<ul>
+<li>Nếu <strong>sàn là cái chợ</strong>, thì <strong>công ty chứng khoán</strong> là:</li>
+</ul>
+<ul>
+<li><strong>Đại lý / nhà môi giới</strong> dẫn khách vào chợ.</li>
+</ul>
+<ul>
+<li>Chức năng:</li>
+</ul>
+<ul>
+<li>Mở <strong>tài khoản chứng khoán</strong> cho nhà đầu tư.</li>
+<li>Nhận <strong>lệnh mua bán</strong>, truyền vào hệ thống sàn (HOSE, HNX, UPCOM).</li>
+<li>Cung cấp:</li>
+</ul>
+<ul>
+<li><strong>Phân tích thị trường, phân tích cổ phiếu</strong>.</li>
+<li><strong>Dịch vụ margin (vay giao dịch)</strong>.</li>
+<li><strong>Chăm sóc khách hàng</strong>.</li>
+</ul>
+<ul>
+<li>Công ty chứng khoán <strong>không tạo ra cái chợ</strong>, họ chỉ:</li>
+</ul>
+<ul>
+<li>Kết nối <strong>nhà đầu tư ↔ sàn giao dịch</strong>.</li>
+</ul>
+<h4>Top 10 công ty chứng khoán lớn (2024)</h4>
+<ul>
+<li><strong>VPS</strong></li>
+<li><strong>SSI</strong></li>
+<li><strong>TCBS</strong></li>
+<li><strong>HSC (Chứng khoán TP.HCM)</strong></li>
+<li><strong>VietC</strong> (Chứng khoán Việt Capital / tương tự)</li>
+<li><strong>VNDirect</strong></li>
+<li><strong>Chứng khoán MB</strong></li>
+<li><strong>Chứng khoán Meress</strong></li>
+<li><strong>Chứng khoán KIS</strong></li>
+<li><strong>Chứng khoán Ngân hàng Ngoại thương</strong></li>
+</ul>
+<p>&gt; Trong đó <strong>VPS</strong> và <strong>SSI</strong> được xem là hai công ty có <strong>vị trí bền vững nhất</strong>.</p>
+<h4>Tiêu chí chọn Công ty Chứng khoán</h4>
+<p>Bảng so sánh:</p>
+<p>| Đặc điểm                                | Nhà đầu tư Ngắn hạn (Lướt sóng)     | Nhà đầu tư Dài hạn   |</p>
+<p>| --------------------------------------- | ----------------------------------- | -------------------- |</p>
+<p>| <strong>Phí giao dịch</strong>                       | Rất quan trọng                      | Không quá quan trọng |</p>
+<p>| <strong>Hỗ trợ cho vay (Margin)</strong>             | Cực kỳ quan trọng                   | Không quan trọng     |</p>
+<p>| <strong>Lệnh đi nhanh</strong>                       | Rất quan trọng (giao dịch liên tục) | Không quá quan trọng |</p>
+<p>| <strong>Phân tích hàng ngày (giá lên xuống)</strong> | Cần để “bám”                        | Không cần            |</p>
+<p>| <strong>Phân tích doanh nghiệp</strong>              | Không quá quan trọng                | Rất quan trọng       |</p>
+<p>| <strong>Dịch vụ chăm sóc</strong>                    | Quan trọng                          | Quan trọng           |</p>
+<p>| <strong>Uy tín công ty</strong>                      | Quan trọng                          | Quan trọng           |</p>
+<ul>
+<li>Với <strong>nhà đầu tư dài hạn</strong>, nên ưu tiên:</li>
+</ul>
+<ul>
+<li><strong>Phân tích doanh nghiệp sâu</strong>.</li>
+<li><strong>Uy tín</strong> &amp; <strong>dịch vụ chăm sóc</strong> tốt.</li>
+<li>Phí giao dịch không phải là yếu tố số 1.</li>
+</ul>
+<h4>Vấn đề an toàn tài sản</h4>
+<ul>
+<li>Công ty chứng khoán <strong>không có quyền giữ chứng khoán của nhà đầu tư</strong>.</li>
+<li>Chứng khoán được <strong>lưu ký tại Trung tâm Lưu ký Chứng khoán</strong> (thuộc Nhà nước).</li>
+<li>Về tiền mặt:</li>
+</ul>
+<ul>
+<li>Nhà đầu tư thường <strong>không để nhiều tiền</strong> ở tài khoản chứng khoán.</li>
+<li>Thay vào đó:</li>
+</ul>
+<ul>
+<li>Để tiền trong <strong>ngân hàng</strong>,</li>
+<li>Chỉ chuyển sang CTCK khi <strong>cần mua</strong>.</li>
+</ul>
+<ul>
+<li>Do đó:</li>
+</ul>
+<ul>
+<li>Không cần quá lo về <strong>rủi ro mất tiền tại công ty chứng khoán</strong>, nếu đi đúng quy trình.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>IV. Đặt Lệnh Chứng khoán &amp; Cách đọc Bảng điện</h2>
+<h3>1. Các khái niệm giá trên bảng điện HOSE</h3>
+<p>Các thông số cơ bản:</p>
+<ol>
+<li><strong>Giá tham chiếu</strong>:</li>
+</ol>
+<ul>
+<li>Giá “mốc” đầu ngày.</li>
+<li>Thường = <strong>giá đóng cửa ngày hôm trước</strong> (trên HOSE).</li>
+<li>Có điều chỉnh khi:</li>
+</ul>
+<ul>
+<li><strong>Chia tách cổ phiếu</strong>.</li>
+<li><strong>Chia cổ tức bằng tiền/cổ phiếu</strong>.</li>
+</ul>
+<ul>
+<li>Cách hiểu đơn giản:</li>
+</ul>
+<ul>
+<li>Giá tham chiếu được điều chỉnh sao cho:</li>
+</ul>
+<ul>
+<li>Tại thời điểm mở cửa, <strong>tỷ suất lợi nhuận của nhà đầu tư = 0%</strong> (sau khi tính cổ tức/ quyền).</li>
+</ul>
+<ul>
+<li>Ví dụ:</li>
+</ul>
+<ul>
+<li>Nếu chia cổ tức tiền mặt <strong>2.000đ/cp</strong>, giá có thể giảm từ <strong>x → x - 2</strong>.</li>
+</ul>
+<ol>
+<li><strong>Giá sàn &amp; Giá trần</strong>:</li>
+</ol>
+<ul>
+<li>Mục đích: <strong>giới hạn biên độ</strong>, giúp nhà đầu tư <strong>bình tĩnh</strong>, tránh sốc quá lớn trong ngày.</li>
+<li>Biên độ:</li>
+</ul>
+<ul>
+<li><strong>HOSE</strong>: ± <strong>7%</strong>.</li>
+<li><strong>HNX</strong>: ± <strong>10%</strong>.</li>
+<li><strong>UPCOM</strong>: ± <strong>20%</strong>.</li>
+</ul>
+<ol>
+<li><strong>Giá cao nhất trong ngày</strong>:</li>
+</ol>
+<ul>
+<li>Mức giá <strong>khớp lệnh cao nhất</strong> từ đầu ngày đến thời điểm hiện tại.</li>
+</ul>
+<ol>
+<li><strong>Giá thấp nhất trong ngày</strong>:</li>
+</ol>
+<ul>
+<li>Mức giá <strong>khớp lệnh thấp nhất</strong> từ đầu ngày đến thời điểm hiện tại.</li>
+</ul>
+<ol>
+<li><strong>Giá lịch sử trong ngày</strong>:</li>
+</ol>
+<ul>
+<li><strong>Giá mở cửa</strong>, <strong>giá đóng cửa</strong>,</li>
+<li>Giá <strong>cao nhất</strong>, <strong>thấp nhất</strong> trong ngày.</li>
+</ul>
+<h3>2. Màu sắc trên bảng điện</h3>
+<ul>
+<li><strong>Giá tăng</strong> so với tham chiếu → <strong>màu xanh</strong>.</li>
+<li><strong>Giá giảm</strong> so với tham chiếu → <strong>màu đỏ</strong>.</li>
+<li><strong>Giá tham chiếu</strong> → <strong>màu vàng</strong>.</li>
+<li><strong>Giá trần</strong> → <strong>màu tím</strong>.</li>
+<li><strong>Giá sàn</strong> → <strong>màu xanh lam nhạt</strong> (xanh lơ).</li>
+</ul>
+<h3>3. Dư mua, dư bán &amp; khối ngoại</h3>
+<ul>
+<li><strong>Khớp lệnh</strong>:</li>
+</ul>
+<ul>
+<li>Thể hiện <strong>giá đang khớp</strong> và <strong>khối lượng khớp</strong>.</li>
+</ul>
+<ul>
+<li><strong>Dư mua</strong>:</li>
+</ul>
+<ul>
+<li>Ba mức <strong>giá mua cao nhất</strong> đang chờ khớp.</li>
+<li>Đây là <strong>giá tốt nhất cho người bán</strong>.</li>
+</ul>
+<ul>
+<li><strong>Dư bán</strong>:</li>
+</ul>
+<ul>
+<li>Ba mức <strong>giá bán thấp nhất</strong> đang chờ khớp.</li>
+<li>Đây là <strong>giá tốt nhất cho người mua</strong>.</li>
+</ul>
+<ul>
+<li><strong>Thông tin khác</strong>:</li>
+</ul>
+<ul>
+<li><strong>Giá trung bình</strong>.</li>
+<li><strong>Tổng khối lượng mua bán</strong>.</li>
+<li><strong>Giá mở cửa</strong>.</li>
+</ul>
+<ul>
+<li><strong>Giao dịch khối ngoại</strong>:</li>
+</ul>
+<ul>
+<li>Theo dõi <strong>mua/bán ròng</strong> của nhà đầu tư nước ngoài.</li>
+<li>Khi <strong>khối ngoại bán ròng mạnh</strong>, nhiều nhà đầu tư nội lo lắng, coi đó là <strong>tín hiệu tiêu cực</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>4. Các phiên giao dịch trên HOSE</h3>
+<p>Khung giờ (từ 9:00 đến 14:45):</p>
+<ul>
+<li><strong>09:00 – 09:15</strong>:</li>
+</ul>
+<ul>
+<li><strong>Phiên định kỳ mở cửa (ATO)</strong>.</li>
+<li>Không nên giao dịch phiên này (giá dễ nhảy mạnh, khó kiểm soát).</li>
+</ul>
+<ul>
+<li><strong>09:15 – 11:30</strong>:</li>
+</ul>
+<ul>
+<li><strong>Khớp lệnh liên tục</strong> lần 1.</li>
+</ul>
+<ul>
+<li><strong>11:30 – 13:00</strong>:</li>
+</ul>
+<ul>
+<li><strong>Nghỉ trưa</strong>.</li>
+</ul>
+<ul>
+<li><strong>13:00 – 14:30</strong>:</li>
+</ul>
+<ul>
+<li><strong>Khớp lệnh liên tục</strong> lần 2.</li>
+</ul>
+<ul>
+<li><strong>14:30 – 14:45</strong>:</li>
+</ul>
+<ul>
+<li><strong>Khớp lệnh định kỳ đóng cửa (ATC)</strong>.</li>
+</ul>
+<ul>
+<li>Không nên tham gia, vì giá có thể “nhảy gớm lắm”.</li>
+<li>Sau đó:</li>
+</ul>
+<ul>
+<li>Có <strong>giao dịch thỏa thuận</strong> (thường không dành cho nhà đầu tư nhỏ lẻ).</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>5. Các loại Lệnh giao dịch</h3>
+<p>Có 2 loại lệnh chính:</p>
+<h4>1. Lệnh Giới hạn – LO (Limit Order)</h4>
+<ul>
+<li>Là lệnh mua/bán tại <strong>mức giá xác định hoặc tốt hơn</strong>.</li>
+</ul>
+<p><strong>Lệnh mua LO giá X</strong>:</p>
+<ul>
+<li>Là mức <strong>giá tối đa</strong> nhà đầu tư <strong>chấp nhận mua</strong>.</li>
+<li>Có thể được khớp với:</li>
+</ul>
+<ul>
+<li>Giá <strong>thấp hơn X</strong> nếu trên thị trường có người bán giá thấp hơn.</li>
+</ul>
+<p><strong>Lệnh bán LO giá Y</strong>:</p>
+<ul>
+<li>Là mức <strong>giá tối thiểu</strong> nhà đầu tư <strong>chấp nhận bán</strong>.</li>
+<li>Có thể được khớp với:</li>
+</ul>
+<ul>
+<li>Giá <strong>cao hơn Y</strong> nếu có người mua giá cao hơn.</li>
+</ul>
+<p>Đặc điểm:</p>
+<ul>
+<li>Lệnh LO:</li>
+</ul>
+<ul>
+<li>Có hiệu lực đến <strong>hết ngày giao dịch</strong>, hoặc đến khi:</li>
+</ul>
+<ul>
+<li>Khớp đủ,</li>
+<li>Hoặc <strong>bị hủy</strong>.</li>
+</ul>
+<ul>
+<li>Xuất hiện trong <strong>tất cả các phiên</strong>:</li>
+</ul>
+<ul>
+<li>Mở cửa, liên tục, đóng cửa.</li>
+</ul>
+<h4>2. Lệnh Thị trường – MP (Market Price Order)</h4>
+<ul>
+<li>Là lệnh <strong>không kèm giá</strong>, chỉ kèm <strong>khối lượng</strong>.</li>
+</ul>
+<p><strong>Lệnh mua MP</strong>:</p>
+<ul>
+<li>Mua tại <strong>giá bán thấp nhất</strong> đang có trên thị trường.</li>
+<li>Nếu khối lượng chưa đủ:</li>
+</ul>
+<ul>
+<li>Lệnh tiếp tục <strong>“ăn” dần lên các mức giá bán cao hơn</strong> cho đến khi đủ khối lượng.</li>
+</ul>
+<p><strong>Lệnh bán MP</strong>:</p>
+<ul>
+<li>Bán tại <strong>giá mua cao nhất</strong> đang có.</li>
+<li>Nếu chưa đủ khối lượng:</li>
+</ul>
+<ul>
+<li>Lệnh tiếp tục “bán dần xuống các mức giá mua thấp hơn”.</li>
+</ul>
+<p>Đặc điểm:</p>
+<ul>
+<li>Lệnh MP khi đưa vào mà <strong>không khớp ngay</strong> → <strong>bị hủy</strong>.</li>
+<li>Khả năng <strong>khớp nhanh hơn</strong> lệnh LO, nhưng <strong>khó kiểm soát giá</strong>.</li>
+<li>Lệnh thị trường xuất hiện trong:</li>
+</ul>
+<ul>
+<li><strong>Phiên khớp lệnh liên tục</strong> (MP).</li>
+<li>Phiên <strong>mở cửa</strong>: gọi là <strong>ATO</strong>.</li>
+<li>Phiên <strong>đóng cửa</strong>: gọi là <strong>ATC</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>6. Nguyên tắc Khớp lệnh</h3>
+<ul>
+<li><strong>Ưu tiên về giá</strong>:</li>
+</ul>
+<ul>
+<li>Lệnh có <strong>giá tốt hơn</strong> được ưu tiên trước:</li>
+</ul>
+<ul>
+<li>Mua: <strong>giá cao hơn</strong> ưu tiên trước.</li>
+<li>Bán: <strong>giá thấp hơn</strong> ưu tiên trước.</li>
+</ul>
+<ul>
+<li><strong>Ưu tiên về thời gian</strong>:</li>
+</ul>
+<ul>
+<li>Nếu <strong>cùng một mức giá</strong>:</li>
+</ul>
+<ul>
+<li>Lệnh nhập <strong>vào hệ thống trước</strong> → được khớp trước.</li>
+</ul>
+<ul>
+<li>Trong <strong>khớp lệnh liên tục</strong>:</li>
+</ul>
+<ul>
+<li>Nếu <strong>giá mua ≥ giá bán</strong>:</li>
+</ul>
+<ul>
+<li>Ví dụ:</li>
+</ul>
+<ul>
+<li>Lệnh mua 39, lệnh bán 38.</li>
+</ul>
+<ul>
+<li>Giá khớp là <strong>giá của lệnh nhập trước</strong> (tùy hệ thống).</li>
+</ul>
+<ul>
+<li>Về quyền đặt lệnh:</li>
+</ul>
+<ul>
+<li>Trong <strong>phiên liên tục</strong>:</li>
+</ul>
+<ul>
+<li>Được phép <strong>đặt đồng thời lệnh mua &amp; bán</strong> cùng một mã cổ phiếu.</li>
+</ul>
+<ul>
+<li>Trong <strong>phiên định kỳ</strong>:</li>
+</ul>
+<ul>
+<li><strong>Không được</strong> vừa đặt lệnh mua, vừa đặt lệnh bán cùng lúc cho cùng mã.</li>
+</ul>
+<ul>
+<li><strong>Hủy/Sửa lệnh</strong>:</li>
+</ul>
+<ul>
+<li>Chỉ được <strong>hủy/sửa các lệnh chưa khớp</strong>.</li>
+<li>Lệnh đã khớp (toàn bộ hoặc một phần) thì bị giới hạn cách sửa.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>7. Khuyến nghị Cho Nhà đầu tư Dài hạn</h3>
+<ul>
+<li><strong>Chỉ nên dùng Lệnh Giới hạn (LO)</strong>:</li>
+</ul>
+<ul>
+<li>Chủ động được <strong>mức giá mua/bán</strong>.</li>
+<li>Không bị “văng” theo những cú nhảy giá ngắn hạn.</li>
+</ul>
+<ul>
+<li><strong>Chỉ nên giao dịch trong 2 phiên liên tục</strong>:</li>
+</ul>
+<ul>
+<li><strong>09:15 – 11:30</strong>.</li>
+<li><strong>13:00 – 14:30</strong>.</li>
+</ul>
+<ul>
+<li>Không nên:</li>
+</ul>
+<ul>
+<li>Tham gia <strong>phiên ATO / ATC</strong>.</li>
+<li>Dùng lệnh MP nếu <strong>không thực sự hiểu</strong> và không cần gấp.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>V. Hướng dẫn Đầu tư Cổ phiếu Giá trị (Value Investing)</h2>
+<ul>
+<li>Chương trình đầu tư <strong>cổ phiếu giá trị</strong> sử dụng:</li>
+</ul>
+<ul>
+<li><strong>Phương pháp 8 bước</strong> (đã học buổi 29).</li>
+<li><strong>Web cập nhật</strong> để hỗ trợ thực hành.</li>
+</ul>
+<h3>1. Web Cập nhật &amp; Danh sách Cổ phiếu</h3>
+<ul>
+<li>Web cập nhật cung cấp:</li>
+</ul>
+<ul>
+<li>Danh sách khoảng <strong>32 cổ phiếu</strong> được chọn lọc.</li>
+<li>Các màu thể hiện mức ưu tiên:</li>
+</ul>
+<ul>
+<li><strong>Xanh đậm</strong>: được khuyến nghị <strong>đầu tư mạnh nhất</strong>.</li>
+<li><strong>Xanh nhạt</strong>.</li>
+<li><strong>Xanh thường</strong>.</li>
+<li><strong>Vàng</strong>.</li>
+</ul>
+<ul>
+<li>Thông tin mỗi cổ phiếu bao gồm:</li>
+</ul>
+<ul>
+<li><strong>Biên độ an toàn (margin of safety)</strong>.</li>
+<li><strong>Vùng giá mua</strong> (ví dụ: <strong>giá hiện tại 24,8 – vùng mua 26–31</strong>).</li>
+<li><strong>Các chỉ số tài chính quan trọng</strong>.</li>
+<li><strong>Đánh giá từ công ty chứng khoán</strong>.</li>
+</ul>
+<h3>2. Mục tiêu về Độ lệch chuẩn &amp; Lợi nhuận</h3>
+<ul>
+<li>Mục tiêu quan trọng:</li>
+</ul>
+<ul>
+<li><strong>Mua nhiều cổ phiếu khác nhau</strong> để:</li>
+</ul>
+<ul>
+<li>Vừa đạt <strong>tỷ suất lợi nhuận &gt; 15%/năm</strong>,</li>
+<li>Vừa <strong>giảm Độ lệch chuẩn (biến động)</strong>.</li>
+</ul>
+<ul>
+<li>Về <strong>Độ lệch chuẩn</strong>:</li>
+</ul>
+<ul>
+<li>Nên giữ khoảng <strong>18% – 22%</strong>.</li>
+<li>Không nên để <strong>vượt quá 24%</strong>.</li>
+</ul>
+<ul>
+<li>Hiệu quả đa dạng hóa:</li>
+</ul>
+<ul>
+<li>Khi <strong>thêm cổ phiếu</strong> và <strong>phân bổ tốt</strong>, Độ lệch chuẩn danh mục:</li>
+</ul>
+<ul>
+<li>Có thể giảm từ gần <strong>40% xuống khoảng 32,66%</strong>.</li>
+</ul>
+<ul>
+<li>Thể hiện hiệu quả của <strong>đa dạng hóa danh mục</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>VI. Kết thúc Khóa &amp; Giao lưu Tiếp theo</h2>
+<ul>
+<li>Buổi 30 là <strong>buổi học cuối cùng</strong> của khóa.</li>
+<li>Học viên có thể:</li>
+</ul>
+<ul>
+<li>Đặt câu hỏi về:</li>
+</ul>
+<ul>
+<li><strong>Công ty chứng khoán</strong>.</li>
+<li><strong>Cách đặt lệnh</strong>.</li>
+<li><strong>Cách đầu tư dài hạn</strong> theo danh mục cổ phiếu giá trị.</li>
+</ul>
+<ul>
+<li>Những người tham gia <strong>Web Cập nhật</strong>:</li>
+</ul>
+<ul>
+<li>Sẽ còn <strong>gặp nhau vào tối Thứ Tư</strong> để:</li>
+</ul>
+<ul>
+<li>Thực hành,</li>
+<li>Cập nhật,</li>
+<li>Trao đổi thêm về <strong>danh mục &amp; cách triển khai thực tế</strong>.</li>
+</ul>
+            </div>
+
+            <!-- FOOTER NAVIGATION -->
+            <div class="mt-16 pt-8 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 border-t">
+                <a href="Bai-29.html" class="w-full md:w-auto px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition text-center">
+                    ← Quay lại Danh sách
+                </a>
+                <a href="Index.html" class="w-full md:w-auto px-6 py-3 bg-topas-orange text-white rounded-lg font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 text-center flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE FAB -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fab-toc bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+
+    <!-- MOBILE TOC DRAWER -->
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+            <span class="font-bold text-slate-800">Mục lục bài học</span>
+            <button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="overflow-y-auto p-4 space-y-2 font-sans text-sm" id="mobile-toc-content"></div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1);
+            header.id = id;
+
+            const link = document.createElement('a');
+            link.href = '#' + id;
+            link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate';
+            link.innerText = header.innerText;
+            link.onclick = (e) => {
+                e.preventDefault();
+                highlightTOC(link);
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            desktopToc.appendChild(link);
+
+            const mobileLink = link.cloneNode(true);
+            mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => {
+                e.preventDefault();
+                toggleMobileTOC();
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'});
+            };
+            mobileTocContent.appendChild(mobileLink);
+        });
+
+        function highlightTOC(activeLink) {
+            document.querySelectorAll('#desktop-toc a').forEach(a => {
+                a.classList.remove('toc-active');
+                a.classList.add('border-transparent');
+            });
+            activeLink.classList.remove('border-transparent');
+            activeLink.classList.add('toc-active');
+        }
+
+        const drawer = document.getElementById('mobile-toc-drawer');
+        const overlay = document.getElementById('mobile-toc-overlay');
+        let isDrawerOpen = false;
+        function toggleMobileTOC() {
+            isDrawerOpen = !isDrawerOpen;
+            if (isDrawerOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-y-full');
+            } else {
+                overlay.classList.add('opacity-0');
+                drawer.classList.add('translate-y-full');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+    </script>
+</body>
+</html>
