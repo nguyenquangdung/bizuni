@@ -69,7 +69,7 @@
             
             <div class="inline-flex items-center justify-center gap-6 md:gap-12 bg-white/5 border border-white/10 rounded-2xl p-4 md:px-10 backdrop-blur-sm">
                 <div class="text-center">
-                    <div class="text-xl md:text-3xl font-bold text-white">30</div>
+                    <div class="text-xl md:text-3xl font-bold text-white">31</div>
                     <div class="text-[10px] md:text-xs text-slate-400 uppercase font-bold tracking-wider">Bài giảng</div>
                 </div>
                 <div class="w-px h-8 bg-white/10"></div>
@@ -96,6 +96,28 @@
             </div>
             <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
                 <div id="progress-bar" class="h-full bg-topas-orange rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- CẬP NHẬT GIÁ TRỊ CỔ PHIẾU -->
+        <div class="bg-gradient-to-r from-white via-orange-50 to-white border border-orange-100 rounded-2xl shadow-md p-5 md:p-8 mb-8 flex flex-col lg:flex-row gap-6 lg:items-center">
+            <div class="flex-1">
+                <div class="flex items-center gap-2 text-sm font-bold text-topas-orange mb-2 uppercase tracking-[0.12em]">
+                    <i data-lucide="activity" class="w-4 h-4"></i> Cập nhật giá trị cổ phiếu
+                </div>
+                <h3 class="text-xl md:text-2xl font-extrabold text-slate-900 mb-3">Danh mục kỳ vọng & Độ lệch chuẩn</h3>
+                <p class="text-slate-600 leading-relaxed">Buổi cập nhật sau Q3: hướng dẫn tối ưu danh mục theo ĐLC, so sánh với VNIndex, cùng phân tích chi tiết ACB và DGC. Nội dung giữ đủ 100% như bản gốc.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 items-start lg:items-center">
+                <a href="cap-nhat-gia-tri-co-phieu.html" class="inline-flex items-center justify-center gap-2 px-4 py-3 bg-topas-orange text-white font-bold rounded-lg shadow-lg shadow-orange-200 hover:bg-topas-dark transition">
+                    Xem bản cập nhật
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="TEXT_TO_HTML_GUIDE.md" class="inline-flex items-center gap-2 px-4 py-3 border border-orange-200 text-topas-orange font-bold rounded-lg bg-white hover:bg-orange-50 transition">
+                    Quy trình giữ 100% nội dung
+                </a>
             </div>
         </div>
 
@@ -135,6 +157,14 @@
                 file: `bai-${i}.html` // File dự kiến
             });
         }
+
+        // Buổi cập nhật giá trị cổ phiếu
+        lessons.push({
+            id: 31,
+            title: "Cập nhật giá trị cổ phiếu",
+            desc: "Danh mục kỳ vọng, ĐLC và phân tích ACB, DGC sau Q3.",
+            file: "cap-nhat-gia-tri-co-phieu.html"
+        });
 
         // --- 2. LOGIC TỰ ĐỘNG CHECK FILE ---
         const grid = document.getElementById('lesson-grid');
