@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài 26: Định giá Ngân hàng & Bất động sản - Topas Education</title>
+    <title>Bài 26: Định giá Ngân hàng & Bất động sản</title>
 
     <!-- CẤU HÌNH THƯ VIỆN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,20 +40,20 @@
         .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .content-area li { margin-bottom: 0.5rem; padding-left: 0.5rem; }
-        .note-box { border-left: 4px solid #f97316; padding: 1rem 1.25rem; background: #fff7ed; color: #9a3412; border-radius: 0 10px 10px 0; font-style: italic; margin: 1.5rem 0; }
-        .table-wrap { margin: 1rem 0; overflow-x: auto; }
-        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
-        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem 2rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
         .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
         .fab-toc { position: fixed; bottom: 20px; right: 20px; z-index: 50; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .table-wrap { margin: 1rem 0; overflow-x: auto; }
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .table-wrap th, .table-wrap td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+        .table-wrap th { background: #f8fafc; font-weight: 700; color: #334155; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- HEADER -->
+    <!-- HEADER: Minimalist, Sticky -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-4">
@@ -62,7 +62,7 @@
                 </a>
                 <div>
                     <div class="text-xs font-bold text-topas-orange uppercase tracking-wider">Khóa Đầu tư Chứng khoán</div>
-                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi 26: Định giá Ngân hàng &amp; BĐS</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base truncate max-w-[200px] md:max-w-none">Buổi 26: Định giá Ngân hàng & BĐS</div>
                 </div>
             </div>
 
@@ -72,549 +72,563 @@
         </div>
     </header>
 
-    <!-- LAYOUT -->
+    <!-- LAYOUT CHÍNH: 2 Cột (Sidebar trái + Content phải) -->
     <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
-        <!-- SIDEBAR TOC -->
+
+        <!-- SIDEBAR MỤC LỤC (Desktop: Sticky, Mobile: Hidden) -->
         <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2 pb-10">
             <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục nội dung</h4>
             <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200">
-                <!-- JS fill -->
+                <!-- Javascript sẽ tự điền mục lục vào đây -->
             </nav>
         </aside>
 
-        <!-- MAIN CONTENT -->
+        <!-- NỘI DUNG CHÍNH -->
         <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
-            <!-- Hero -->
+
+            <!-- Hero Title -->
             <div class="mb-10">
                 <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase tracking-wide mb-4">Module Định giá</span>
-                <h1>Định giá Ngân hàng &amp; Bất động sản</h1>
-                <p class="text-xl text-slate-500 font-sans mt-4">Khung tổng thể P/B, Thu nhập Thặng dư (RI) và RNAV để ước tính giá trị nội tại doanh nghiệp tài chính và địa ốc.</p>
+                <h1>Định giá Ngân hàng & Bất động sản</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Khung tổng thể P/B, RI và RNAV theo format Bài 1</p>
                 <div class="flex items-center gap-3 mt-6 border-t border-slate-100 pt-6">
-                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">L</div>
+                    <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold">TE</div>
                     <div class="text-sm font-sans">
                         <div class="font-bold text-slate-900">Topas Education</div>
-                        <div class="text-slate-500">Buổi 26 • Khóa Đầu tư Chứng khoán</div>
+                        <div class="text-slate-500">Buổi 26 • Khóa Đầu tư</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Nội dung -->
-            <div id="article-content">
-                <h2>I. Khung tổng thể buổi học</h2>
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                    <ul class="space-y-2">
-                        <li>Trước tiên học về <strong>doanh nghiệp ngân hàng</strong>, sau đó là <strong>doanh nghiệp bất động sản</strong>.</li>
-                        <li>Với ngân hàng: tập trung vào <strong>2 phương pháp định giá</strong> là <strong>P/B</strong> và <strong>Residual Income (RI – Thu nhập thặng dư)</strong>.</li>
-                        <li>Với bất động sản: tập trung vào <strong>RNAV</strong> kết hợp <strong>DCF/NPV</strong> trên từng dự án.</li>
-                    </ul>
-                </div>
+            <!-- NỘI DUNG CHI TIẾT -->
+            <div id="article-content" class="space-y-8">
+<p>Dưới đây là bản tổng hợp lại, sắp xếp mạch lạc hơn nhưng vẫn giữ <strong>đầy đủ 100% ý và 100% ví dụ</strong> như nội dung ban đầu.</p>
+<hr class="my-6 border-slate-200" />
+<h2>I. Khung tổng thể buổi học</h2>
+<ul>
+<li>Trước tiên học về <strong>doanh nghiệp ngân hàng</strong>, sau đó là <strong>doanh nghiệp bất động sản</strong>.</li>
+<li>Với ngân hàng: tập trung vào <strong>2 phương pháp định giá</strong> là <strong>P/B</strong> và <strong>Residual Income (RI – Thu nhập thặng dư)</strong>.</li>
+<li>Với bất động sản: tập trung vào <strong>RNAV</strong> kết hợp <strong>DCF/NPV</strong> trên từng dự án.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>II. Định giá Doanh nghiệp Ngân hàng</h2>
+<h3>1. Hai phương pháp chính</h3>
+<ol>
+<li><strong>P/B (Price to Book)</strong></li>
+<li><strong>Residual Income (RI – Thu nhập thặng dư)</strong></li>
+</ol>
+<p>Trong một ví dụ định giá ngân hàng:</p>
+<ul>
+<li>Phương pháp <strong>RI</strong> cho kết quả: <strong>33.600</strong></li>
+<li>Phương pháp <strong>P/B</strong> cho kết quả: <strong>29.000</strong></li>
+<li>Gán <strong>tỷ trọng 50% – 50%</strong> → <strong>Giá mục tiêu = 31.300</strong></li>
+</ul>
+<p>Đây là cách kết hợp hai phương pháp trong thực tế.</p>
+<hr class="my-6 border-slate-200" />
+<h3>2. Phương pháp P/B</h3>
+<h4>2.1. Khái niệm và công thức</h4>
+<ul>
+<li><strong>P/B</strong> về bản chất tương tự <strong>P/E</strong>, nhưng dùng <strong>giá trị sổ sách (book value)</strong> thay cho lợi nhuận.</li>
+<li>Công thức:</li>
+</ul>
+<ul>
+<li><strong>P/B = Giá thị trường trên mỗi cổ phiếu / Giá trị sổ sách trên mỗi cổ phiếu (Book value per share)</strong></li>
+</ul>
+<ul>
+<li>Ví dụ: Nếu <strong>P/B = 1,5</strong>, nghĩa là thị trường đang trả giá <strong>gấp 1,5 lần giá trị sổ sách</strong> cho mỗi cổ phần.</li>
+</ul>
+<h4>2.2. Cách dự đoán giá bằng P/B (ví dụ đơn giản)</h4>
+<p>Giả sử:</p>
+<ul>
+<li><strong>Giá trị sổ sách hiện tại</strong> = 1.000 tỷ</li>
+<li>Dự kiến <strong>tăng 20%</strong> → 1.200 tỷ</li>
+<li>Khi đó <strong>book value per share</strong> cũng sẽ tăng 20%</li>
+</ul>
+<p>Nếu muốn <strong>giữ P/B ở mức 1,5</strong> thì:</p>
+<ul>
+<li><strong>Giá cổ phiếu cũng phải tăng 20%</strong></li>
+<p class="ml-6">→ Đây là cách “ước tính nhanh” giá mục tiêu bằng phương pháp P/B:</p>
+<p class="ml-6"><strong>Vốn chủ tăng bao nhiêu %, giá mục tiêu tăng tương ứng nếu P/B giữ nguyên.</strong></p>
+</ul>
+<h4>2.3. Ví dụ thực tế – VPBank (VP)</h4>
+<p>Trong phương pháp so sánh:</p>
+<ul>
+<li>P/B hiện tại của VPBank (VP) đang giao dịch quanh <strong>1,6</strong></li>
+<li><strong>Book value per share 12 tháng tới</strong>: <strong>21.512</strong></li>
+<li>Giá mục tiêu 12 tháng:</li>
+</ul>
+<ul>
+<li>≈ 1,6 × 21.512 = <strong>34.419</strong></li>
+</ul>
+<p>Diễn giải:</p>
+<ul>
+<li>Khi dự đoán <strong>giá trị vốn chủ sở hữu 12 tháng tới</strong> tăng bao nhiêu, thì <strong>giá mục tiêu</strong> với hệ số <strong>P/B 1,6</strong> cũng tăng tương ứng.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>3. Phương pháp Thu nhập Thặng dư (Residual Income – RI)</h3>
+<h4>3.1. Khái niệm và ý nghĩa</h4>
+<ul>
+<li><strong>RI – Residual Income (Thu nhập thặng dư)</strong>:</li>
+<p class="ml-6"><strong>= Lợi nhuận ròng tạo ra – Lợi nhuận tối thiểu cổ đông “đáng được hưởng” (chi phí vốn chủ sở hữu)</strong></p>
+</ul>
+<p>Ví dụ:</p>
+<ul>
+<li>Vốn chủ sở hữu: <strong>200 tỷ</strong></li>
+<li>Mức lợi nhuận cổ đông yêu cầu: <strong>15%/năm</strong></li>
+</ul>
+<ul>
+<li>Lợi nhuận tối thiểu phải đạt = 200 × 15% = <strong>30 tỷ</strong></li>
+<li><strong>30 tỷ</strong> này được xem là <strong>chi phí vốn</strong> (cost of equity)</li>
+</ul>
+<ul>
+<li>Nếu doanh nghiệp <strong>lời 100 tỷ</strong>:</li>
+</ul>
+<ul>
+<li><strong>Thu nhập thặng dư = 100 – 30 = 70 tỷ</strong></li>
+<li>70 tỷ là <strong>phần lợi nhuận vượt trên mức yêu cầu của cổ đông</strong>.</li>
+</ul>
+<p>Ý tưởng:</p>
+<ul>
+<li>RI đo lường <strong>mức giá trị “tạo thêm” cho cổ đông</strong> sau khi đã trả đủ mức lợi nhuận tối thiểu họ kỳ vọng.</li>
+</ul>
+<h4>3.2. Cách định giá bằng RI</h4>
+<ul>
+<li>Từng năm, tính <strong>RI</strong> = Lợi nhuận ròng – Chi phí vốn.</li>
+<li><strong>Chiết khấu tất cả RI tương lai về hiện tại</strong>.</li>
+<li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu hiện tại + Giá trị hiện tại của toàn bộ RI.</li>
+<li>Đây là một <strong>biến thể của phương pháp chiết khấu dòng tiền (DCF)</strong> nhưng tập trung vào <strong>phần “thặng dư”</strong>.</li>
+</ul>
+<h4>3.3. Các bước áp dụng RI cho ngân hàng</h4>
+<ol>
+<li><strong>Dự đoán tăng trưởng vốn chủ sở hữu</strong></li>
+</ol>
+<ul>
+<li>Dựa trên quá khứ và mức độ cạnh tranh hiện tại.</li>
+</ul>
+<ol>
+<li><strong>Dự đoán ROE (AOI – tỷ suất sinh lời trên vốn chủ sở hữu)</strong></li>
+<li>Từ vốn chủ &amp; ROE, tính:</li>
+</ol>
+<ul>
+<li><strong>Lợi nhuận ròng</strong></li>
+<li><strong>Lợi nhuận tối thiểu</strong> (chi phí vốn), với giả định:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp không rủi ro: <strong>13%</strong></li>
+<li>Doanh nghiệp rủi ro: <strong>15%</strong></li>
+</ul>
+<ol>
+<li><strong>Tính giá trị hiện tại của dòng RI</strong></li>
+<li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu hiện tại + Giá trị hiện tại dòng RI</li>
+</ol>
+<p>Tất cả sẽ được đưa vào <strong>Excel</strong> để tính toán và quan sát cho rõ.</p>
+<hr class="my-6 border-slate-200" />
+<h2>III. Ví dụ Định giá Ngân hàng ACB bằng RI</h2>
+<h3>1. Dữ liệu quá khứ và giả định</h3>
+<h4>1.1. Tăng trưởng vốn chủ sở hữu (HC)</h4>
+<ul>
+<li>Năm 2019: <strong>27.765 tỷ</strong></li>
+<li>Năm 2025: <strong>83.461 tỷ</strong></li>
+<li>Tốc độ tăng trưởng bình quân 5 năm: <strong>24,62%/năm</strong></li>
+</ul>
+<p>Tăng trưởng theo năm:</p>
+<ul>
+<li>2020: <strong>27,67%</strong></li>
+<li>2021: <strong>26,67%</strong></li>
+<li>2022: <strong>30%</strong></li>
+<li>2023: <strong>21,42%</strong></li>
+<li>2024: <strong>17,62%</strong></li>
+</ul>
+<p>Giả định:</p>
+<ul>
+<li><strong>Kịch bản thận trọng</strong>: tăng trưởng vốn chủ: <strong>17%</strong></li>
+<li><strong>Kịch bản lạc quan</strong>: tăng trưởng vốn chủ: <strong>20%</strong></li>
+</ul>
+<p>Tăng trưởng bền vững (từ năm thứ 11 trở đi):</p>
+<ul>
+<li>Thận trọng: <strong>3%</strong></li>
+<li>Lạc quan: <strong>4%</strong></li>
+</ul>
+<h4>1.2. ROE (AOI)</h4>
+<ul>
+<li>ROE bình quân 5 năm: <strong>24,25%</strong></li>
+<p class="ml-6">Giả định:</p>
+</ul>
+<ul>
+<li>Thận trọng: <strong>20%</strong></li>
+</ul>
+<ul>
+<li>Lạc quan: <strong>23%</strong> (vì ACB là ngân hàng tốt)</li>
+</ul>
+<h4>1.3. Chi phí vốn chủ sở hữu</h4>
+<ul>
+<li>Mức lợi nhuận tối thiểu yêu cầu (chi phí vốn) được chọn là <strong>15%</strong> (xem ACB là doanh nghiệp có rủi ro).</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>2. Kịch bản Thận trọng – Các bước chi tiết</h3>
+<ul>
+<li>Năm 0 (2024): <strong>Vốn chủ sở hữu = 83.461 tỷ</strong></li>
+</ul>
+<h4>Bước 1: Dự đoán vốn chủ sở hữu</h4>
+<ul>
+<li>5 năm đầu: vốn chủ tăng <strong>17% mỗi năm</strong>.</li>
+<li>Từ năm thứ 6 đến năm thứ 11: tốc độ tăng trưởng <strong>giảm dần</strong> từ 17% về 3%.</li>
+</ul>
+<ul>
+<li>Cách tính: (17% – 3%) / 6 → mỗi bước giảm đều.</li>
+<li>Mức tăng trưởng lần lượt:</li>
+</ul>
+<ul>
+<li><strong>14,67% – 12,33% – 10% – 7,67% – 5,33% – 3%</strong></li>
+</ul>
+<ul>
+<li>Từ sau mức <strong>3%</strong>, vốn chủ sở hữu tăng đều <strong>3%/năm tới vô tận</strong>.</li>
+</ul>
+<h4>Bước 2: Tính lợi nhuận ròng</h4>
+<ul>
+<li>Dùng <strong>AOI = 20%</strong>.</li>
+<li>Lợi nhuận ròng mỗi năm = 20% × <strong>vốn chủ sở hữu trung bình</strong> năm đó.</li>
+<li>Ví dụ năm 2025, tính ra <strong>lợi nhuận ròng ≈ 18.111 tỷ</strong>.</li>
+</ul>
+<h4>Bước 3: Tính lợi nhuận tối thiểu (chi phí vốn)</h4>
+<ul>
+<li>Dùng <strong>15%</strong>.</li>
+<li>Lợi nhuận tối thiểu = 15% × <strong>vốn chủ sở hữu trung bình</strong>.</li>
+<li>Ví dụ năm 2025, <strong>lợi nhuận tối thiểu ≈ 13.583 tỷ</strong>.</li>
+</ul>
+<h4>Bước 4: Tính Thu nhập Thặng dư (RI)</h4>
+<ul>
+<li><strong>RI = Lợi nhuận ròng – Lợi nhuận tối thiểu</strong></li>
+<li>Ví dụ năm 2025:</li>
+</ul>
+<ul>
+<li>RI = 18.111 – 13.583 = <strong>4.527 tỷ</strong></li>
+</ul>
+<h4>Bước 5: Đưa dòng RI về hiện tại</h4>
+<ul>
+<li>Toàn bộ RI từ <strong>năm thứ 12 trở đi</strong> (giai đoạn tăng trưởng 3%) được quy về một <strong>“ending value” tại năm thứ 11</strong>:</li>
+</ul>
+<ul>
+<li><strong>Ending value = 128.033</strong> (đơn vị: tỷ)</li>
+</ul>
+<ul>
+<li>Chiết khấu <strong>ending value</strong> về hiện tại (năm 0) với <strong>tỷ suất chiết khấu 15%</strong>:</li>
+</ul>
+<ul>
+<li>Giá trị hiện tại: <strong>27.530</strong></li>
+</ul>
+<ul>
+<li>Tổng giá trị hiện tại của dòng RI từ <strong>năm 1 đến năm 11</strong>:</li>
+</ul>
+<ul>
+<li><strong>7.967</strong></li>
+</ul>
+<h4>Bước 6: Giá trị doanh nghiệp và giá trị cổ phiếu</h4>
+<ul>
+<li><strong>Giá trị hiện tại toàn bộ RI</strong> = 7.967 + 27.530 (các con số trong tài liệu gốc cho ra <strong>tổng giá trị doanh nghiệp là 154.295</strong> sau khi cộng thêm vốn chủ 2024).</li>
+<li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu 2024 + Giá trị hiện tại RI</li>
+</ul>
+<ul>
+<li>Kết quả: <strong>154.295</strong> (tỷ)</li>
+</ul>
+<ul>
+<li>Số lượng cổ phiếu: <strong>5.136.659.999</strong></li>
+<li>→ <strong>Giá trị nội tại mỗi cổ phần ≈ 30.064 đồng/cp</strong> (kịch bản thận trọng).</li>
+</ul>
+<p>(Lưu ý: phần tổng hợp cuối của tài liệu còn nhắc mức thận trọng là <strong>30.464</strong> khi lấy bình quân, nên có thể hiểu khoảng giá trị thận trọng vào vùng 30.0xx).</p>
+<hr class="my-6 border-slate-200" />
+<h3>3. Kịch bản Lạc quan và Giá trị cuối cùng</h3>
+<h4>3.1. Giả định lạc quan</h4>
+<ul>
+<li>Tăng trưởng vốn chủ: <strong>20%</strong></li>
+<li>AOI: <strong>23%</strong></li>
+<li>Chi phí vốn: <strong>15%</strong></li>
+<li>Cách tính RI, chiết khấu, ending value tương tự như kịch bản thận trọng.</li>
+</ul>
+<h4>3.2. Kết quả</h4>
+<ul>
+<li><strong>Giá trị nội tại mỗi cổ phần (kịch bản lạc quan)</strong> = <strong>43.428 đồng/cp</strong></li>
+<li>Phần tổng hợp cuối có nhắc mức <strong>43.480 đồng/cp</strong> cho kịch bản lạc quan khi dùng để bình quân.</li>
+</ul>
+<h4>3.3. Giá trị nội tại cuối cùng của ACB</h4>
+<ul>
+<li>Gán <strong>tỷ trọng 50%</strong> cho:</li>
+</ul>
+<ul>
+<li>Kịch bản thận trọng (<strong>30.464</strong> trong phần tổng hợp cuối)</li>
+<li>Kịch bản lạc quan (<strong>43.480</strong>)</li>
+</ul>
+<ul>
+<li>→ <strong>Giá trị nội tại ACB ≈ 36.746 đồng/cổ phiếu</strong></li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>4. Nhận xét về định giá ngân hàng</h3>
+<ul>
+<li>Định giá ngân hàng được xem là <strong>dễ hơn</strong> doanh nghiệp sản xuất/thương mại vì:</li>
+</ul>
+<ul>
+<li>Ngân hàng chủ yếu là <strong>tiền và vốn chủ sở hữu</strong>,</li>
+<li>Không cần bóc tách <strong>dòng tiền tự do và phần tái đầu tư</strong> phức tạp như các doanh nghiệp khác.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>IV. Tiêu chí Ngân hàng Tốt và Ngân hàng Xấu</h2>
+<h3>1. Tiêu chí ngân hàng xấu (không nên đầu tư dài hạn)</h3>
+<ul>
+<li><strong>Tỷ lệ nợ xấu &gt; 2%</strong></li>
+<li><strong>Hệ số an toàn vốn (CAR) &lt; 8%</strong></li>
+<li><strong>ROE &lt; 13%</strong></li>
+</ul>
+<ul>
+<li>Thấp hơn mức lợi nhuận yêu cầu tối thiểu <strong>15%</strong>, nghĩa là:</li>
+</ul>
+<ul>
+<li>Không tạo ra <strong>thu nhập thặng dư</strong>,</li>
+<li>Thậm chí <strong>ăn vào vốn chủ sở hữu</strong>.</li>
+</ul>
+<ul>
+<li><strong>Thu nhập lãi thuần giảm dần</strong></li>
+<li><strong>Lợi nhuận ròng giảm dần</strong></li>
+</ul>
+<h3>2. Tiêu chí ngân hàng tốt</h3>
+<ul>
+<li><strong>Nợ xấu &lt; 2%</strong></li>
+<li><strong>CAR &gt; 8%</strong></li>
+<li><strong>ROE &gt; 15%</strong> (tạo ra RI dương)</li>
+<li><strong>Thu nhập lãi thuần tăng trưởng</strong></li>
+<li><strong>Lợi nhuận ròng tăng trưởng</strong></li>
+</ul>
+<h3>3. Vì sao ngành ngân hàng luôn được đánh giá tốt</h3>
+<ol>
+<li><strong>Tăng trưởng tín dụng gắn chặt với tăng trưởng kinh tế</strong></li>
+</ol>
+<ul>
+<li>Ngân hàng là ngành <strong>xương sống của nền kinh tế</strong>.</li>
+<li><strong>GDP tăng 7–8%</strong>, tín dụng thường tăng <strong>gấp đôi</strong>.</li>
+<li>Lợi nhuận ngân hàng có thể tăng <strong>15–20%/năm</strong>.</li>
+</ul>
+<ol>
+<li><strong>Giá trị ngành tăng tối thiểu khoảng 15%/năm</strong></li>
+</ol>
+<ul>
+<li>Do <strong>lợi nhuận, doanh thu</strong> đều tăng theo tăng trưởng tín dụng.</li>
+</ul>
+<ol>
+<li><strong>Số lượng ngân hàng ổn định</strong></li>
+</ol>
+<ul>
+<li>Nhà nước <strong>không cho thành lập ngân hàng mới</strong>, nên:</li>
+</ul>
+<ul>
+<li><strong>Không có thêm đối thủ mới chia thị phần</strong>.</li>
+</ul>
+<ol>
+<li><strong>Tối ưu hóa huy động vốn &amp; đa dạng hóa doanh thu</strong></li>
+</ol>
+<ul>
+<li>Tăng tỷ lệ <strong>CASA</strong> → giảm chi phí vốn.</li>
+<li>Phát triển <strong>nguồn thu ngoài lãi</strong> (phí dịch vụ, bảo hiểm, dịch vụ khác).</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h2>V. Định giá Doanh nghiệp Bất động sản</h2>
+<h3>1. Đặc thù khác biệt so với doanh nghiệp sản xuất/thương mại</h3>
+<ol>
+<li><strong>Doanh thu chỉ ghi nhận khi bàn giao sản phẩm BĐS</strong></li>
+</ol>
+<ul>
+<li>Tiền thu từ khách theo tiến độ (đặt cọc, xây thô…) <strong>chưa được ghi nhận doanh thu</strong>, mà ghi nhận là <strong>“Nợ phải trả khách hàng”</strong>.</li>
+</ul>
+<ol>
+<li><strong>Khách hàng thanh toán theo tiến độ</strong></li>
+</ol>
+<ul>
+<li>Ví dụ: đặt cọc 10%, sau đó 20–30% theo từng giai đoạn xây dựng.</li>
+<li>Số tiền này được ghi nhận là <strong>“Nợ phải trả khách hàng”</strong> chứ không phải doanh thu.</li>
+</ul>
+<ol>
+<li><strong>Khi bàn giao BĐS mới ghi nhận doanh thu</strong></li>
+</ol>
+<ul>
+<li>Ngược lại, khách có thể còn nợ lại <strong>10–20%</strong> giá trị.</li>
+</ul>
+<ol>
+<li><strong>Ví dụ Phát Đạt</strong></li>
+</ol>
+<ul>
+<li>Công ty thu được nhiều tiền trong 2024 nhưng <strong>chưa kịp bàn giao BĐS</strong>.</li>
+<li>Doanh thu phải <strong>chuyển sang 2025</strong> mới ghi nhận.</li>
+</ul>
+<ol>
+<li><strong>Dòng tiền và lợi nhuận mang tính chu kỳ, không ổn định</strong></li>
+</ol>
+<ul>
+<li>Khi thị trường nóng → doanh thu, lợi nhuận <strong>tăng đột biến</strong>.</li>
+<li>Khi thị trường “đóng băng” → <strong>gần như không có doanh thu/lợi nhuận</strong>.</li>
+<li>Tính chu kỳ khiến <strong>khó dự đoán</strong> hơn so với doanh nghiệp tiêu dùng tăng trưởng đều.</li>
+</ul>
+<ol>
+<li><strong>Tài sản quan trọng nhất là quỹ đất và dự án</strong></li>
+</ol>
+<ul>
+<li>Đặc biệt là <strong>quỹ đất sạch</strong>, pháp lý đầy đủ, vị trí tốt.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>2. Đọc báo cáo tài chính doanh nghiệp BĐS</h3>
+<ol>
+<li><strong>Bảng cân đối kế toán</strong></li>
+</ol>
+<ul>
+<li><strong>Hàng tồn kho</strong> chính là <strong>bất động sản (dở dang, thành phẩm chưa bán)</strong>.</li>
+</ul>
+<ol>
+<li><strong>Khoản mục nợ</strong></li>
+</ol>
+<ul>
+<li><strong>Nợ khách hàng trả trước tiền BĐS</strong>:</li>
+</ul>
+<ul>
+<li>Là <strong>nợ tốt</strong> vì đã thu tiền từ người mua.</li>
+<li>Nhưng vẫn là <strong>nghĩa vụ</strong> (gánh nặng): doanh nghiệp phải bàn giao sản phẩm, trả lãi vay…</li>
+</ul>
+<ul>
+<li>Khi đánh giá nợ:</li>
+</ul>
+<ul>
+<li>Phải so sánh <strong>nợ với tổng tài sản</strong>,</li>
+<li>Xem xét <strong>khả năng trả lãi vay</strong>.</li>
+</ul>
+<ol>
+<li><strong>Báo cáo kết quả kinh doanh</strong></li>
+</ol>
+<ul>
+<li>Doanh thu = <strong>doanh thu bán bất động sản</strong>.</li>
+<li>Giá vốn = <strong>giá vốn bất động sản</strong>.</li>
+<li>Ví dụ:</li>
+</ul>
+<ul>
+<li>Vinhome có <strong>lợi nhuận sau thuế ≈ 35.000 tỷ</strong> (rất tốt).</li>
+<li>VinFast <strong>lỗ ≈ 80.000 tỷ</strong> (gấp đôi số lãi của Vinhome).</li>
+<li>Trong tập đoàn VinGroup, <strong>lợi nhuận Vinhome</strong> có thể được dùng <strong>bù lỗ cho VinFast</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>3. Phương pháp RNAV (Revalued Net Asset Value)</h3>
+<ul>
+<li><strong>RNAV</strong> là phương pháp định giá <strong>giá trị tài sản ròng sau khi đánh giá lại</strong>, phù hợp nhất cho:</li>
+</ul>
+<ul>
+<li>Doanh nghiệp <strong>bất động sản phát triển dự án</strong>.</li>
+</ul>
+<ul>
+<li>Trọng tâm là đánh giá lại <strong>hàng tồn kho</strong> (các dự án BĐS).</li>
+</ul>
+<h4>3.1. Nguyên tắc chung</h4>
+<ul>
+<li>Giá trị từng dự án BĐS được định giá bằng <strong>DCF/NPV</strong>:</li>
+</ul>
+<ul>
+<li>Dự phóng <strong>dòng tiền lợi nhuận trong tương lai</strong> từ việc bán BĐS.</li>
+<li><strong>Chiết khấu</strong> những dòng tiền đó về hiện tại.</li>
+</ul>
+<p>Công thức tổng quát:</p>
+<ul>
+<li><strong>Giá trị doanh nghiệp</strong> = Tổng <strong>giá trị hiện tại</strong> của các dòng tiền lợi nhuận (từ dự án)</li>
+<p class="ml-6"><strong>− Tổng giá trị các khoản nợ</strong> của công ty.</p>
+<li><strong>Giá trị cổ phiếu</strong> = Giá trị doanh nghiệp / Số lượng cổ phiếu.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>4. DCF và NPV – Ví dụ minh họa</h3>
+<p>Giả sử có dòng tiền lợi nhuận dự kiến cho một dự án:</p>
+<ul>
+<li>Năm 2025:</li>
+</ul>
+<ul>
+<li>Doanh thu: <strong>10.000 tỷ</strong></li>
+<li>Chi phí: <strong>3.000 tỷ</strong></li>
+<li>→ <strong>Dòng tiền lợi nhuận = 7.000 tỷ</strong></li>
+</ul>
+<ul>
+<li>Các năm sau tiếp tục có dòng tiền lợi nhuận (ví dụ 2026…).</li>
+</ul>
+<p>Dùng suất chiết khấu <strong>15%</strong>:</p>
+<ul>
+<li>Năm 2025 là năm gốc nên dòng tiền <strong>7.000 tỷ</strong> đưa về hiện tại vẫn là <strong>7.000 tỷ</strong>.</li>
+<li>Năm 2026 có dòng tiền <strong>5.460 tỷ</strong>, đưa về hiện tại:</li>
+</ul>
+<ul>
+<li><strong>5.460 / (1 + 15%) = 4.747 tỷ</strong></li>
+</ul>
+<ul>
+<li>Cộng toàn bộ dòng tiền sau khi chiết khấu:</li>
+</ul>
+<ul>
+<li>Ví dụ cộng lại được <strong>21.757 tỷ</strong></li>
+<p class="ml-6">→ Đây là <strong>NPV – Giá trị hiện tại ròng</strong> của dự án.</p>
+</ul>
+<p>Giải thích:</p>
+<ul>
+<li><strong>DCF (Discounted Cash Flow)</strong>: quá trình <strong>chiết khấu từng dòng tiền</strong> tương lai về hiện tại.</li>
+<li><strong>NPV (Net Present Value)</strong>: <strong>tổng các dòng tiền hiện tại</strong> sau khi chiết khấu.</li>
+<li>Hai khái niệm này dùng cho <strong>cùng một phương pháp</strong>.</li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>5. Ứng dụng định giá thực tế</h3>
+<h4>5.1. VinHome – Định giá theo BSC</h4>
+<p>Công ty chứng khoán (BSC) làm:</p>
+<ol>
+<li>Dự phóng chi tiết cho từng dự án:</li>
+</ol>
+<ul>
+<li>Số lượng căn hộ bán mỗi năm,</li>
+<li>Giá bán,</li>
+<li>Chi phí…</li>
+<p class="ml-6">→ Tính ra <strong>dòng tiền lợi nhuận</strong> từng năm, rồi chiết khấu.</p>
+</ul>
+<ol>
+<li>Kết quả:</li>
+</ol>
+<ul>
+<li>Tổng giá trị chiết khấu của tất cả dự án: <strong>459.000 tỷ</strong></li>
+<li>Cộng <strong>tiền mặt</strong>: <strong>31.000 tỷ</strong></li>
+<li>Trừ <strong>nợ vay</strong>: <strong>113.000 tỷ</strong></li>
+<li>→ <strong>Giá trị doanh nghiệp = 377.000 tỷ</strong></li>
+<li>Số cổ phiếu: <strong>4.107 triệu</strong> → <strong>Giá trị nội tại ≈ 92.000 đồng/cp</strong></li>
+<li>Giá hiện tại: <strong>93.500 đồng</strong></li>
+<p class="ml-6">→ VinHome <strong>đã vượt giá mục tiêu</strong>.</p>
+</ul>
+<h4>5.2. Phát Đạt – Định giá theo MBS</h4>
+<ul>
+<li>Tổng giá trị NPV các dự án: <strong>28.956 tỷ</strong></li>
+<li>Cộng tiền mặt: <strong>257 tỷ</strong></li>
+<li>Trừ nợ: <strong>4.232 tỷ</strong></li>
+<li>→ <strong>Giá trị tài sản ròng (RNAV) = 27.299 tỷ</strong></li>
+<li>Số cổ phiếu: <strong>980 triệu</strong></li>
+<li>→ <strong>Giá mục tiêu ≈ 27.900 đồng/cp</strong></li>
+<li>Giá hiện tại (ngày 2/8): <strong>23.750 đồng/cp</strong></li>
+<li>→ <strong>Tiềm năng tăng giá ≈ 17,5%</strong></li>
+</ul>
+<hr class="my-6 border-slate-200" />
+<h3>6. Điểm khó nhất trong định giá bất động sản</h3>
+<ul>
+<li><strong>Công thức RNAV, DCF, NPV không khó</strong>, Excel xử lý được.</li>
+<li>Cái khó nhất là:</li>
+</ul>
+<ol>
+<li><strong>Dự đoán số lượng bán</strong> (căn hộ, sản phẩm) từng năm.</li>
+<li><strong>Dự đoán giá bán</strong> từng dự án theo từng giai đoạn.</li>
+<li><strong>Dự đoán chi phí</strong> đi kèm.</li>
+<li>Xử lý tính <strong>chu kỳ lên–xuống thất thường</strong> của thị trường BĐS.</li>
+</ol>
+<p>Do đó, định giá BĐS đòi hỏi <strong>hiểu sâu về từng dự án và chu kỳ thị trường</strong>.</p>
+<hr class="my-6 border-slate-200" />
+<h2>VI. Buổi học tiếp theo</h2>
+<ul>
+<li>Buổi sau (thứ Hai tuần sau) sẽ học:</li>
+</ul>
+<ol>
+<li><strong>Cách đầu tư theo danh mục</strong> (portfolio).</li>
+<li><strong>Cách dùng website cập nhật dữ liệu</strong> để hỗ trợ việc đầu tư.</li>
+</ol>
+            </div>
 
-                <h2>II. Định giá Doanh nghiệp Ngân hàng</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
-                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm lg:col-span-2">
-                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. Hai phương pháp chính</h3>
-                        <ol class="list-decimal pl-4 space-y-2">
-                            <li><strong>P/B (Price to Book)</strong>.</li>
-                            <li><strong>Residual Income (RI – Thu nhập thặng dư)</strong>.</li>
-                        </ol>
-                        <p class="mt-4">Trong một ví dụ định giá ngân hàng:</p>
-                        <ul class="space-y-2">
-                            <li>Phương pháp <strong>RI</strong> cho kết quả: <strong>33.600</strong>.</li>
-                            <li>Phương pháp <strong>P/B</strong> cho kết quả: <strong>29.000</strong>.</li>
-                            <li>Gán <strong>tỷ trọng 50% – 50%</strong> → <strong>Giá mục tiêu = 31.300</strong>.</li>
-                        </ul>
-                        <p class="mt-2 text-slate-600">Đây là cách kết hợp hai phương pháp trong thực tế.</p>
-                    </div>
-                    <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 shadow-sm">
-                        <div class="text-xs font-bold uppercase tracking-wide text-topas-orange mb-2">Lưu ý</div>
-                        <p><strong>P/B</strong> và <strong>RI</strong> bổ trợ nhau: P/B phản ánh mức thị trường trả cho vốn chủ, RI đo lường phần lợi nhuận vượt trên mức tối thiểu cổ đông yêu cầu.</p>
-                    </div>
-                </div>
-
-                <div class="space-y-12">
-                    <section class="space-y-6">
-                        <h3>2. Phương pháp P/B</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                                <h4 class="font-semibold text-lg mb-3">2.1. Khái niệm và công thức</h4>
-                                <ul class="space-y-2">
-                                    <li><strong>P/B</strong> về bản chất tương tự <strong>P/E</strong>, nhưng dùng <strong>giá trị sổ sách (book value)</strong> thay cho lợi nhuận.</li>
-                                    <li><strong>P/B = Giá thị trường trên mỗi cổ phiếu / Giá trị sổ sách trên mỗi cổ phiếu (Book value per share)</strong>.</li>
-                                    <li>Nếu <strong>P/B = 1,5</strong>, nghĩa là thị trường đang trả giá <strong>gấp 1,5 lần giá trị sổ sách</strong> cho mỗi cổ phần.</li>
-                                </ul>
-                            </div>
-                            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                                <h4 class="font-semibold text-lg mb-3">2.2. Cách dự đoán giá bằng P/B (ví dụ đơn giản)</h4>
-                                <ul class="space-y-2">
-                                    <li><strong>Giá trị sổ sách hiện tại</strong> = 1.000 tỷ.</li>
-                                    <li>Dự kiến <strong>tăng 20%</strong> → 1.200 tỷ.</li>
-                                    <li>Khi đó <strong>book value per share cũng sẽ tăng 20%</strong>.</li>
-                                    <li>Nếu muốn <strong>giữ P/B ở mức 1,5</strong> thì: <strong>Giá cổ phiếu cũng phải tăng 20%</strong>.</li>
-                                    <li>Đây là cách “ước tính nhanh” giá mục tiêu bằng P/B: <strong>Vốn chủ tăng bao nhiêu %, giá mục tiêu tăng tương ứng nếu P/B giữ nguyên</strong>.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                            <h4 class="font-semibold text-lg mb-3">2.3. Ví dụ thực tế – VPBank (VP)</h4>
-                            <ul class="space-y-2">
-                                <li><strong>P/B hiện tại</strong> của VPBank (VP) đang giao dịch quanh <strong>1,6</strong>.</li>
-                                <li><strong>Book value per share 12 tháng tới</strong>: <strong>21.512</strong>.</li>
-                                <li><strong>Giá mục tiêu 12 tháng</strong>: ≈ 1,6 × 21.512 = <strong>34.419</strong>.</li>
-                            </ul>
-                            <p class="mt-2 text-slate-600">Khi dự đoán <strong>giá trị vốn chủ sở hữu 12 tháng tới</strong> tăng bao nhiêu, thì <strong>giá mục tiêu</strong> với hệ số <strong>P/B 1,6</strong> cũng tăng tương ứng.</p>
-                        </div>
-                    </section>
-
-                    <section class="space-y-6">
-                        <h3>3. Phương pháp Thu nhập Thặng dư (Residual Income – RI)</h3>
-                        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
-                            <h4 class="font-semibold text-lg">3.1. Khái niệm và ý nghĩa</h4>
-                            <p><strong>RI – Residual Income (Thu nhập thặng dư)</strong>: <strong>= Lợi nhuận ròng tạo ra – Lợi nhuận tối thiểu cổ đông “đáng được hưởng” (chi phí vốn chủ sở hữu)</strong>.</p>
-                            <div class="table-wrap">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Giả định minh họa</th>
-                                            <th>Kết quả</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Vốn chủ sở hữu: <strong>200 tỷ</strong>. Mức lợi nhuận cổ đông yêu cầu: <strong>15%/năm</strong> → <strong>30 tỷ</strong> là chi phí vốn.</td>
-                                            <td>Doanh nghiệp <strong>lời 100 tỷ</strong> → <strong>Thu nhập thặng dư = 100 – 30 = 70 tỷ</strong>. 70 tỷ là phần <strong>lợi nhuận vượt trên mức yêu cầu của cổ đông</strong>.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <p class="text-slate-600">Ý tưởng: RI đo lường <strong>mức giá trị “tạo thêm” cho cổ đông</strong> sau khi đã trả đủ mức lợi nhuận tối thiểu họ kỳ vọng.</p>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                                <h4 class="font-semibold text-lg mb-3">3.2. Cách định giá bằng RI</h4>
-                                <ol class="list-decimal pl-4 space-y-2">
-                                    <li>Từng năm, tính <strong>RI = Lợi nhuận ròng – Chi phí vốn</strong>.</li>
-                                    <li><strong>Chiết khấu tất cả RI tương lai</strong> về hiện tại.</li>
-                                    <li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu hiện tại + Giá trị hiện tại của toàn bộ RI.</li>
-                                    <li>Đây là một <strong>biến thể của phương pháp chiết khấu dòng tiền (DCF)</strong> nhưng tập trung vào phần “thặng dư”.</li>
-                                </ol>
-                            </div>
-                            <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                                <h4 class="font-semibold text-lg mb-3">3.3. Các bước áp dụng RI cho ngân hàng</h4>
-                                <ol class="list-decimal pl-4 space-y-2">
-                                    <li><strong>Dự đoán tăng trưởng vốn chủ sở hữu</strong> (dựa trên quá khứ và mức độ cạnh tranh hiện tại).</li>
-                                    <li><strong>Dự đoán ROE (AOI – tỷ suất sinh lời trên vốn chủ sở hữu)</strong>.</li>
-                                    <li>Từ vốn chủ &amp; ROE, tính <strong>lợi nhuận ròng</strong> và <strong>lợi nhuận tối thiểu</strong> (chi phí vốn), với giả định:<ul class="list-disc pl-4 space-y-1">
-                                            <li>Doanh nghiệp không rủi ro: <strong>13%</strong>.</li>
-                                            <li>Doanh nghiệp rủi ro: <strong>15%</strong>.</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Tính giá trị hiện tại của dòng RI</strong>.</li>
-                                    <li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu hiện tại + Giá trị hiện tại dòng RI.</li>
-                                </ol>
-                                <p class="mt-3 text-slate-600">Tất cả sẽ được đưa vào <strong>Excel</strong> để tính toán và quan sát cho rõ.</p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <h2>III. Ví dụ Định giá Ngân hàng ACB bằng RI</h2>
-                <div class="space-y-10">
-                    <section class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
-                        <h3>1. Dữ liệu quá khứ và giả định</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-slate-100 rounded-lg p-4 bg-slate-50">
-                                <h4 class="font-semibold text-lg mb-2">1.1. Tăng trưởng vốn chủ sở hữu (HC)</h4>
-                                <ul class="space-y-2">
-                                    <li>Năm 2019: <strong>27.765 tỷ</strong>.</li>
-                                    <li>Năm 2025: <strong>83.461 tỷ</strong>.</li>
-                                    <li>Tốc độ tăng trưởng bình quân 5 năm: <strong>24,62%/năm</strong>.</li>
-                                </ul>
-                                <p class="mt-2 font-semibold">Tăng trưởng theo năm:</p>
-                                <ul class="space-y-2">
-                                    <li>2020: <strong>27,67%</strong>.</li>
-                                    <li>2021: <strong>26,67%</strong>.</li>
-                                    <li>2022: <strong>30%</strong>.</li>
-                                    <li>2023: <strong>21,42%</strong>.</li>
-                                    <li>2024: <strong>17,62%</strong>.</li>
-                                </ul>
-                                <p class="mt-2 font-semibold">Giả định:</p>
-                                <ul class="space-y-2">
-                                    <li><strong>Kịch bản thận trọng</strong>: tăng trưởng vốn chủ: <strong>17%</strong>.</li>
-                                    <li><strong>Kịch bản lạc quan</strong>: tăng trưởng vốn chủ: <strong>20%</strong>.</li>
-                                </ul>
-                                <p class="mt-2 font-semibold">Tăng trưởng bền vững (từ năm thứ 11 trở đi):</p>
-                                <ul class="space-y-2">
-                                    <li>Thận trọng: <strong>3%</strong>.</li>
-                                    <li>Lạc quan: <strong>4%</strong>.</li>
-                                </ul>
-                            </div>
-                            <div class="border border-slate-100 rounded-lg p-4 bg-white">
-                                <h4 class="font-semibold text-lg mb-2">1.2. ROE (AOI)</h4>
-                                <ul class="space-y-2">
-                                    <li>ROE bình quân 5 năm: <strong>24,25%</strong>.</li>
-                                    <li>Giả định:<ul class="list-disc pl-4 space-y-1">
-                                            <li>Thận trọng: <strong>20%</strong>.</li>
-                                            <li>Lạc quan: <strong>23%</strong> (vì ACB là ngân hàng tốt).</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="mt-4 p-4 rounded-lg border border-orange-200 bg-orange-50">
-                                    <h4 class="font-semibold text-lg mb-2">1.3. Chi phí vốn chủ sở hữu</h4>
-                                    <p>Mức lợi nhuận tối thiểu yêu cầu (chi phí vốn) được chọn là <strong>15%</strong> (xem ACB là doanh nghiệp có rủi ro).</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="space-y-6 bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>2. Kịch bản Thận trọng – Các bước chi tiết</h3>
-                        <p class="text-slate-600">Năm 0 (2024): <strong>Vốn chủ sở hữu = 83.461 tỷ</strong>.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-slate-100 rounded-lg p-4 bg-slate-50">
-                                <h4 class="font-semibold text-lg mb-2">Bước 1: Dự đoán vốn chủ sở hữu</h4>
-                                <ul class="space-y-2">
-                                    <li><strong>5 năm đầu</strong>: tăng <strong>17%/năm</strong>.</li>
-                                    <li><strong>Từ năm thứ 6 đến năm thứ 11</strong>: tốc độ tăng trưởng <strong>giảm dần</strong> từ 17% về 3%.<ul class="list-disc pl-4 space-y-1">
-                                            <li>Cách tính: (17% – 3%) / 6 → giảm đều.</li>
-                                            <li>Mức tăng trưởng lần lượt: <strong>14,67% – 12,33% – 10% – 7,67% – 5,33% – 3%</strong>.</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Từ sau mức 3%</strong>, vốn chủ sở hữu tăng đều <strong>3%/năm tới vô tận</strong>.</li>
-                                </ul>
-                            </div>
-                            <div class="border border-slate-100 rounded-lg p-4 bg-white">
-                                <h4 class="font-semibold text-lg mb-2">Bước 2: Tính lợi nhuận ròng</h4>
-                                <ul class="space-y-2">
-                                    <li>Dùng <strong>AOI = 20%</strong>.</li>
-                                    <li><strong>Lợi nhuận ròng mỗi năm = 20% × vốn chủ sở hữu trung bình</strong> năm đó.</li>
-                                    <li>Ví dụ năm 2025, tính ra <strong>lợi nhuận ròng ≈ 18.111 tỷ</strong>.</li>
-                                </ul>
-                                <h4 class="font-semibold text-lg mb-2 mt-4">Bước 3: Tính lợi nhuận tối thiểu (chi phí vốn)</h4>
-                                <ul class="space-y-2">
-                                    <li>Dùng <strong>15%</strong>.</li>
-                                    <li><strong>Lợi nhuận tối thiểu = 15% × vốn chủ sở hữu trung bình</strong>.</li>
-                                    <li>Ví dụ năm 2025, <strong>lợi nhuận tối thiểu ≈ 13.583 tỷ</strong>.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-slate-100 rounded-lg p-4 bg-white">
-                                <h4 class="font-semibold text-lg mb-2">Bước 4: Tính Thu nhập Thặng dư (RI)</h4>
-                                <ul class="space-y-2">
-                                    <li><strong>RI = Lợi nhuận ròng – Lợi nhuận tối thiểu</strong>.</li>
-                                    <li>Ví dụ năm 2025: RI = 18.111 – 13.583 = <strong>4.527 tỷ</strong>.</li>
-                                </ul>
-                            </div>
-                            <div class="border border-slate-100 rounded-lg p-4 bg-slate-50">
-                                <h4 class="font-semibold text-lg mb-2">Bước 5: Đưa dòng RI về hiện tại</h4>
-                                <ul class="space-y-2">
-                                    <li>Toàn bộ RI từ <strong>năm thứ 12 trở đi</strong> (giai đoạn tăng trưởng 3%) được quy về một <strong>“ending value” tại năm thứ 11</strong>: <strong>128.033</strong> (đơn vị: tỷ).</li>
-                                    <li>Chiết khấu <strong>ending value</strong> về hiện tại (năm 0) với <strong>tỷ suất chiết khấu 15%</strong>: <strong>27.530</strong>.</li>
-                                    <li><strong>Tổng giá trị hiện tại của dòng RI từ năm 1 đến năm 11</strong>: <strong>7.967</strong>.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2">Bước 6: Giá trị doanh nghiệp và giá trị cổ phiếu</h4>
-                            <ul class="space-y-2">
-                                <li><strong>Giá trị hiện tại toàn bộ RI</strong> = 7.967 + 27.530 (các con số trong tài liệu gốc cho ra <strong>tổng giá trị doanh nghiệp là 154.295</strong> sau khi cộng thêm vốn chủ 2024).</li>
-                                <li><strong>Giá trị doanh nghiệp</strong> = Vốn chủ sở hữu 2024 + Giá trị hiện tại RI → <strong>154.295</strong> (tỷ).</li>
-                                <li>Số lượng cổ phiếu: <strong>5.136.659.999</strong>.</li>
-                                <li>→ <strong>Giá trị nội tại mỗi cổ phần ≈ 30.064 đồng/cp</strong> (kịch bản thận trọng).<ul class="list-disc pl-4 space-y-1">
-                                        <li>(Lưu ý: phần tổng hợp cuối của tài liệu còn nhắc mức thận trọng là <strong>30.464</strong> khi lấy bình quân, nên có thể hiểu khoảng giá trị thận trọng vào vùng 30.0xx).</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <section class="space-y-6 bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>3. Kịch bản Lạc quan và Giá trị cuối cùng</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-slate-100 rounded-lg p-4 bg-slate-50">
-                                <h4 class="font-semibold text-lg mb-2">3.1. Giả định lạc quan</h4>
-                                <ul class="space-y-2">
-                                    <li>Tăng trưởng vốn chủ: <strong>20%</strong>.</li>
-                                    <li>AOI: <strong>23%</strong>.</li>
-                                    <li>Chi phí vốn: <strong>15%</strong>.</li>
-                                    <li>Cách tính RI, chiết khấu, ending value tương tự như kịch bản thận trọng.</li>
-                                </ul>
-                            </div>
-                            <div class="border border-slate-100 rounded-lg p-4 bg-white">
-                                <h4 class="font-semibold text-lg mb-2">3.2. Kết quả</h4>
-                                <ul class="space-y-2">
-                                    <li><strong>Giá trị nội tại mỗi cổ phần (kịch bản lạc quan)</strong> = <strong>43.428 đồng/cp</strong>.</li>
-                                    <li>Phần tổng hợp cuối có nhắc mức <strong>43.480 đồng/cp</strong> cho kịch bản lạc quan khi dùng để bình quân.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 shadow-sm">
-                            <h4 class="font-semibold text-lg mb-2">3.3. Giá trị nội tại cuối cùng của ACB</h4>
-                            <ul class="space-y-2">
-                                <li>Gán <strong>tỷ trọng 50%</strong> cho:<ul class="list-disc pl-4 space-y-1">
-                                        <li>Kịch bản thận trọng (<strong>30.464</strong> trong phần tổng hợp cuối).</li>
-                                        <li>Kịch bản lạc quan (<strong>43.480</strong>).</li>
-                                    </ul>
-                                </li>
-                                <li>→ <strong>Giá trị nội tại ACB ≈ 36.746 đồng/cổ phiếu</strong>.</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <section class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>4. Nhận xét về định giá ngân hàng</h3>
-                        <p class="mb-3">Định giá ngân hàng được xem là <strong>dễ hơn</strong> doanh nghiệp sản xuất/thương mại vì:</p>
-                        <ul class="space-y-2">
-                            <li>Ngân hàng chủ yếu là <strong>tiền và vốn chủ sở hữu</strong>.</li>
-                            <li>Không cần bóc tách <strong>dòng tiền tự do và phần tái đầu tư</strong> phức tạp như các doanh nghiệp khác.</li>
-                        </ul>
-                    </section>
-                </div>
-
-                <h2>IV. Tiêu chí Ngân hàng Tốt và Ngân hàng Xấu</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                        <h3 class="text-lg font-semibold mb-3">1. Tiêu chí ngân hàng xấu (không nên đầu tư dài hạn)</h3>
-                        <ul class="space-y-2">
-                            <li><strong>Tỷ lệ nợ xấu &gt; 2%</strong>.</li>
-                            <li><strong>Hệ số an toàn vốn (CAR) &lt; 8%</strong>.</li>
-                            <li><strong>ROE &lt; 13%</strong>.<ul class="list-disc pl-4 space-y-1">
-                                    <li>Thấp hơn mức lợi nhuận yêu cầu tối thiểu <strong>15%</strong>, nghĩa là:<ul class="list-disc pl-4 space-y-1">
-                                            <li>Không tạo ra <strong>thu nhập thặng dư</strong>.</li>
-                                            <li>Thậm chí <strong>ăn vào vốn chủ sở hữu</strong>.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><strong>Thu nhập lãi thuần giảm dần</strong>.</li>
-                            <li><strong>Lợi nhuận ròng giảm dần</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                        <h3 class="text-lg font-semibold mb-3">2. Tiêu chí ngân hàng tốt</h3>
-                        <ul class="space-y-2">
-                            <li><strong>Nợ xấu &lt; 2%</strong>.</li>
-                            <li><strong>CAR &gt; 8%</strong>.</li>
-                            <li><strong>ROE &gt; 15%</strong> (tạo ra RI dương).</li>
-                            <li><strong>Thu nhập lãi thuần tăng trưởng</strong>.</li>
-                            <li><strong>Lợi nhuận ròng tăng trưởng</strong>.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 shadow-sm mb-10">
-                    <h3 class="text-lg font-semibold mb-3">3. Vì sao ngành ngân hàng luôn được đánh giá tốt</h3>
-                    <ol class="list-decimal pl-4 space-y-2">
-                        <li><strong>Tăng trưởng tín dụng gắn chặt với tăng trưởng kinh tế</strong><ul class="list-disc pl-4 space-y-1">
-                                <li>Ngân hàng là ngành <strong>xương sống của nền kinh tế</strong>.</li>
-                                <li><strong>GDP tăng 7–8%</strong>, tín dụng thường tăng <strong>gấp đôi</strong>.</li>
-                                <li>Lợi nhuận ngân hàng có thể tăng <strong>15–20%/năm</strong>.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Giá trị ngành tăng tối thiểu khoảng 15%/năm</strong><ul class="list-disc pl-4 space-y-1">
-                                <li>Do <strong>lợi nhuận, doanh thu</strong> đều tăng theo tăng trưởng tín dụng.</li>
-                            </ul>
-                        </li>
-                        <li><strong>Số lượng ngân hàng ổn định</strong><ul class="list-disc pl-4 space-y-1">
-                                <li>Nhà nước <strong>không cho thành lập ngân hàng mới</strong>, nên:<ul class="list-disc pl-4 space-y-1">
-                                        <li><strong>Không có thêm đối thủ mới chia thị phần</strong>.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><strong>Tối ưu hóa huy động vốn &amp; đa dạng hóa doanh thu</strong><ul class="list-disc pl-4 space-y-1">
-                                <li>Tăng tỷ lệ <strong>CASA</strong> → giảm chi phí vốn.</li>
-                                <li>Phát triển <strong>nguồn thu ngoài lãi</strong> (phí dịch vụ, bảo hiểm, dịch vụ khác).</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-
-                <h2>V. Định giá Doanh nghiệp Bất động sản</h2>
-                <section class="space-y-8">
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>1. Đặc thù khác biệt so với doanh nghiệp sản xuất/thương mại</h3>
-                        <ol class="list-decimal pl-4 space-y-2">
-                            <li><strong>Doanh thu chỉ ghi nhận khi bàn giao sản phẩm BĐS</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Tiền thu từ khách theo tiến độ (đặt cọc, xây thô…) <strong>chưa được ghi nhận doanh thu</strong>, mà ghi nhận là <strong>“Nợ phải trả khách hàng”</strong>.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Khách hàng thanh toán theo tiến độ</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Ví dụ: đặt cọc 10%, sau đó 20–30% theo từng giai đoạn xây dựng.</li>
-                                    <li>Số tiền này được ghi nhận là <strong>“Nợ phải trả khách hàng”</strong> chứ không phải doanh thu.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Khi bàn giao BĐS mới ghi nhận doanh thu</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Ngược lại, khách có thể còn nợ lại <strong>10–20%</strong> giá trị.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Ví dụ Phát Đạt</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Công ty thu được nhiều tiền trong 2024 nhưng <strong>chưa kịp bàn giao BĐS</strong>.</li>
-                                    <li>Doanh thu phải <strong>chuyển sang 2025</strong> mới ghi nhận.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Dòng tiền – lợi nhuận không ổn định, mang tính chu kỳ</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Khi thị trường <strong>“sốt”</strong>, lợi nhuận tăng mạnh.</li>
-                                    <li>Khi <strong>đóng băng</strong>, gần như <strong>không có doanh thu &amp; lợi nhuận</strong>.</li>
-                                    <li>Khó dự phóng hơn các ngành <strong>bán lẻ/tiêu dùng/công nghệ</strong> vốn tăng trưởng tương đối đều.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Tài sản cốt lõi là quỹ đất và dự án</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li><strong>Quỹ đất sạch</strong>, pháp lý rõ ràng, vị trí tốt là <strong>giá trị lớn nhất</strong>.</li>
-                                    <li>Giá trị doanh nghiệp phụ thuộc nhiều vào <strong>dòng tiền bán hàng trong tương lai</strong> của các dự án.</li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>2. Đọc Báo cáo tài chính Doanh nghiệp BĐS</h3>
-                        <ol class="list-decimal pl-4 space-y-2">
-                            <li><strong>Bảng cân đối kế toán:</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Hàng tồn kho = <strong>bất động sản dở dang / thành phẩm chưa bán</strong>.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Về nợ:</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li><strong>“Khách hàng trả trước”</strong>: là <strong>nợ tốt</strong> (tiền khách đã đưa).</li>
-                                    <li>Nhưng vẫn là <strong>nghĩa vụ</strong> → phải đánh giá so với <strong>tổng tài sản</strong> và <strong>khả năng trả lãi vay</strong>.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Kết quả kinh doanh:</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Doanh thu = <strong>doanh thu bán bất động sản</strong>.</li>
-                                    <li>Giá vốn = <strong>giá vốn bất động sản</strong>.</li>
-                                    <li>Ví dụ:<ul class="list-disc pl-4 space-y-1">
-                                            <li>Vinhome: <strong>LNST ≈ 35.000 tỷ</strong>, rất tốt.</li>
-                                            <li>VinFast: <strong>lỗ 80.000 tỷ</strong> (gấp đôi Vinhome lãi).</li>
-                                            <li>VinGroup có thể <strong>dùng lợi nhuận Vinhome bù lỗ VinFast</strong>, do cùng trong một tập đoàn.</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>3. Phương pháp RNAV – Revalued Net Asset Value</h3>
-                        <ul class="space-y-2">
-                            <li>Phù hợp nhất với <strong>doanh nghiệp BĐS phát triển dự án</strong>.</li>
-                            <li><strong>RNAV</strong> = Giá trị tài sản ròng <strong>sau khi đánh giá lại</strong> các dự án BĐS (hàng tồn kho, quỹ đất…).</li>
-                        </ul>
-                        <h4 class="font-semibold text-lg mt-4 mb-2">Quy trình:</h4>
-                        <ol class="list-decimal pl-4 space-y-2">
-                            <li><strong>Dự phóng dòng tiền lợi nhuận của từng dự án</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Dựa vào: số lượng căn bán được mỗi năm, giá bán, tiến độ bàn giao, chi phí.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Dùng DCF/NPV để chiết khấu dòng tiền</strong><ul class="list-disc pl-4 space-y-1">
-                                    <li>Mỗi dự án → 1 dòng <strong>cash flow</strong> theo năm.</li>
-                                    <li>Dùng suất chiết khấu (ví dụ <strong>15%</strong>) để đưa về <strong>giá trị hiện tại</strong>.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Tổng giá trị hiện tại các dự án</strong> = <strong>Giá trị tài sản định giá lại</strong>.</li>
-                            <li><strong>Giá trị doanh nghiệp BĐS</strong> = Tổng giá trị hiện tại các dự án − Tiền mặt – Nợ vay.</li>
-                            <li><strong>Giá trị cổ phiếu</strong> = Giá trị doanh nghiệp / Số lượng cổ phiếu.</li>
-                        </ol>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>4. DCF/NPV – Minh họa</h3>
-                        <p class="mb-3">Ví dụ chuỗi dòng tiền lợi nhuận:</p>
-                        <ul class="space-y-2">
-                            <li>2025: Doanh thu <strong>10.000</strong> – chi phí <strong>3.000</strong> → <strong>dòng tiền 7.000 tỷ</strong>.</li>
-                            <li>2026: <strong>5.460 tỷ</strong>, chiết khấu về hiện tại còn <strong>4.747 tỷ</strong> (với 15%).</li>
-                        </ul>
-                        <p>Dùng suất chiết khấu <strong>15%</strong>:</p>
-                        <ul class="space-y-2">
-                            <li>Năm 2025 là năm gốc nên dòng tiền <strong>7.000 tỷ</strong> đưa về hiện tại vẫn là <strong>7.000 tỷ</strong>.</li>
-                            <li>Năm 2026 có dòng tiền <strong>5.460 tỷ</strong>, đưa về hiện tại: <strong>5.460 / (1 + 15%) = 4.747 tỷ</strong>.</li>
-                            <li>Cộng toàn bộ dòng tiền sau khi chiết khấu: Ví dụ tổng = <strong>21.757 tỷ</strong> → đó là <strong>NPV của dự án</strong>.</li>
-                        </ul>
-                        <p class="mt-3 text-slate-600">Giải thích:</p>
-                        <ul class="space-y-2">
-                            <li><strong>DCF (Discounted Cash Flow)</strong>: Hành động <strong>chiết khấu từng dòng tiền</strong> về hiện tại.</li>
-                            <li><strong>NPV (Net Present Value)</strong>: <strong>Tổng các dòng tiền hiện tại</strong>.</li>
-                            <li>Hai khái niệm này dùng cho <strong>cùng một phương pháp</strong>.</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
-                        <h3>5. Ứng dụng định giá thực tế</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-slate-100 rounded-lg p-4 bg-slate-50">
-                                <h4 class="font-semibold text-lg mb-2">5.1. VinHome (theo BSC)</h4>
-                                <ol class="list-decimal pl-4 space-y-2">
-                                    <li><strong>Dự phóng chi tiết cho từng dự án</strong>: số lượng căn hộ bán mỗi năm, giá bán, chi phí… → dòng tiền lợi nhuận từng năm rồi chiết khấu.</li>
-                                    <li><strong>Kết quả</strong>:<ul class="list-disc pl-4 space-y-1">
-                                            <li>Tổng giá trị chiết khấu các dự án: <strong>459.000 tỷ</strong>.</li>
-                                            <li>Tiền mặt: <strong>31.000 tỷ</strong>.</li>
-                                            <li>Nợ vay: <strong>113.000 tỷ</strong>.</li>
-                                            <li>→ <strong>Giá trị doanh nghiệp = 377.000 tỷ</strong>.</li>
-                                            <li>Số cổ phiếu: <strong>4.107 triệu</strong> → <strong>Giá trị nội tại ≈ 92.000 đồng/cp</strong>.</li>
-                                            <li>Giá thị trường hiện tại: <strong>≈ 93.500</strong> → <strong>đã cao hơn giá mục tiêu</strong>.</li>
-                                        </ul>
-                                    </li>
-                                </ol>
-                            </div>
-                            <div class="border border-slate-100 rounded-lg p-4 bg-white">
-                                <h4 class="font-semibold text-lg mb-2">5.2. Phát Đạt (theo MBS)</h4>
-                                <ul class="space-y-2">
-                                    <li>Tổng giá trị NPV các dự án: <strong>28.956 tỷ</strong>.</li>
-                                    <li>Tiền mặt: <strong>257 tỷ</strong>.</li>
-                                    <li>Nợ vay: <strong>4.232 tỷ</strong>.</li>
-                                    <li>→ <strong>RNAV = 27.299 tỷ</strong>.</li>
-                                    <li>Số cổ phiếu: <strong>980 triệu</strong> → <strong>Giá mục tiêu ≈ 27.900 đồng/cp</strong>.</li>
-                                    <li>Giá hiện tại (2/8): <strong>23.750 đồng</strong> → <strong>tiềm năng tăng ≈ 17,5%</strong>.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Doanh nghiệp</th>
-                                        <th>Giá trị doanh nghiệp</th>
-                                        <th>Giá trị nội tại/cp</th>
-                                        <th>Ghi chú</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>VinHome (BSC)</td>
-                                        <td><strong>377.000 tỷ</strong></td>
-                                        <td>≈ <strong>92.000 đồng/cp</strong></td>
-                                        <td>NPV dự án 459.000; tiền mặt 31.000; nợ vay 113.000; giá thị trường ≈ 93.500 → đã cao hơn giá mục tiêu.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phát Đạt (MBS)</td>
-                                        <td><strong>27.299 tỷ</strong></td>
-                                        <td>≈ <strong>27.900 đồng/cp</strong></td>
-                                        <td>NPV dự án 28.956; tiền mặt 257; nợ 4.232; giá hiện tại 23.750 (2/8) → tiềm năng tăng ≈ 17,5%.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                        <h3>6. Điểm khó nhất trong định giá BĐS</h3>
-                        <ol class="list-decimal pl-4 space-y-2">
-                            <li><strong>Dự đoán số lượng bán</strong> (căn hộ, sản phẩm) từng năm.</li>
-                            <li><strong>Dự đoán giá bán</strong> từng dự án theo từng giai đoạn.</li>
-                            <li><strong>Dự đoán chi phí</strong> đi kèm.</li>
-                            <li>Xử lý tính <strong>chu kỳ lên–xuống thất thường</strong> của thị trường BĐS.</li>
-                        </ol>
-                        <div class="mt-4 p-4 rounded-lg border border-orange-200 bg-orange-50">Công thức RNAV, DCF, NPV không khó; <strong>khó nhất là dự đoán số lượng bán &amp; giá bán theo từng năm, chi phí, tiến độ và chu kỳ thị trường</strong>.</div>
-                    </div>
-                </section>
-
-                <h2>VI. Buổi học tiếp theo</h2>
-                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <ul class="space-y-2">
-                        <li><strong>Cách đầu tư theo danh mục</strong>.</li>
-                        <li><strong>Cách dùng website cập nhật dữ liệu</strong> để hỗ trợ việc đầu tư.</li>
-                    </ul>
-                </div>
-             </div>
             <!-- FOOTER NAVIGATION -->
             <div class="mt-16 pt-8 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 border-t">
                 <a href="Index.html" class="w-full md:w-auto px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition text-center">

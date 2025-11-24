@@ -8,15 +8,35 @@
 - Đánh dấu trước các phần cần làm nổi bật (lưu ý, cảnh báo, ví dụ, bảng số liệu) để lên layout sau.
 
 ## 2) Dùng khung HTML của Bài 1 (layout đẹp, có TOC)
-- Sao chép toàn bộ khung từ `Bai-1.html` hoặc file mới nhất đã chuẩn:
-  - Header sticky, nút về trang chủ, nút "Bài kế tiếp".
-  - Bố cục 2 cột: sidebar TOC (desktop) + main content.
-  - Hero gồm badge, tiêu đề, mô tả, thông tin giảng viên/ngày.
-- Giữ nguyên cấu hình Tailwind + font (Inter, Merriweather), màu `topas` và script Lucide.
-- Giữ block JS cuối file để tự sinh TOC desktop/mobile và toggle drawer.
+- Ưu tiên dùng template sẵn: `templates/lesson_template.html` (chuẩn hóa từ Bài 1, đã kèm TOC, header sticky, hero, footer nav, class spacing).
+- Nếu cần tự copy tay: giữ nguyên Tailwind + font (Inter/Merriweather), màu `topas`, script Lucide và block JS sinh TOC desktop/mobile.
 
-## 3) Đưa nội dung vào `<div id="article-content">` (đủ 100%)
-- Chuyển toàn bộ text vào các thẻ `<p>`, `<ul>/<ol>`, `<table>` **không lược bỏ chữ**.
+## 3) Tạo HTML tự động bằng script (đảm bảo 100%)
+- Lưu file Markdown gốc vào thư mục `content/` (ví dụ: `content/Bai-26.md`).
+- Chạy script:  
+  ```bash
+  python scripts/generate_lesson.py \
+    --input content/Bai-26.md \
+    --output Bai-26.html \
+    --page-title "Bài 26: …" \
+    --course-tag "Khóa …" \
+    --header-lesson "Buổi 26: …" \
+    --module-badge "Module …" \
+    --hero-title "Tiêu đề hiển thị" \
+    --hero-deck "Mô tả ngắn" \
+    --instructor-name "Tên GV" \
+    --instructor-meta "Ngày/ghi chú" \
+    --back-link Index.html \
+    --next-link bai-27.html
+  ```
+- Script sẽ:
+  - Dùng thư viện `markdown` nếu có, nếu không sẽ tự fallback parser nội bộ.
+  - **Kiểm tra phủ đủ 100% nội dung**: mỗi dòng Markdown phải xuất hiện trong HTML (theo token), sai là báo lỗi ngay.
+  - Xuất HTML với khung Bài 1 + TOC, tự chèn class spacing trong `#article-content`.
+- Chỉ dùng `--skip-coverage-check` khi debug, không dùng cho bản chính thức.
+
+## 4) Đưa nội dung vào `<div id="article-content">` (đủ 100%)
+- Nếu không dùng script, vẫn đảm bảo: chuyển toàn bộ text vào `<p>`, `<ul>/<ol>`, `<table>` **không lược bỏ chữ**.
 - Với phần quan trọng/so sánh, bọc trong card: `bg-white border border-slate-200 rounded-xl p-5 shadow-sm`.
 - Lưu ý/cảnh báo dùng nền cam nhạt: `bg-orange-50 border-orange-200`.
 - Bảng số liệu quấn trong `<div class="table-wrap">` để tránh tràn.
