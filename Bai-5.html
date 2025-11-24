@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5: Định giá & Chiến lược Mua Bán - Topas Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' } }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] } } }
+        }
+    </script>
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; color: #0f172a; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.35rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #f97316; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; marker: #f97316; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; font-weight: 600; color: #0f172a; }
+        .content-area ol li span { font-weight: 400; color: #334155; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Custom Tables */
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+        th { background-color: #f1f5f9; text-align: left; padding: 0.75rem; font-weight: 700; color: #0f172a; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 0.75rem; border-bottom: 1px solid #e2e8f0; color: #334155; }
+        
+        /* Custom Utilities */
+        .box-info { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 0.5rem; padding: 1.5rem; color: #1e40af; margin: 1.5rem 0; }
+        .box-alert { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; padding: 1.5rem; color: #991b1b; margin: 1.5rem 0; }
+        .box-success { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; color: #166534; margin: 1.5rem 0; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .tag-green { background: #dcfce7; color: #166534; }
+        .tag-red { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="p-2 hover:bg-slate-100 rounded-full transition"><i data-lucide="arrow-left" class="w-6 h-6 text-slate-500"></i></a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase">Khóa học Tài chính</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base line-clamp-1">Định giá & Chiến lược Mua Bán</div>
+                </div>
+            </div>
+            <a href="bai-6.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+        <!-- SIDEBAR TOC -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200"></nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase mb-4">Bài 5</span>
+                <h1>Định giá Cổ phiếu & Thời điểm Mua Bán</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Phương pháp P/E thực chiến, Biên an toàn và Nghệ thuật đi tiền.</p>
+            </div>
+            
+            <div id="article-content">
+                
+                <div class="box-info mb-8">
+                    <strong>Mục tiêu bài học:</strong> Không chỉ biết cổ phiếu tốt, bạn cần biết mua nó ở mức giá nào để tối đa hóa lợi nhuận và giảm thiểu rủi ro.
+                </div>
+
+                <h2 id="part-1">1. Phương pháp Định giá P/E Thực chiến</h2>
+                <p>Ở bài trước chúng ta đã biết công thức P/E. Nhưng áp dụng thế nào để ra quyết định mua bán? Chúng ta sẽ sử dụng phương pháp <strong>So sánh P/E Lịch sử</strong>.</p>
+                
+                <h3>Case Study 1: Vinamilk (VNM) - Cổ phiếu Ổn định</h3>
+                <p>Vinamilk là doanh nghiệp tăng trưởng bền vững, ít biến động mạnh. Chiến lược phù hợp là mua khi P/E thấp hơn trung bình lịch sử.</p>
+                
+                <div class="overflow-x-auto bg-white rounded-lg border border-slate-200 shadow-sm my-6">
+                    <table class="mb-0">
+                        <thead class="bg-slate-100">
+                            <tr>
+                                <th>Năm</th>
+                                <th>Giá (P)</th>
+                                <th>EPS (E)</th>
+                                <th>P/E</th>
+                                <th>Đánh giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2018</td>
+                                <td>120.000</td>
+                                <td>5.500</td>
+                                <td>21.8</td>
+                                <td><span class="tag tag-red">Đắt</span></td>
+                            </tr>
+                            <tr>
+                                <td>2020</td>
+                                <td>90.000</td>
+                                <td>5.000</td>
+                                <td>18.0</td>
+                                <td><span class="tag">Trung bình</span></td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td>65.000</td>
+                                <td>4.500</td>
+                                <td><strong>14.4</strong></td>
+                                <td><span class="tag tag-green">Rẻ (MUA)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Kết luận:</strong> Với VNM, P/E trung bình 5 năm là khoảng 17-18. Khi P/E về vùng 13-14 là cơ hội tích sản tuyệt vời.</p>
+
+                <h3>Case Study 2: Hòa Phát (HPG) - Cổ phiếu Chu kỳ (Cyclical)</h3>
+                <p>Hòa Phát là doanh nghiệp ngành Thép, lợi nhuận phụ thuộc giá thép thế giới. <strong>TUYỆT ĐỐI KHÔNG</strong> dùng tư duy thông thường cho cổ phiếu chu kỳ.</p>
+                
+                <div class="box-alert">
+                    <h4 class="mt-0 mb-2 text-red-800 flex items-center gap-2"><i data-lucide="alert-triangle"></i> BẪY P/E CỔ PHIẾU CHU KỲ</h4>
+                    <p class="mb-2 text-sm"><strong>Sai lầm chết người:</strong> Thấy P/E = 4 (Rất thấp) -> Lao vào mua. Thấy P/E = 20 (Rất cao) -> Bán ra.</p>
+                    <p class="mb-0 text-sm"><strong>Sự thật ngược lại:</strong>
+                        <br>❌ <strong>P/E thấp nhất (4-5):</strong> Là lúc lợi nhuận đạt ĐỈNH lịch sử. Giá thép sắp giảm -> Giá cổ phiếu sẽ lao dốc.
+                        <br>✅ <strong>P/E cao ngất (20-30):</strong> Là lúc lợi nhuận chạm ĐÁY (thậm chí lỗ). Giá thép sắp hồi phục -> Giá cổ phiếu sẽ tăng bằng lần.
+                    </p>
+                </div>
+
+                <h2 id="part-2">2. Biên An toàn (Margin of Safety)</h2>
+                <p>Benjamin Graham - thầy của Warren Buffett dạy rằng: <em>"3 từ quan trọng nhất trong đầu tư là BIÊN AN TOÀN"</em>.</p>
+                <p>Bạn định giá cổ phiếu là 100.000đ. Bạn có chắc chắn 100% không? Không. Vì vậy, hãy trừ đi một khoảng sai số.</p>
+                
+                <div class="bg-slate-900 text-white p-6 rounded-xl text-center font-mono my-6 shadow-lg">
+                    <div class="text-slate-400 text-sm uppercase mb-2">Công thức Mua</div>
+                    <div class="text-2xl md:text-3xl font-bold text-topas-orange">Giá Mua = Giá Trị Thực x (70% ~ 80%)</div>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li><strong>Giá trị thực:</strong> 100.000đ</li>
+                    <li><strong>Biên an toàn 30%:</strong> Trừ đi 30.000đ</li>
+                    <li><strong>Giá Mua mục tiêu:</strong> Dưới 70.000đ</li>
+                </ul>
+                <p>Nếu giá thị trường đang là 90.000đ -> <strong>CHỜ ĐỢI</strong>. Kiên nhẫn là phẩm chất số 1 của nhà đầu tư.</p>
+
+                <h2 id="part-3">3. Chiến lược Giải ngân (Cách đi tiền)</h2>
+                <p>Đừng bao giờ "All-in" (mua hết tiền) trong một lần lệnh. Hãy chia nhỏ để quản trị rủi ro.</p>
+
+                <h3>Chiến lược 1: Tích sản đều đặn (DCA)</h3>
+                <ul>
+                    <li><strong>Cách làm:</strong> Mỗi tháng trích 10 triệu lương mua cổ phiếu FPT, bất chấp giá xanh hay đỏ.</li>
+                    <li><strong>Ưu điểm:</strong> Không cần canh bảng điện, mua được giá trung bình tốt trong dài hạn.</li>
+                    <li><strong>Phù hợp:</strong> Người làm công ăn lương, bận rộn.</li>
+                </ul>
+
+                <h3>Chiến lược 2: Mua gom vùng giá thấp (Pyramiding)</h3>
+                <ul>
+                    <li><strong>Bước 1:</strong> Mua thăm dò 30% vị thế.</li>
+                    <li><strong>Bước 2:</strong> Nếu giá giảm tiếp (vẫn trong biên an toàn) -> Mua thêm 30%.</li>
+                    <li><strong>Bước 3:</strong> Nếu giá tăng đúng dự đoán -> Mua nốt 40%.</li>
+                </ul>
+
+                <h2 id="part-4">4. Khi nào Bán Cổ phiếu?</h2>
+                <p>Mua đã khó, bán còn khó hơn. Chỉ bán khi gặp 1 trong 3 trường hợp sau:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 text-sm font-sans">
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-red-300 transition">
+                        <div class="text-2xl mb-2">❌</div>
+                        <div class="font-bold text-slate-800 mb-1">Sai nhận định</div>
+                        <p class="text-slate-500 mb-0">Công ty không tốt như mình nghĩ. Có gian lận, mất khách hàng lớn. -> Bán cắt lỗ ngay lập tức.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-green-300 transition">
+                        <div class="text-2xl mb-2">💰</div>
+                        <div class="font-bold text-slate-800 mb-1">Giá quá cao</div>
+                        <p class="text-slate-500 mb-0">Giá tăng nóng, vượt xa giá trị thực (P/E lên 40-50). -> Bán chốt lời để bảo toàn vốn.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-4 rounded-lg shadow-sm hover:border-blue-300 transition">
+                        <div class="text-2xl mb-2">🔄</div>
+                        <div class="font-bold text-slate-800 mb-1">Cơ hội tốt hơn</div>
+                        <p class="text-slate-500 mb-0">Tìm thấy cổ phiếu khác rẻ hơn, ngon hơn cổ phiếu đang nắm giữ. -> Bán để đảo danh mục.</p>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Đừng bao giờ bán một công ty tốt chỉ vì giá nó vừa giảm (nếu nội tại vẫn tốt). Và đừng bao giờ giữ một công ty tồi chỉ vì hy vọng nó sẽ hòa vốn."
+                </div>
+
+                <h2 id="part-5">5. Tổng kết Bài học</h2>
+                <div class="box-success">
+                    <ul class="mb-0 pl-4 list-decimal space-y-2 font-bold text-slate-700">
+                        <li>Định giá là tìm ra giá trị thực, không phải đoán giá ngày mai.</li>
+                        <li>Với cổ phiếu chu kỳ (Thép, Dầu), hãy tư duy ngược về P/E.</li>
+                        <li>Luôn mua với Biên an toàn (Rẻ hơn giá trị thực ít nhất 20-30%).</li>
+                        <li>Kiên nhẫn chờ đợi cơ hội, không FOMO đu đỉnh.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- FOOTER NAV -->
+            <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-4">
+                <a href="index.html" class="px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 text-center shadow-sm hover:bg-slate-50 transition">
+                    ← Về danh sách
+                </a>
+                <a href="bai-6.html" class="px-6 py-3 bg-topas-orange text-white rounded-lg font-bold text-center shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE TOC -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fixed bottom-5 right-5 z-50 bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110"><i data-lucide="list"></i></button>
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b flex justify-between items-center"><span class="font-bold text-slate-800">Mục lục</span><button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button></div>
+        <div class="overflow-y-auto p-4 space-y-2" id="mobile-toc-content"></div>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1); header.id = id;
+            const link = document.createElement('a'); link.href = '#' + id; link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate'; link.innerText = header.innerText;
+            link.onclick = (e) => { e.preventDefault(); highlightTOC(link); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
+            desktopToc.appendChild(link);
+            const mobileLink = link.cloneNode(true); mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => { e.preventDefault(); toggleMobileTOC(); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
+            mobileTocContent.appendChild(mobileLink);
+        });
+        function highlightTOC(activeLink) { document.querySelectorAll('#desktop-toc a').forEach(a => { a.classList.remove('toc-active'); a.classList.add('border-transparent'); }); activeLink.classList.remove('border-transparent'); activeLink.classList.add('toc-active'); }
+        function toggleMobileTOC() { const d = document.getElementById('mobile-toc-drawer'); const o = document.getElementById('mobile-toc-overlay'); d.classList.toggle('translate-y-full'); o.classList.toggle('hidden'); setTimeout(() => o.classList.toggle('opacity-0'), 10); }
+    </script>
+</body>
+</html>

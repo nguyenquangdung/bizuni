@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2: Nguyên tắc Chung Đầu tư - Topas Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' } }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] } } }
+        }
+    </script>
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; color: #0f172a; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #334155; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; marker: #f97316; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; font-weight: 600; color: #0f172a; }
+        .content-area ol li span { font-weight: 400; color: #334155; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Custom Utilities */
+        .box-info { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 0.5rem; padding: 1.5rem; color: #1e40af; margin: 1.5rem 0; }
+        .box-alert { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; padding: 1.5rem; color: #991b1b; margin: 1.5rem 0; }
+        .highlight-text { background-color: #ffedd5; padding: 0 4px; border-radius: 2px; color: #9a3412; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="p-2 hover:bg-slate-100 rounded-full transition" title="Về trang chủ"><i data-lucide="arrow-left" class="w-6 h-6 text-slate-500"></i></a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase">Khóa học Tài chính</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base line-clamp-1">Nguyên tắc Chung Đầu tư</div>
+                </div>
+            </div>
+            <a href="bai-3.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+        </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+        <!-- SIDEBAR TOC -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200"></nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase mb-4">Bài 2</span>
+                <h1>Nguyên tắc Chung Đầu tư</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Hướng dẫn toàn diện từ An toàn đến Tự do Tài chính.</p>
+            </div>
+            
+            <div id="article-content">
+                
+                <h2 id="s1">1. An toàn Tài chính và Độc lập Tài chính</h2>
+                <p>Nền tảng cơ bản của tài chính cá nhân là xây dựng an toàn tài chính và hướng tới độc lập tài chính dài hạn.</p>
+                
+                <h3>Khái niệm Cốt lõi</h3>
+                <ul>
+                    <li><strong>An toàn tài chính:</strong> Có tài sản thanh khoản (tiền mặt, tiết kiệm, chứng chỉ tiền gửi, vàng) tương đương <strong>6-12 tháng chi tiêu</strong>.</li>
+                    <li><strong>Độc lập tài chính:</strong> Không cần làm việc mà vẫn duy trì được mức sống hiện tại.</li>
+                    <li><strong>Mục đích dự trữ:</strong> Ứng phó với thất nghiệp, bệnh tật, tai nạn, hoặc các tình huống khẩn cấp.</li>
+                </ul>
+                <p>Đạt được thông qua tiết kiệm đều đặn và đầu tư tăng trưởng 10-15% mỗi năm.</p>
+
+                <div class="box-info">
+                    <div class="font-bold mb-2 uppercase text-sm text-topas-orange">Ví dụ Tính toán Cơ bản</div>
+                    <ul class="mb-0 space-y-1 list-none pl-0 font-sans text-sm">
+                        <li>🔹 <strong>Chi tiêu hàng tháng:</strong> 30 triệu.</li>
+                        <li>🔹 <strong>An toàn tài chính cần:</strong> 180 - 360 triệu (6-12 tháng).</li>
+                        <li>🔹 <strong>Độc lập tài chính:</strong> Tiết kiệm 20% thu nhập, đầu tư 15-20 năm.</li>
+                        <li>🔹 <strong>Mức sống hiện tại:</strong> 50 triệu/tháng → Tiết kiệm: 10 triệu/tháng.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-topas-orange text-sm font-sans italic text-slate-600">
+                    <strong>Tóm tắt:</strong> An toàn tài chính là dự trữ 6-12 tháng. Độc lập tài chính cần 15-20 năm kỷ luật.
+                </div>
+
+                <h2 id="s2">2. Khái niệm và Mục tiêu Tài chính Cá nhân</h2>
+                <p><strong>Tài chính cá nhân (Personal Finance)</strong> là quá trình quản lý toàn bộ các vấn đề liên quan đến tiền bạc của mỗi cá nhân và gia đình.</p>
+                
+                <h3>Mục tiêu & Nguyên tắc</h3>
+                <ul>
+                    <li><strong>Bao gồm:</strong> Kiếm tiền, quản lý chi tiêu, quản lý nợ, quản lý tài sản, đầu tư tăng trưởng.</li>
+                    <li><strong>Mục tiêu:</strong> An toàn → Độc lập → Tự do tài chính.</li>
+                    <li><strong>Nguyên tắc:</strong> Luôn kiếm nhiều hơn mức sử dụng.</li>
+                </ul>
+
+                <h3>Hai Báo cáo Quan trọng</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+                        <div class="text-topas-orange font-bold text-lg mb-2">1. Thu nhập ròng</div>
+                        <div class="text-sm font-sans mb-2 bg-slate-100 p-2 rounded border border-slate-200">Tổng thu nhập - Chi phí</div>
+                        <p class="text-sm text-slate-600 mb-0">Là số tiền còn lại để tích lũy.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+                        <div class="text-topas-orange font-bold text-lg mb-2">2. Tài sản ròng</div>
+                        <div class="text-sm font-sans mb-2 bg-slate-100 p-2 rounded border border-slate-200">Tổng tài sản - Nợ</div>
+                        <p class="text-sm text-slate-600 mb-0">Thước đo sự giàu có thực tế.</p>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    "Nhiều nghệ sĩ, cầu thủ kiếm hàng triệu USD nhưng cuối đời nghèo khổ. Lương 3.000 USD/tháng vẫn không bằng nhân viên lương thấp nhưng biết quản lý."
+                </div>
+
+                <h2 id="s3">3. Tăng Thu nhập và Quản lý Chi phí</h2>
+                <h3>Cách Tăng Thu nhập</h3>
+                <p>Kiếm tiền với công suất cao nhất. Nâng cao kỹ năng để tăng lương hoặc làm thêm (two jobs). Hãy chuyển sang chế độ tư duy <strong>"thiếu tiền và chiến đấu"</strong>.</p>
+
+                <h3>Công thức Quản lý Chi tiêu (20/50/30)</h3>
+                <p>Nguyên tắc vàng: <strong>Tiết kiệm trước khi sử dụng</strong> (Trả cho bản thân trước).</p>
+                
+                <div class="grid grid-cols-3 gap-2 md:gap-4 my-6 font-sans text-center text-white">
+                    <div class="bg-topas-orange p-4 rounded-lg flex flex-col justify-center shadow-md">
+                        <div class="text-2xl md:text-4xl font-bold">20%</div>
+                        <div class="text-[10px] md:text-xs font-bold uppercase mt-1">Tiết kiệm</div>
+                    </div>
+                    <div class="bg-slate-500 p-4 rounded-lg flex flex-col justify-center shadow-md">
+                        <div class="text-2xl md:text-4xl font-bold">50%</div>
+                        <div class="text-[10px] md:text-xs font-bold uppercase mt-1">Thiết yếu</div>
+                    </div>
+                    <div class="bg-slate-300 p-4 rounded-lg flex flex-col justify-center shadow-md">
+                        <div class="text-2xl md:text-4xl font-bold">30%</div>
+                        <div class="text-[10px] md:text-xs font-bold uppercase mt-1">Mong muốn</div>
+                    </div>
+                </div>
+                
+                <p class="text-sm italic text-slate-500 text-center">Ví dụ: Thu nhập 50 triệu -> Tiết kiệm ngay 10 triệu.</p>
+
+                <h2 id="s4">4. Quản lý Tài sản và Nợ</h2>
+                <p>Tài sản ròng đo lường sự giàu có thực tế. Cần phân bổ vào các lớp tài sản:</p>
+                <ul class="space-y-2">
+                    <li><strong>Tài sản Thanh khoản:</strong> Tiền gửi, tiết kiệm, vàng, CD.</li>
+                    <li><strong>Tài sản Tăng trưởng ⭐:</strong> Cổ phiếu, chứng chỉ quỹ, BĐS (Kỳ vọng 10-20%/năm).</li>
+                    <li><strong>Tài sản Mạo hiểm:</strong> Crypto, đầu cơ ngắn hạn, đồ sưu tầm.</li>
+                    <li><strong>Tiêu sản:</strong> Xe hơi, điện tử (Hạn chế tối đa).</li>
+                </ul>
+
+                <div class="bg-blue-50 p-6 rounded-xl my-6">
+                    <h4 class="text-blue-900 font-bold mb-3 flex items-center gap-2"><i data-lucide="scale" class="w-5 h-5"></i> Về Đòn bẩy (Vay nợ)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <span class="text-green-700 font-bold text-base">✅ Trường hợp Tích cực</span>
+                            <p class="mt-1">Vay ngân hàng 8% -> Đầu tư lãi 15%.<br>Lợi nhuận ròng: 7% trên vốn vay.</p>
+                        </div>
+                        <div>
+                            <span class="text-red-700 font-bold text-base">❌ Trường hợp Tiêu cực</span>
+                            <p class="mt-1">Vay tiêu dùng 20-30%.<br>Tài sản giảm giá -> Nợ nần, Phá sản.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="s5">5. Hiệu quả Lãi suất Kép & Dòng tiền</h2>
+                <p>Lãi suất kép (lãi mẹ đẻ lãi con) kết hợp với dòng tiền "bỏ heo" đều đặn hàng năm tạo ra sức mạnh khổng lồ.</p>
+                
+                <div class="overflow-x-auto my-6 rounded-lg border border-slate-200">
+                    <table class="w-full text-sm font-sans border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200">
+                                <th class="p-4 text-left text-slate-700">Kịch bản (20 năm)</th>
+                                <th class="p-4 text-left text-slate-700">Đầu vào</th>
+                                <th class="p-4 text-left text-topas-orange font-bold">Kết quả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-100 bg-white">
+                                <td class="p-4 font-bold text-slate-800">Thu nhập 30 triệu</td>
+                                <td class="p-4">Tiết kiệm 6tr/tháng (20%)<br>Lãi 12%/năm</td>
+                                <td class="p-4 font-bold text-lg text-slate-800">5 TỶ</td>
+                            </tr>
+                            <tr class="bg-slate-50">
+                                <td class="p-4 font-bold text-slate-800">Thu nhập 120 triệu</td>
+                                <td class="p-4">Tiết kiệm 18tr/tháng (15%)<br>Lãi 12%/năm</td>
+                                <td class="p-4 font-bold text-lg text-slate-800">22 TỶ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-slate-900 text-white p-4 rounded-lg text-center font-mono text-sm shadow-lg">
+                    Công thức: FV = PV × (1 + r)^n
+                </div>
+
+                <h2 id="s6">6. Độc lập và Tự do Tài chính</h2>
+                <p><strong>Tự do tài chính:</strong> Có thể sống thoải mái không cần làm việc (Thu nhập thụ động > Chi tiêu).</p>
+                
+                <h3>Phong trào FIRE (Financial Independent Retire Early)</h3>
+                <p>Xuất phát từ phương Tây. Sống khắt khe, tiết kiệm <strong>40%</strong> lương thay vì 20%. Mục tiêu về hưu sau 10-15 năm.</p>
+                
+                <div class="bg-white border-l-4 border-green-500 shadow-sm p-5 my-6">
+                    <div class="font-bold text-green-800 text-lg mb-2">Ví dụ "Cô Siêng năng" (20 năm)</div>
+                    <ul class="mb-0 list-none pl-0 text-sm text-slate-600 space-y-2">
+                        <li>🔹 Thu nhập: 30tr | Tiết kiệm: 6tr (20%) | Lãi: 16%</li>
+                        <li>🔹 <strong>Kết quả:</strong> 12 Tỷ đồng.</li>
+                        <li>🔹 Lãi hàng tháng (sau lạm phát): <strong>73 triệu</strong> (Gấp 3 lần mức sống).</li>
+                    </ul>
+                </div>
+
+                <h2 id="s7">7. Quản lý Tài chính và Thách thức Hành vi</h2>
+                <div class="quote-box">"Kiến thức cơ bản không khó, nhưng Hành vi đầu tư đều đặn và vượt qua tâm lý đám đông mới là khó."</div>
+                
+                <h3>Quản lý Tài chính Gia đình</h3>
+                <p>Cần thống nhất giữa vợ và chồng. Thường có sự khác biệt tâm lý (Vợ thích vàng/đất an toàn - Chồng thích chứng khoán/rủi ro).</p>
+                <p><strong>Giải pháp:</strong> Phân bổ rõ ràng (Ví dụ: 50% Cổ phiếu, 30% Vàng, 20% Tiết kiệm). Luân phiên quyền quyết định.</p>
+
+                <h2 id="s8">8. Ba Nguyên tắc Đầu tư & Rủi ro</h2>
+                <p>Trước khi đầu tư, cần nắm vững 3 nguyên tắc:</p>
+                <ol>
+                    <li><span><strong>Pháp lý:</strong> Có giấy phép tại VN không?</span></li>
+                    <li><span><strong>Tín nhiệm:</strong> Người giữ tiền có uy tín không?</span></li>
+                    <li><span><strong>Vận hành:</strong> Tiền lãi từ đâu ra?</span></li>
+                </ol>
+
+                <div class="box-alert">
+                    <div class="font-bold flex items-center gap-2 mb-2 text-lg"><i data-lucide="alert-triangle" class="w-6 h-6"></i> CẢNH BÁO SCAM</div>
+                    <ul class="list-disc pl-5 mb-0 text-sm font-sans space-y-1">
+                        <li><strong>Skyway (2015-2016):</strong> Không giấy phép, đa cấp huy động vốn.</li>
+                        <li><strong>Mô hình Nhà tiền chế (Hứa 30%):</strong> Lợi nhuận phi thực tế.</li>
+                        <li><strong>Đầu cơ ngắn hạn:</strong> Forex, vàng tài khoản, chứng khoán phái sinh.</li>
+                        <li><strong>Bất động sản phức tạp:</strong> Mua chung, giấy tờ chưa đủ.</li>
+                    </ul>
+                </div>
+
+                <h2 id="s9">9. Cổ phiếu, Giá trị & Định giá Doanh nghiệp</h2>
+                <p><strong>Cổ phiếu</strong> là chứng nhận quyền sở hữu một phần doanh nghiệp. Giá trị cổ phiếu phụ thuộc vào triển vọng lợi nhuận tương lai.</p>
+                <ul class="space-y-2">
+                    <li><strong>Vốn chủ sở hữu:</strong> Vốn cổ phần + Thặng dư vốn + Lợi nhuận giữ lại.</li>
+                    <li><strong>IPO:</strong> Quá trình công chúng hóa, mời gọi vốn.</li>
+                    <li><strong>Mệnh giá:</strong> 10.000đ/cổ phiếu. Giá thực tế > Mệnh giá.</li>
+                </ul>
+
+                <h2 id="s10">10. Tính Giá trị Nội tại (DCF)</h2>
+                <p>Phương pháp <strong>Discounted Cash Flow (DCF)</strong>: Chiết khấu dòng tiền tự do tương lai về hiện tại.</p>
+                <div class="bg-slate-100 p-4 rounded-lg text-center font-bold text-slate-700 my-4 border border-slate-200">
+                    Giá trị = Dòng tiền tương lai ÷ (1 + Lãi suất chiết khấu)^n
+                </div>
+                
+                <div class="box-info">
+                    <div class="font-bold mb-2">Ví dụ Định giá Nhà hàng</div>
+                    <p class="mb-0 text-sm">Dự báo dòng tiền năm 1 là 130tr, năm 5 là 170tr. Với lãi suất chiết khấu 12%, giá trị hợp lý của nhà hàng là <strong>639 triệu đồng</strong>.</p>
+                </div>
+
+                <h2 id="s11">11. Giá so với Giá trị Nội tại</h2>
+                <p>Hai đường cong quan trọng trong đầu tư:</p>
+                <ul class="space-y-2">
+                    <li><span class="text-yellow-600 font-bold">📉 Đường Giá trị (Vàng):</span> Tăng ổn định theo lợi nhuận DN.</li>
+                    <li><span class="text-blue-600 font-bold">📈 Đường Giá cả (Xanh):</span> Dao động mạnh theo tâm lý thị trường (Bi quan/Lạc quan).</li>
+                </ul>
+                <p><strong>Cơ hội:</strong></p>
+                <ul class="list-none pl-0 space-y-2">
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i> <strong>MUA:</strong> Khi Giá < Giá trị (Thị trường bi quan).</li>
+                    <li class="flex items-center gap-2"><i data-lucide="x-circle" class="text-red-500 w-5 h-5"></i> <strong>BÁN:</strong> Khi Giá > Giá trị (Thị trường hưng phấn).</li>
+                </ul>
+
+            </div>
+
+            <!-- FOOTER NAV -->
+            <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-4">
+                <a href="index.html" class="px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 text-center shadow-sm hover:bg-slate-50 transition">
+                    ← Về danh sách
+                </a>
+                <a href="bai-3.html" class="px-6 py-3 bg-topas-orange text-white rounded-lg font-bold text-center shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE TOC -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fixed bottom-5 right-5 z-50 bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b flex justify-between items-center"><span class="font-bold text-slate-800">Mục lục</span><button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button></div>
+        <div class="overflow-y-auto p-4 space-y-2" id="mobile-toc-content"></div>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+        
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1); header.id = id;
+            const link = document.createElement('a'); link.href = '#' + id; 
+            link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate'; 
+            link.innerText = header.innerText;
+            
+            link.onclick = (e) => { 
+                e.preventDefault(); 
+                highlightTOC(link); 
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); 
+            };
+            desktopToc.appendChild(link);
+            
+            const mobileLink = link.cloneNode(true); 
+            mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => { 
+                e.preventDefault(); 
+                toggleMobileTOC(); 
+                document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); 
+            };
+            mobileTocContent.appendChild(mobileLink);
+        });
+
+        function highlightTOC(activeLink) { 
+            document.querySelectorAll('#desktop-toc a').forEach(a => { 
+                a.classList.remove('toc-active'); 
+                a.classList.add('border-transparent'); 
+            }); 
+            activeLink.classList.remove('border-transparent'); 
+            activeLink.classList.add('toc-active'); 
+        }
+
+        function toggleMobileTOC() { 
+            const d = document.getElementById('mobile-toc-drawer'); 
+            const o = document.getElementById('mobile-toc-overlay'); 
+            const isOpen = !d.classList.contains('translate-y-full');
+            
+            if (isOpen) {
+                d.classList.add('translate-y-full');
+                o.classList.add('opacity-0');
+                setTimeout(() => o.classList.add('hidden'), 300);
+            } else {
+                o.classList.remove('hidden');
+                setTimeout(() => o.classList.remove('opacity-0'), 10);
+                d.classList.remove('translate-y-full');
+            }
+        }
+    </script>
+</body>
+</html>

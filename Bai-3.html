@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3: Giá trị và Giá cả - Topas Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { topas: { orange: '#f97316', blue: '#0f172a', bg: '#f8fafc' } }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] } } }
+        }
+    </script>
+    <style>
+        body { background-color: #f8fafc; color: #334155; scroll-behavior: smooth; }
+        .content-area { font-family: 'Merriweather', serif; font-size: 1.125rem; line-height: 1.8; color: #1e293b; }
+        .content-area h1, .content-area h2, .content-area h3 { font-family: 'Inter', sans-serif; letter-spacing: -0.025em; color: #0f172a; }
+        .content-area h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
+        .content-area h2 { font-size: 1.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+        .content-area h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #334155; }
+        .content-area ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; marker: #f97316; }
+        .content-area ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; font-weight: 600; color: #0f172a; }
+        .content-area ol li span { font-weight: 400; color: #334155; }
+        .quote-box { border-left: 4px solid #f97316; padding: 1.5rem; background: #fff7ed; margin: 2rem 0; font-style: italic; color: #9a3412; border-radius: 0 8px 8px 0; }
+        .toc-active { color: #f97316; font-weight: 700; border-left: 3px solid #f97316; background: #fff7ed; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Custom Tables */
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+        th { background-color: #f1f5f9; text-align: left; padding: 0.75rem; font-weight: 700; color: #0f172a; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 0.75rem; border-bottom: 1px solid #e2e8f0; color: #334155; }
+        
+        /* Custom Utilities */
+        .box-info { background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 0.5rem; padding: 1.5rem; color: #1e40af; margin: 1.5rem 0; }
+        .box-alert { background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; padding: 1.5rem; color: #991b1b; margin: 1.5rem 0; }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="p-2 hover:bg-slate-100 rounded-full transition"><i data-lucide="arrow-left" class="w-6 h-6 text-slate-500"></i></a>
+                <div>
+                    <div class="text-xs font-bold text-topas-orange uppercase">Khóa học Tài chính</div>
+                    <div class="font-bold text-slate-800 text-sm md:text-base line-clamp-1">Đầu tư Chứng khoán: Giá trị & Giá</div>
+                </div>
+            </div>
+            <a href="bai-4.html" class="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-topas-orange transition">Bài kế tiếp <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 flex items-start gap-12 pt-8 pb-20">
+        <!-- SIDEBAR TOC -->
+        <aside class="hidden lg:block w-72 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar pt-2">
+            <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Mục lục</h4>
+            <nav id="desktop-toc" class="space-y-1 text-sm text-slate-500 border-l border-slate-200"></nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 min-w-0 max-w-3xl mx-auto content-area">
+            <div class="mb-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-topas-orange text-xs font-bold uppercase mb-4">Bài 3</span>
+                <h1>Giá trị (Value) và Giá cả (Price)</h1>
+                <p class="text-xl text-slate-500 font-sans mt-4">Hiểu rõ sự khác biệt giữa những gì bạn trả và những gì bạn nhận được.</p>
+            </div>
+            
+            <div id="article-content">
+                
+                <h2 id="section-a">A. Tiềm năng tăng trưởng & Doanh thu/Lợi nhuận</h2>
+                <p>Tiềm năng tăng trưởng là việc lợi nhuận năm nay cao hơn năm trước, năm sau cao hơn năm nay. Để đạt được điều này bền vững, <strong>doanh thu phải tăng</strong>.</p>
+                <p>Nếu doanh thu không tăng, lợi nhuận vẫn có thể tăng (bằng cách cắt giảm chi phí), nhưng rất cực khổ và không bền vững.</p>
+                
+                <div class="box-info">
+                    <div class="font-bold mb-2 text-topas-blue">Ví dụ tính toán</div>
+                    <p class="mb-2">Doanh thu 100 tỷ. Chi phí SX 60 tỷ. Chi phí QLDN 30 tỷ. -> Lợi nhuận 10 tỷ (10%).</p>
+                    <ul class="mb-0 pl-4 list-disc text-sm">
+                        <li>Nếu năm sau doanh thu tăng lên 120 tỷ -> Lợi nhuận sẽ tăng lên 12 tỷ (tăng trưởng 20%). Dễ dàng.</li>
+                        <li>Nếu doanh thu vẫn 100 tỷ -> Muốn lợi nhuận tăng lên 12 tỷ phải cắt giảm chi phí. Rất khó và ảnh hưởng vận hành.</li>
+                    </ul>
+                </div>
+                <p><strong>Kết luận:</strong> Tăng trưởng bền vững phải bao gồm cả tăng trưởng Doanh thu VÀ Lợi nhuận.</p>
+
+                <h2 id="section-b">B. Ngành kinh doanh & Dư địa tăng trưởng</h2>
+                <p>Ngành kinh doanh quyết định dư địa tăng trưởng. Những ngành online/công nghệ ngày càng mở rộng, trong khi những ngành thuần offline cũ kỹ có thể bị đào thải.</p>
+                
+                <div class="border border-slate-200 rounded-xl overflow-hidden my-6">
+                    <div class="bg-slate-100 p-4 font-bold border-b border-slate-200">Case Study: Cái chết của Kodak</div>
+                    <div class="p-6">
+                        <p><strong>Kodak (Mỹ)</strong> từng là hãng phim ảnh hàng đầu thế giới. Đối thủ là Fuji, Konica.</p>
+                        <ul class="space-y-2">
+                            <li>❌ <strong>Nguyên nhân chết:</strong> Sự ra đời của máy ảnh số. Kodak đã nghiên cứu ra nó nhưng lãnh đạo sợ ảnh hưởng lợi nhuận phim ảnh nên không chuyển đổi.</li>
+                            <li>📉 <strong>Kết quả:</strong> Sony, Fuji dẫn đầu mảng số -> Giết chết ngành phim. Sau này máy ảnh số cũng bị Smartphone giết chết.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-sans">
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <div class="font-bold text-green-800 mb-2">🟢 Ngành Tốt Hiện Tại</div>
+                        <ul class="pl-4 space-y-1 list-disc">
+                            <li><strong>Bán lẻ tiêu dùng:</strong> Thế Giới Di Động, PNJ.</li>
+                            <li><strong>Nhu yếu phẩm:</strong> Bách Hóa Xanh (Tăng trưởng đều).</li>
+                            <li><strong>AI (Trí tuệ nhân tạo):</strong> Tiềm năng lớn.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <div class="font-bold text-red-800 mb-2">🔴 Ngành Đã Chết/Thoái Trào</div>
+                        <ul class="pl-4 space-y-1 list-disc">
+                            <li>Phim ảnh bình dân.</li>
+                            <li>Máy đánh chữ.</li>
+                            <li>Băng đĩa CD/DVD.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="section-c">C. Ảnh hưởng của Vĩ mô</h2>
+                <p>Vĩ mô là môi trường nước (bể cá) mà doanh nghiệp (con cá) đang bơi. Nước tốt thì cá khỏe.</p>
+                <h3>1. Vĩ mô Việt Nam</h3>
+                <ul>
+                    <li><strong>Tốt:</strong> Kinh tế tăng trưởng, lạm phát thấp, lãi suất thấp -> Doanh nghiệp dễ vay vốn, người dân tiêu xài mạnh -> Chứng khoán tăng.</li>
+                    <li><strong>Xấu:</strong> Lạm phát cao -> Lãi suất tăng -> Chi phí vay đắt đỏ -> Tỷ suất chiết khấu tăng -> Giá trị doanh nghiệp giảm.</li>
+                </ul>
+                <h3>2. Vĩ mô Thế giới</h3>
+                <p>Ảnh hưởng gián tiếp hoặc trực tiếp (với doanh nghiệp xuất khẩu). Ví dụ Trump đánh thuế 46% sẽ làm giảm lợi nhuận doanh nghiệp xuất khẩu sang Mỹ.</p>
+
+                <h2 id="section-d">D. Giá trị Nội tại & Dự đoán</h2>
+                <p>Giá trị không phải là con số cố định. Nó phụ thuộc vào <strong>dự đoán tương lai</strong> của chuyên gia.</p>
+                <ul>
+                    <li><strong>PNJ:</strong> Chuyên gia A thấy giá vàng cao làm giảm biên lợi nhuận (định giá thấp). Chuyên gia B thấy nhu cầu cưới hỏi tăng (định giá cao).</li>
+                    <li><strong>FPT:</strong> Phe tích cực tin vào AI và gia công phần mềm. Phe thận trọng lo ngại cạnh tranh.</li>
+                </ul>
+                <p class="italic text-slate-500">Tuy nhiên, sự chênh lệch định giá giữa các chuyên gia thường không quá lớn (10-15%).</p>
+
+                <h2 id="section-e">E. Ví dụ Định giá FPT</h2>
+                <p>Các công ty chứng khoán dùng nhiều phương pháp (FCF, P/E) để định giá FPT. Ví dụ thực tế:</p>
+                
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Công ty CK</th>
+                                <th>Giá mục tiêu</th>
+                                <th>Phương pháp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>KB Securities</td>
+                                <td class="font-bold text-topas-orange">141,000 đ</td>
+                                <td>50% FCF + 50% P/E</td>
+                            </tr>
+                            <tr>
+                                <td>DSC</td>
+                                <td class="font-bold text-topas-orange">135,900 đ</td>
+                                <td>P/E</td>
+                            </tr>
+                            <tr>
+                                <td>SSI</td>
+                                <td class="font-bold text-topas-orange">140,000 đ</td>
+                                <td>Tổng hợp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Kết luận:</strong> Các định giá rất sát nhau (chênh lệch 3-4%). Thông tin doanh nghiệp lớn rất minh bạch.</p>
+
+                <h2 id="section-f">F. Giá trị (Value) và Giá (Price)</h2>
+                <div class="quote-box">
+                    "Value is what you get, price is what you pay" (Giá trị là cái bạn nhận được, Giá là cái bạn trả) — Warren Buffett
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-slate-200 rounded-xl overflow-hidden my-6">
+                    <div class="p-6 bg-white border-b md:border-b-0 md:border-r border-slate-200">
+                        <div class="font-bold text-topas-orange text-lg mb-2">Giá trị (Value)</div>
+                        <ul class="pl-4 list-disc space-y-1 text-sm text-slate-600">
+                            <li>Dựa trên lợi nhuận doanh nghiệp.</li>
+                            <li>Ổn định, ít thay đổi (thay đổi theo quý/năm).</li>
+                            <li>Là cái neo để giá quay về.</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-slate-50">
+                        <div class="font-bold text-slate-800 text-lg mb-2">Giá (Price)</div>
+                        <ul class="pl-4 list-disc space-y-1 text-sm text-slate-600">
+                            <li>Dựa trên cung - cầu thị trường.</li>
+                            <li>Biến động hàng ngày (±7% sàn HCM, ±10% sàn HN).</li>
+                            <li>Do tâm lý đám đông quyết định.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="section-g">G. Tính xác thực thông tin</h2>
+                <p>Nhiều người sợ doanh nghiệp "lừa đảo", "xào nấu". Thực tế:</p>
+                <ul class="space-y-2">
+                    <li>✅ <strong>90%</strong> thông tin công ty niêm yết là đúng.</li>
+                    <li>✅ Doanh nghiệp lớn hầu như không dám sửa kế toán vì sợ tù tội và mất danh tiếng (Ví dụ: các lãnh đạo FLC đã bị bắt).</li>
+                    <li>✅ Thị trường chứng khoán được quản lý chặt hơn cả thị trường thực phẩm hay thuốc.</li>
+                </ul>
+
+                <h2 id="section-h">H. Biến động Giá ngắn hạn</h2>
+                <p>Trong ngắn hạn, giá không bao giờ sát giá trị. Nó bị giật bởi cung cầu.</p>
+                <div class="box-info">
+                    <strong>Case Study Vinhomes:</strong><br>
+                    Giá tăng gấp đôi từ 40.000 lên 80.000 chỉ trong thời gian ngắn. Câu hỏi: Lợi nhuận có tăng gấp đôi ngay lập tức không? Không. Đó là do sự <strong>quá kỳ vọng</strong> của nhà đầu tư đẩy giá lên.
+                </div>
+
+                <h2 id="section-i">I. 9 Yếu tố ảnh hưởng đến Giá</h2>
+                <p>Tại sao giá cổ phiếu tăng giảm? Có 9 nguyên nhân chính:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-sans text-sm">
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">🌍</div>
+                        <div><strong>1. Vĩ mô Thế giới:</strong> Chiến tranh, FED tăng lãi suất... gây tâm lý sợ hãi.</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">🇻🇳</div>
+                        <div><strong>2. Vĩ mô Việt Nam:</strong> Tỷ giá, lạm phát, chính sách tiền tệ.</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">🏭</div>
+                        <div><strong>3. Ngành kinh doanh:</strong> Tin tức tốt/xấu về ngành (VD: AI lên ngôi).</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">🏢</div>
+                        <div><strong>4. Cảm nhận về DN:</strong> Nhà đầu tư nhỏ lẻ thường mua theo cảm tính/tin đồn.</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">📊</div>
+                        <div><strong>5. Báo cáo phân tích:</strong> CTCK khuyến nghị Mua/Bán tạo làn sóng.</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">🔒</div>
+                        <div><strong>6. Insider Trading:</strong> Giao dịch nội bộ (biết tin trước).</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">📢</div>
+                        <div><strong>7. Tin đồn:</strong> Đặc biệt ảnh hưởng mạnh tới cổ phiếu nhỏ (Penny).</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm">
+                        <div class="text-2xl">💰</div>
+                        <div><strong>8. Dòng tiền:</strong> Tây mua ròng, hay Ta mua ròng? (VD: Covid dân ở nhà đánh chứng).</div>
+                    </div>
+                    <div class="flex gap-3 p-3 bg-white rounded border border-slate-100 shadow-sm md:col-span-2">
+                        <div class="text-2xl">📈</div>
+                        <div><strong>9. Xu hướng thị trường (Trend):</strong> Nước lên thuyền lên. Khi thị trường Bull Market, cổ phiếu rác cũng tăng.</div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 p-4 mt-6 border-l-4 border-orange-500 rounded-r-lg">
+                    <strong>Kết luận quan trọng:</strong> Ngắn hạn Giá ≠ Giá trị (do tâm lý). Nhưng Dài hạn Giá sẽ luôn quay về Giá trị thực. Hãy tập trung vào Giá trị.
+                </div>
+
+            </div>
+
+            <!-- FOOTER NAV -->
+            <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-4">
+                <a href="index.html" class="px-6 py-3 bg-white border border-slate-300 rounded-lg font-bold text-slate-600 text-center shadow-sm hover:bg-slate-50 transition">
+                    ← Về danh sách
+                </a>
+                <a href="bai-4.html" class="px-6 py-3 bg-topas-orange text-white rounded-lg font-bold text-center shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                    Bài tiếp theo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- MOBILE TOC -->
+    <button onclick="toggleMobileTOC()" class="lg:hidden fixed bottom-5 right-5 z-50 bg-topas-orange text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition hover:scale-110">
+        <i data-lucide="list"></i>
+    </button>
+    <div id="mobile-toc-overlay" onclick="toggleMobileTOC()" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-toc-drawer" class="fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl z-50 transform translate-y-full transition-transform duration-300 max-h-[70vh] flex flex-col shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+        <div class="p-4 border-b flex justify-between items-center"><span class="font-bold text-slate-800">Mục lục</span><button onclick="toggleMobileTOC()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button></div>
+        <div class="overflow-y-auto p-4 space-y-2" id="mobile-toc-content"></div>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        const headers = document.querySelectorAll('#article-content h2');
+        const desktopToc = document.getElementById('desktop-toc');
+        const mobileTocContent = document.getElementById('mobile-toc-content');
+        headers.forEach((header, index) => {
+            const id = 'section-' + (index + 1); header.id = id;
+            const link = document.createElement('a'); link.href = '#' + id; link.className = 'block pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 hover:text-slate-800 transition truncate'; link.innerText = header.innerText;
+            link.onclick = (e) => { e.preventDefault(); highlightTOC(link); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
+            desktopToc.appendChild(link);
+            const mobileLink = link.cloneNode(true); mobileLink.className = 'block p-3 rounded-lg bg-slate-50 text-slate-700 font-medium active:bg-orange-100 active:text-topas-orange';
+            mobileLink.onclick = (e) => { e.preventDefault(); toggleMobileTOC(); document.getElementById(id).scrollIntoView({behavior: 'smooth', block: 'start'}); };
+            mobileTocContent.appendChild(mobileLink);
+        });
+        function highlightTOC(activeLink) { document.querySelectorAll('#desktop-toc a').forEach(a => { a.classList.remove('toc-active'); a.classList.add('border-transparent'); }); activeLink.classList.remove('border-transparent'); activeLink.classList.add('toc-active'); }
+        function toggleMobileTOC() { const d = document.getElementById('mobile-toc-drawer'); const o = document.getElementById('mobile-toc-overlay'); const isOpen = !d.classList.contains('translate-y-full'); if (isOpen) { d.classList.add('translate-y-full'); o.classList.add('opacity-0'); setTimeout(() => o.classList.add('hidden'), 300); } else { o.classList.remove('hidden'); setTimeout(() => o.classList.remove('opacity-0'), 10); d.classList.remove('translate-y-full'); } }
+    </script>
+</body>
+</html>
