@@ -1,34 +1,35 @@
-# Hướng dẫn chuyển từ text thô sang trang HTML đẹp (theo template Bài 1/Bài 5)
+# Hướng dẫn chuyển text thô thành HTML chuẩn (theo format Bài 1)
 
-## 1) Chuẩn bị nội dung
-- Gom các ghi chú, bullet hoặc đoạn văn từ file text thô.
-- Chia thành các phần chính (H1/H2) và tiểu mục (H3/H4) để tạo mục lục rõ ràng.
-- Đánh dấu các phần cần nhấn mạnh (lưu ý, cảnh báo, trích dẫn) để chuyển thành các "note box" hoặc blockquote.
+## 1) Chuẩn bị nội dung (đủ 100% thông tin)
+- Gom toàn bộ đoạn văn, bullet, ví dụ từ file text thô. **Không được bỏ sót ý hoặc con số**.
+- Chia thành các khối logic rõ ràng:
+  - H2 cho phần chính (I, II, III...).
+  - H3/H4 cho tiểu mục (1, 2, 3...).
+- Đánh dấu trước các phần cần làm nổi bật (lưu ý, cảnh báo, ví dụ, bảng số liệu) để lên layout sau.
 
-## 2) Tạo khung HTML cơ bản
-- Dùng skeleton đã có trong `Bai-5.html`:
-  - Khai báo `<!DOCTYPE html>`, thẻ `<html lang="vi">`, `<meta charset>` và `<meta viewport>`.
-  - Nhúng Tailwind CDN: `<script src="https://cdn.tailwindcss.com"></script>` và cấu hình font Inter + Merriweather.
-  - Giữ cấu trúc header sticky + main content + sidebar (nếu cần TOC) để có bố cục nhất quán.
-- Sao chép các lớp tiện ích dùng sẵn:
-  - `.content-area` cho typography chính, `.note-box` cho khối lưu ý, `.table-wrap` cho bảng.
-  - Các đoạn JavaScript cuối file để sinh TOC tự động và kích hoạt icon Lucide.
+## 2) Dùng khung HTML của Bài 1 (layout đẹp, có TOC)
+- Sao chép toàn bộ khung từ `Bai-1.html` hoặc file mới nhất đã chuẩn:
+  - Header sticky, nút về trang chủ, nút "Bài kế tiếp".
+  - Bố cục 2 cột: sidebar TOC (desktop) + main content.
+  - Hero gồm badge, tiêu đề, mô tả, thông tin giảng viên/ngày.
+- Giữ nguyên cấu hình Tailwind + font (Inter, Merriweather), màu `topas` và script Lucide.
+- Giữ block JS cuối file để tự sinh TOC desktop/mobile và toggle drawer.
 
-## 3) Đưa nội dung vào khung
-- Mở phần `<!-- Nội dung -->` và thay thế các tiêu đề/h3/h4 theo dàn ý ở bước 1.
-- Mỗi ý ngắn nên để dạng `<ul><li>...</li></ul>`; các luận điểm dài dùng `<p>`.
-- Nếu có bảng so sánh, quấn trong `<div class="table-wrap">` rồi dùng `<table><thead><tbody>`.
-- Các lưu ý quan trọng bọc trong `<div class="note-box">Nội dung lưu ý...</div>`.
+## 3) Đưa nội dung vào `<div id="article-content">` (đủ 100%)
+- Chuyển toàn bộ text vào các thẻ `<p>`, `<ul>/<ol>`, `<table>` **không lược bỏ chữ**.
+- Với phần quan trọng/so sánh, bọc trong card: `bg-white border border-slate-200 rounded-xl p-5 shadow-sm`.
+- Lưu ý/cảnh báo dùng nền cam nhạt: `bg-orange-50 border-orange-200`.
+- Bảng số liệu quấn trong `<div class="table-wrap">` để tránh tràn.
+- Nếu có ví dụ nhiều bước, chia grid 2 cột (`grid grid-cols-1 md:grid-cols-2 gap-4`) giống cách trình bày Bài 1.
 
-## 4) Tối ưu hiển thị
-- Kiểm tra heading có dạng số thứ tự để TOC tự sinh đẹp (ví dụ `1. Tổng quan`, `2. Chiến lược ...`).
-- Giữ câu ngắn, xuống dòng hợp lý; tránh copy nguyên văn text thô chưa dọn sạch.
-- Dùng các lớp màu đã có (màu cam `topas.orange`, nền `topas.bg`) thay vì tự đặt inline style.
-- Nếu muốn thêm mục lục nổi trên mobile, giữ nút "Mục lục" và modal đã có ở cuối file.
+## 4) Kiểm tra bố cục và TOC
+- Đảm bảo tất cả H2/H3 xuất hiện đúng thứ tự để TOC tự sinh chuẩn.
+- Kiểm tra spacing: thêm `space-y-*`, `mt-*`, `mb-*` để nội dung thoáng như Bài 1.
+- Đảm bảo các bullet/bảng giữ nguyên số liệu, ví dụ, ký hiệu (%, ≈, →...).
 
-## 5) Xuất bản/kiểm tra
-- Lưu file thành `Bai-x.html` mới hoặc thay thế bài hiện có.
-- Mở file bằng trình duyệt để soát lỗi font, spacing, liên kết mục lục.
-- Nếu cần chỉnh nhanh, chỉ sửa phần nội dung; hạn chế động vào phần cấu hình Tailwind/JS.
+## 5) Soát lần cuối và xuất bản
+- Đọc lại toàn bộ bài, so sánh với file text gốc để chắc chắn **100% ý, 100% ví dụ** đã có.
+- Mở file HTML trong trình duyệt: kiểm tra font, TOC, liên kết anchor, header sticky.
+- Lưu đúng tên `Bai-x.html` và link điều hướng (trang chủ/bài tiếp) nếu có.
 
-> Mẹo nhanh: copy nguyên thân trang từ `Bai-5.html`, dán vào file mới, rồi thay phần trong `<div id="article-content"> ... </div>` bằng nội dung đã chuẩn hóa. Phần còn lại giữ nguyên để đảm bảo layout đồng nhất.
+> Mẹo nhanh: dán nguyên khung `Bai-1.html`, thay toàn bộ nội dung trong `<div id="article-content"> ... </div>` bằng text đã chuẩn hóa. Không chỉnh phần cấu hình/JS để giữ format đồng nhất.
